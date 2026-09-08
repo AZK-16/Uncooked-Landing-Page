@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#FAFAFA;font-family:'Satoshi',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:#E72B15;}
+  a:hover{color:#ff5236;}
+</style>
+</helmet>
+
+<div style="padding:64px 56px 90px;background:#FAFAFA;">
+
+  <h1 style="margin:0 0 6px;font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;letter-spacing:-0.03em;line-height:1;color:#303030;">stamp variations.</h1>
+  <p style="margin:0 0 44px;font-weight:500;font-size:15px;color:#8a8a92;max-width:70ch;">same scalloped seal, three inks — #E72B15, #303030, #FAFAFA. row 1 is solid-ink, row 2 is outlined, row 3 is two-tone.</p>
+
+  <!-- shared geometry -->
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+    <defs>
+      <path id="arcTop" d="M 190 500 A 310 310 0 0 1 810 500"></path>
+      <path id="arcBot" d="M 104 500 A 396 396 0 0 0 896 500"></path>
+      <path id="starP" d="M0 -34 L9.5 -11.5 L34 -10.5 L15 4.5 L21.5 28 L0 14.5 L-21.5 28 L-15 4.5 L-34 -10.5 L-9.5 -11.5 Z"></path>
+      <g id="iconCode"><path d="M14.6 3.6 9.4 20.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="m16 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="iconBag"><rect x="2" y="7" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="iconMic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 19v3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="iconClap"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="m6.2 5.3 3.1 3.9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.4 3.4l3.1 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="iconCheck"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="iconCap"><path d="M22 10v6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 10l10-5 10 5-10 5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 12v5c3 3 9 3 12 0v-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+    </defs>
+  </svg>
+
+  <div style="display:flex;flex-wrap:wrap;gap:44px 40px;">
+
+    <!-- 01 · dark ink -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7"></circle>
+        <use href="#starP" fill="#FAFAFA" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#FAFAFA" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">software</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#303030" stroke-width="2.2"><use href="#iconCode"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">01 · dark ink</span>
+    </div>
+
+    <!-- 02 · red ink -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#E72B15"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#E72B15" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7"></circle>
+        <use href="#starP" fill="#FAFAFA" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#FAFAFA" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">verified</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">shipped</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#E72B15" stroke-width="2.2"><use href="#iconCheck"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">02 · red ink</span>
+    </div>
+
+    <!-- 03 · dark ink, red mark -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#E72B15" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#E72B15" stroke-width="7"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="90" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">video pitch</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#E72B15" stroke-width="2.2"><use href="#iconClap"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">03 · dark + red mark</span>
+    </div>
+
+    <!-- 04 · outlined red -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#FAFAFA" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#E72B15" stroke-width="12" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#E72B15" stroke-width="10"></circle>
+        <circle cx="500" cy="500" r="432" fill="none" stroke="#E72B15" stroke-width="5"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#E72B15" stroke-width="5" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#E72B15" stroke-width="8"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#E72B15" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#E72B15" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">product</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#E72B15" stroke-width="2.2"><use href="#iconBag"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">04 · outlined red</span>
+    </div>
+
+    <!-- 05 · outlined dark -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#FAFAFA" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="12" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="10"></circle>
+        <circle cx="500" cy="500" r="432" fill="none" stroke="#303030" stroke-width="5"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#303030" stroke-width="5" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#303030" stroke-width="8"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#303030" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#303030" font-family="Satoshi" font-weight="900" font-size="90" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">research</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#303030" stroke-width="2.2"><use href="#iconCap"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">05 · outlined dark</span>
+    </div>
+
+    <!-- 06 · red ring, dark core -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#E72B15"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#E72B15" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7"></circle>
+        <use href="#starP" fill="#FAFAFA" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#FAFAFA" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">audio</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#FAFAFA" stroke-width="2.2"><use href="#iconMic"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">06 · red ring, dark core</span>
+    </div>
+
+    <!-- 07 · dark ring, red core -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#E72B15"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7"></circle>
+        <use href="#starP" fill="#FAFAFA" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#FAFAFA" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">software</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#FAFAFA" stroke-width="2.2"><use href="#iconCode"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">07 · dark ring, red core</span>
+    </div>
+
+    <!-- 08 · light seal on dark -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div style="background:#303030;border-radius:22px;padding:14px;">
+        <svg viewBox="0 0 1000 1000" style="width:222px;height:222px;display:block;">
+          <circle cx="500" cy="500" r="440" fill="#FAFAFA"></circle>
+          <circle cx="500" cy="500" r="440" fill="none" stroke="#FAFAFA" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+          <circle cx="500" cy="500" r="430" fill="none" stroke="#303030" stroke-width="9"></circle>
+          <circle cx="500" cy="500" r="368" fill="none" stroke="#303030" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+          <circle cx="500" cy="500" r="288" fill="#E72B15"></circle>
+          <circle cx="500" cy="500" r="300" fill="none" stroke="#303030" stroke-width="7"></circle>
+          <use href="#starP" fill="#303030" transform="translate(132,500)"></use>
+          <use href="#starP" fill="#303030" transform="translate(868,500)"></use>
+          <text fill="#303030" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+          <text fill="#303030" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">design</textPath></text>
+          <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#FAFAFA" stroke-width="2.2"><use href="#iconBag"></use></g>
+        </svg>
+      </div>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">08 · light seal on dark</span>
+    </div>
+
+  </div>
+
+  <p style="margin:56px 0 22px;font-weight:700;font-size:15px;color:#5a5a62;">more on the 03 theme — dark outer, white core, red accents</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:44px 40px;">
+
+    <!-- 09 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#E72B15" stroke-width="11"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#E72B15" stroke-width="7"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">software</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#E72B15" stroke-width="2.2"><use href="#iconCode"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">09 · red mark · software</span>
+    </div>
+
+    <!-- 10 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="272" fill="none" stroke="#E72B15" stroke-width="5"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#E72B15" stroke-width="7"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">product</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#E72B15" stroke-width="2.2"><use href="#iconBag"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">10 · double ring · product</span>
+    </div>
+
+    <!-- 11 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#E72B15" stroke-width="11"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#E72B15" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#E72B15" stroke-width="7"></circle>
+        <use href="#starP" fill="#FAFAFA" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#FAFAFA" transform="translate(868,500)"></use>
+        <text fill="#E72B15" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">audio</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#303030" stroke-width="2.2"><use href="#iconMic"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">11 · red top word · audio</span>
+    </div>
+
+    <!-- 12 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#E72B15" stroke-width="11"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="310" fill="#E72B15"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="90" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">research</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#303030" stroke-width="2.2"><use href="#iconCap"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">12 · red halo · research</span>
+    </div>
+
+    <!-- 13 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#303030" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#E72B15" stroke-width="7" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="96" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">verified</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">shipped</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#E72B15" stroke-width="2.4"><use href="#iconCheck"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">13 · red arcs · verified</span>
+    </div>
+
+    <!-- 14 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <svg viewBox="0 0 1000 1000" style="width:250px;height:250px;display:block;">
+        <circle cx="500" cy="500" r="440" fill="#303030"></circle>
+        <circle cx="500" cy="500" r="440" fill="none" stroke="#E72B15" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+        <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+        <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+        <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#E72B15" stroke-width="7"></circle>
+        <use href="#starP" fill="#E72B15" transform="translate(132,500)"></use>
+        <use href="#starP" fill="#E72B15" transform="translate(868,500)"></use>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="100" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">track</textPath></text>
+        <text fill="#FAFAFA" font-family="Satoshi" font-weight="900" font-size="90" letter-spacing="3"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">video pitch</textPath></text>
+        <g transform="translate(500,500) scale(15.5) translate(-12,-12)" color="#303030" stroke-width="2.2"><use href="#iconClap"></use></g>
+      </svg>
+      <span style="font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a92;">14 · red scallop edge</span>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

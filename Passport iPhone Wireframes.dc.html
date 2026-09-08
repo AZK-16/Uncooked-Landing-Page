@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ececed; font-family:'Satoshi',system-ui,sans-serif; }
+  a { text-decoration:none; color:#E72B15; }
+  a:hover { color:#ff5236; }
+  .tag { position:absolute; top:-15px; left:0; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8a8a92; }
+  .phone { position:relative; width:390px; height:844px; background:#0e0e12; border-radius:56px; padding:11px; box-shadow:0 30px 70px rgba(0,0,0,.22); flex:0 0 auto; }
+  .screen { position:relative; width:100%; height:100%; background:#f6f6f7; border-radius:46px; overflow:hidden; }
+  .island { position:absolute; top:12px; left:50%; transform:translateX(-50%); width:112px; height:34px; background:#0e0e12; border-radius:20px; z-index:20; }
+  .status { position:relative; height:52px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 30px 6px; font-size:14px; font-weight:700; color:#33333a; z-index:10; }
+  .status .dots { display:flex; align-items:center; gap:6px; }
+  .sig { width:16px; height:10px; background:#33333a; border-radius:2px; }
+  .bat { width:22px; height:11px; border:1.5px solid #33333a; border-radius:3px; }
+  .body { padding:8px 20px 26px; height:calc(100% - 52px); overflow:hidden; }
+  .line { background:#dcdce1; border-radius:4px; height:11px; }
+  .imgbox { border:1.5px dashed #b7b7be; border-radius:14px; background:repeating-linear-gradient(135deg,#e6e6ea 0 14px,#dedee3 14px 28px); display:flex; align-items:center; justify-content:center; position:relative; }
+  .play { width:56px; height:56px; border-radius:50%; background:rgba(30,30,38,.62); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .badge { background:#eeeef1; border:1.5px solid #cfcfd6; border-radius:999px; font-size:11px; font-weight:600; color:#5a5a62; padding:5px 11px; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+  .chip { background:#e6e6ea; border-radius:999px; font-size:12px; color:#5a5a62; padding:6px 13px; white-space:nowrap; }
+  .avatar { border-radius:50%; background:repeating-linear-gradient(135deg,#dcdce1 0 10px,#e6e6ea 10px 20px); border:1.5px dashed #b7b7be; flex:0 0 auto; }
+  .h { font-weight:700; color:#22232a; letter-spacing:-.01em; }
+  .sub { color:#8a8a92; }
+  .lbl { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#a4a4ac; }
+  .cta { background:#c7c7cd; border:1.5px solid #a4a4ac; border-radius:14px; color:#3a3a40; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .navbar { display:flex; align-items:center; justify-content:space-between; padding:14px 4px 10px; }
+  .tab { display:flex; align-items:center; justify-content:space-around; border-top:1.5px solid #e4e4e8; padding-top:12px; }
+  .tabdot { width:22px; height:22px; border-radius:7px; background:#dcdce1; }
+  .tabdot.on { background:#a4a4ac; }
+  .barbtn { width:30px; height:30px; border-radius:9px; background:#e6e6ea; display:flex; align-items:center; justify-content:center; font-size:14px; color:#5a5a62; }
+</style>
+</helmet>
+
+<div style="padding:64px 56px 110px;">
+
+  <h1 style="margin:0 0 6px;font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;letter-spacing:-0.03em;line-height:1;color:#303030;">passport · iphone wireframes.</h1>
+  <p style="margin:0 0 44px;font-weight:500;font-size:15px;color:#8a8a92;max-width:76ch;">low-fi spreads for the career passport: how it's built, how it's proven, and how one card applies everywhere.</p>
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:0 0 2px; letter-spacing:.02em;">round 01 · core flow · build, prove, apply</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 24px; max-width:820px;">the spine of the product: pick a track, record the pitch, get verified, then apply with one card.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:72px;">
+
+  <!-- ============ S1 · passport home ============ -->
+  <div style="position:relative;">
+    <span class="tag">S1 · passport home · progress toward verified</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><span class="lbl" style="letter-spacing:.16em;">your passport</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+            <div class="avatar" style="width:56px; height:56px;"></div>
+            <div style="flex:1;">
+              <div class="h" style="font-size:18px; margin-bottom:3px;">alex morgan</div>
+              <div class="sub" style="font-size:12px;">aspiring frontend engineer • london</div>
+            </div>
+            <span class="badge">draft</span>
+          </div>
+
+          <div style="margin-top:16px; border:1.5px solid #e0e0e4; border-radius:18px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;"><span class="lbl">completion</span><span class="h" style="font-size:13px;">2 of 4</span></div>
+            <div style="height:8px; background:#e6e6ea; border-radius:99px;"><div style="width:50%; height:100%; background:#a4a4ac; border-radius:99px;"></div></div>
+          </div>
+
+          <div class="lbl" style="margin:18px 0 10px;">steps</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #e0e0e4; border-radius:16px; padding:13px 14px;"><span style="width:26px; height:26px; border-radius:50%; background:#dcdce1; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#5a5a62;">✓</span><div style="flex:1;"><div class="h" style="font-size:14px;">pick your track</div><div class="sub" style="font-size:11px;">frontend</div></div></div>
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #e0e0e4; border-radius:16px; padding:13px 14px;"><span style="width:26px; height:26px; border-radius:50%; background:#dcdce1; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#5a5a62;">✓</span><div style="flex:1;"><div class="h" style="font-size:14px;">60 second video pitch</div><div class="sub" style="font-size:11px;">recorded tuesday</div></div></div>
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #cfcfd6; border-radius:16px; padding:13px 14px; background:#f1f1f4;"><span style="width:26px; height:26px; border-radius:50%; border:1.5px dashed #b7b7be;"></span><div style="flex:1;"><div class="h" style="font-size:14px;">walk through your best work</div><div class="sub" style="font-size:11px;">3 min + real files</div></div><span class="badge">next</span></div>
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px dashed #d4d4da; border-radius:16px; padding:13px 14px; opacity:.6;"><span style="width:26px; height:26px; border-radius:50%; border:1.5px dashed #cfcfd6;"></span><div style="flex:1;"><div class="h" style="font-size:14px;">human review</div><div class="sub" style="font-size:11px;">2 working days</div></div></div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:16px; font-size:15px;">continue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S2 · pick a track ============ -->
+  <div style="position:relative;">
+    <span class="tag">S2 · pick your track · the work you actually want</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">step 1 of 4</span><div class="barbtn">···</div></div>
+
+          <div class="h" style="font-size:22px; margin:8px 0 6px;">pick your track</div>
+          <div class="sub" style="font-size:13px; margin-bottom:18px;">one to start. you can earn more stamps later.</div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="border:1.5px solid #cfcfd6; border-radius:18px; padding:16px 14px; background:#f1f1f4;"><div style="width:38px; height:38px; border-radius:12px; background:#e0e0e5; margin-bottom:11px;"></div><div class="h" style="font-size:14px;">software</div><div class="sub" style="font-size:11px;">code + shipping</div></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:18px; padding:16px 14px;"><div style="width:38px; height:38px; border-radius:12px; background:#e6e6ea; margin-bottom:11px;"></div><div class="h" style="font-size:14px;">marketing</div><div class="sub" style="font-size:11px;">growth + brand</div></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:18px; padding:16px 14px;"><div style="width:38px; height:38px; border-radius:12px; background:#e6e6ea; margin-bottom:11px;"></div><div class="h" style="font-size:14px;">design</div><div class="sub" style="font-size:11px;">product + visual</div></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:18px; padding:16px 14px;"><div style="width:38px; height:38px; border-radius:12px; background:#e6e6ea; margin-bottom:11px;"></div><div class="h" style="font-size:14px;">hardware</div><div class="sub" style="font-size:11px;">physical builds</div></div>
+          </div>
+
+          <div style="margin-top:18px; border-left:2px solid #c4c4cc; padding-left:13px; font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; line-height:1.4; color:#4a4a52;">set aside 2 hours and do it properly. that's it — you're verified.</div>
+
+          <div class="cta" style="height:50px; margin-top:18px; font-size:15px;">continue with software</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S3 · video pitch ============ -->
+  <div style="position:relative;">
+    <span class="tag">S3 · video pitch · 60 seconds, one take</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">step 2 of 4</span><div class="barbtn">···</div></div>
+
+          <div class="imgbox" style="height:320px; margin-top:6px; border-radius:20px;"><div class="play">▶</div><span class="badge" style="position:absolute; top:12px; left:12px;">0:58 / 1:00</span></div>
+
+          <div class="lbl" style="margin:16px 0 9px;">what to cover</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:center; gap:11px;"><span style="width:22px; height:22px; border-radius:50%; background:#dcdce1;"></span><span class="h" style="font-size:13px;">who you are</span></div>
+            <div style="display:flex; align-items:center; gap:11px;"><span style="width:22px; height:22px; border-radius:50%; background:#dcdce1;"></span><span class="h" style="font-size:13px;">what you've built</span></div>
+            <div style="display:flex; align-items:center; gap:11px;"><span style="width:22px; height:22px; border-radius:50%; border:1.5px dashed #b7b7be;"></span><span class="h" style="font-size:13px;">what you want next</span></div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:18px;">
+            <div class="cta" style="flex:1; height:50px; font-size:15px; background:#e6e6ea; border-color:#cfcfd6;">re-record</div>
+            <div class="cta" style="flex:1; height:50px; font-size:15px;">use this take</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S4 · work walkthrough ============ -->
+  <div style="position:relative;">
+    <span class="tag">S4 · best work · 3 min walkthrough + real files</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">step 3 of 4</span><div class="barbtn">···</div></div>
+
+          <div class="h" style="font-size:22px; margin:8px 0 6px;">your best work</div>
+          <div class="sub" style="font-size:13px; margin-bottom:16px;">one project, explained properly.</div>
+
+          <div class="imgbox" style="height:150px; border-radius:16px;"><span class="sub" style="font-size:12px;">project cover</span></div>
+
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
+            <div style="border:1.5px solid #e0e0e4; border-radius:14px; padding:13px 14px;"><div class="lbl" style="margin-bottom:6px;">title</div><div class="h" style="font-size:14px;">payments rewrite</div></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:14px; padding:13px 14px;"><div class="lbl" style="margin-bottom:8px;">what it does</div><div style="display:flex; flex-direction:column; gap:6px;"><div class="line" style="width:100%;"></div><div class="line" style="width:88%;"></div><div class="line" style="width:56%;"></div></div></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:14px; padding:13px 14px; display:flex; align-items:center; gap:11px;"><span style="width:30px; height:30px; border-radius:9px; background:#e6e6ea;"></span><div style="flex:1;"><div class="h" style="font-size:13px;">repo + 4 files</div><div class="sub" style="font-size:11px;">attached</div></div><span class="badge">✓</span></div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:16px; font-size:15px;">submit for review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S5 · verified ============ -->
+  <div style="position:relative;">
+    <span class="tag">S5 · verified · a human checked it, then apply anywhere</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px; display:flex; flex-direction:column;">
+          <div class="navbar" style="padding-top:10px;"><span class="lbl" style="letter-spacing:.16em;">step 4 of 4</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; margin-top:26px;">
+            <span style="width:96px; height:96px; border-radius:50%; border:2px dashed #b7b7be; background:#eaeaee; display:flex; align-items:center; justify-content:center; font-size:30px; color:#5a5a62;">✓</span>
+            <div class="h" style="font-size:22px; margin:18px 0 7px;">you're verified</div>
+            <div class="sub" style="font-size:13px; max-width:26ch; line-height:1.5;">a real person reviewed your work and checked it matches your claims.</div>
+          </div>
+
+          <div style="margin-top:24px; border:1.5px solid #e0e0e4; border-radius:18px; padding:14px; display:flex; align-items:center; gap:12px;">
+            <div class="avatar" style="width:46px; height:46px;"></div>
+            <div style="flex:1;"><div class="h" style="font-size:15px;">alex morgan</div><div class="sub" style="font-size:11px;">computer science · imperial</div></div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div class="lbl" style="margin:20px 0 10px;">first stamp earned</div>
+          <div style="display:flex; gap:10px;">
+            <span style="width:54px; height:54px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+            <span style="width:54px; height:54px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.55;"></span>
+            <span style="width:54px; height:54px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.55;"></span>
+            <span style="width:54px; height:54px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.55;"></span>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:auto; font-size:15px;">apply with passport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:64px 0 2px; letter-spacing:.02em;">round 02 · pokédex-style passport card · photo, name, one impressive line, stamps, uni</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 24px; max-width:820px;">the card reads like a collectible: a big framed photo panel, a passport number, one line of proof, earned stamps, and where you studied. every layout is trying to say one thing — one passport, apply to any role.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:72px;">
+
+  <!-- ============ S6 · pokédex card ============ -->
+  <div style="position:relative;">
+    <span class="tag">S6 · pokédex card · framed photo panel, stamps, uni footer</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;">
+            <div class="barbtn">‹</div>
+            <div style="display:flex; align-items:center; gap:9px;"><div class="avatar" style="width:22px; height:22px;"></div><span class="h" style="font-size:16px;">alex morgan</span><span class="sub" style="font-size:14px; font-weight:700;">#0148</span></div>
+            <div class="barbtn">↗</div>
+          </div>
+
+          <div style="position:relative; margin-top:6px; border:1.5px solid #e0e0e4; border-radius:24px; background:#efeff2; padding:14px; overflow:hidden;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;"><div style="width:230px; height:230px; border-radius:50%; background:#e6e6ea;"></div></div>
+            <div class="imgbox" style="position:relative; height:236px; border-radius:16px; background:repeating-linear-gradient(135deg,#e0e0e5 0 14px,#d8d8de 14px 28px);">
+              <span class="sub" style="font-size:12px;">candidate photo</span>
+              <span class="badge" style="position:absolute; top:10px; right:10px;">verified ✓</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px;">
+              <div class="barbtn" style="width:32px; height:32px; border-radius:50%;">‹</div>
+              <span class="chip" style="background:#dcdce1; font-weight:700; padding:7px 22px;">frontend</span>
+              <div class="barbtn" style="width:32px; height:32px; border-radius:50%;">›</div>
+            </div>
+          </div>
+
+          <div style="display:flex; margin-top:14px; background:#e9e9ed; border-radius:999px; padding:4px;">
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:700; color:#2f3037; background:#d2d2d8; border-radius:999px; padding:8px 0;">proof</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">stamps</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">work</span>
+          </div>
+
+          <div style="margin-top:14px; font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; line-height:1.4; color:#4a4a52;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+
+          <div style="display:flex; flex-direction:column; gap:9px; margin-top:14px;">
+            <div style="display:flex; align-items:center; gap:14px;"><span class="lbl" style="width:66px;">studied</span><span class="h" style="font-size:13px;">computer science</span></div>
+            <div style="display:flex; align-items:center; gap:14px;"><span class="lbl" style="width:66px;">uni</span><span class="h" style="font-size:13px;">imperial college london</span></div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+            <span class="lbl" style="width:66px;">stamps</span>
+            <div style="display:flex; gap:8px;">
+              <span style="width:30px; height:30px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span>
+              <span style="width:30px; height:30px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span>
+              <span style="width:30px; height:30px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span>
+              <span style="width:30px; height:30px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4;"></span>
+            </div>
+          </div>
+
+          <div class="tab" style="margin-top:16px;"><span class="tabdot on"></span><span class="tabdot"></span><span class="tabdot"></span><span class="tabdot"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S7 · stamps as the hero ============ -->
+  <div style="position:relative;">
+    <span class="tag">S7 · stamp sheet · earned stamps are the proof, photo shrinks to a chip</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport · #0148</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; align-items:center; gap:13px; margin-top:6px;">
+            <div class="avatar" style="width:62px; height:62px;"></div>
+            <div style="flex:1;">
+              <div class="h" style="font-size:19px; margin-bottom:4px;">alex morgan</div>
+              <div class="sub" style="font-size:12px;">computer science · imperial</div>
+            </div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="margin-top:14px; padding:13px 14px; border-left:2px solid #c4c4cc; font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; line-height:1.4; color:#4a4a52;">shipped the payments rewrite that now moves £40m a month.</div>
+
+          <div class="lbl" style="margin:18px 0 10px;">stamps earned</div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+            <div style="border:1.5px solid #e0e0e4; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:7px;"><span style="width:34px; height:34px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span><span style="font-size:10px; font-weight:700; color:#5a5a62;">shipped</span></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:7px;"><span style="width:34px; height:34px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span><span style="font-size:10px; font-weight:700; color:#5a5a62;">reviewed</span></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:7px;"><span style="width:34px; height:34px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span><span style="font-size:10px; font-weight:700; color:#5a5a62;">interviewed</span></div>
+            <div style="border:1.5px solid #e0e0e4; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:7px;"><span style="width:34px; height:34px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span><span style="font-size:10px; font-weight:700; color:#5a5a62;">open source</span></div>
+            <div style="border:1.5px dashed #d4d4da; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:7px; opacity:.55;"><span style="width:34px; height:34px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4;"></span><span style="font-size:10px; font-weight:700; color:#a4a4ac;">locked</span></div>
+            <div style="border:1.5px dashed #d4d4da; border-radius:16px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:7px; opacity:.55;"><span style="width:34px; height:34px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4;"></span><span style="font-size:10px; font-weight:700; color:#a4a4ac;">locked</span></div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:16px; font-size:15px;">use passport to apply</div>
+          <div class="sub" style="font-size:11px; text-align:center; margin-top:9px;">one passport · every role on uncooked</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S8 · passport book spread ============ -->
+  <div style="position:relative;">
+    <span class="tag">S8 · passport book · photo page + stamp page, travel-document framing</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">career passport</span><div class="barbtn">↗</div></div>
+
+          <div style="border:1.5px solid #d4d4da; border-radius:20px; overflow:hidden; margin-top:6px;">
+            <div style="padding:14px; display:flex; gap:13px; background:#f1f1f4;">
+              <div class="imgbox" style="width:96px; height:124px; border-radius:8px; flex:0 0 auto;"><span class="sub" style="font-size:10px;">photo</span></div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:9px;">
+                <div><div class="lbl" style="font-size:9px;">name</div><div class="h" style="font-size:15px;">alex morgan</div></div>
+                <div><div class="lbl" style="font-size:9px;">passport no.</div><div class="h" style="font-size:13px;">unc · 0148</div></div>
+                <div><div class="lbl" style="font-size:9px;">track</div><div class="h" style="font-size:13px;">frontend engineer</div></div>
+                <div><div class="lbl" style="font-size:9px;">studied</div><div class="h" style="font-size:12px;">computer science · imperial</div></div>
+              </div>
+            </div>
+            <div style="display:flex; gap:3px; padding:9px 14px; background:#e6e6ea; border-top:1.5px dashed #cfcfd6;">
+              <div class="line" style="flex:2; height:7px; background:#c9c9d0;"></div><div class="line" style="flex:1; height:7px; background:#c9c9d0;"></div><div class="line" style="flex:3; height:7px; background:#c9c9d0;"></div><div class="line" style="flex:1; height:7px; background:#c9c9d0;"></div>
+            </div>
+            <div style="padding:14px; background:#fbfbfc; border-top:1.5px solid #e4e4e8;">
+              <div class="lbl" style="margin-bottom:7px;">one line of proof</div>
+              <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; line-height:1.4; color:#4a4a52;">shipped the payments rewrite that now moves £40m a month.</div>
+            </div>
+            <div style="padding:14px; border-top:1.5px dashed #cfcfd6; background:#f6f6f7;">
+              <div class="lbl" style="margin-bottom:11px;">stamps</div>
+              <div style="display:flex; gap:11px; flex-wrap:wrap;">
+                <span style="width:52px; height:52px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-8deg);"></span>
+                <span style="width:52px; height:52px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(6deg);"></span>
+                <span style="width:52px; height:52px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-3deg);"></span>
+                <span style="width:52px; height:52px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.55;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:14px; font-size:15px;">apply with passport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S9 · one passport, any role ============ -->
+  <div style="position:relative;">
+    <span class="tag">S9 · universal passport · one card unlocks every application</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">apply</span><div class="barbtn">···</div></div>
+
+          <div style="border:1.5px solid #d4d4da; border-radius:20px; padding:13px; display:flex; gap:12px; align-items:center; background:#f1f1f4; margin-top:6px;">
+            <div class="imgbox" style="width:58px; height:72px; border-radius:8px; flex:0 0 auto;"></div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:7px; margin-bottom:4px;"><span class="h" style="font-size:16px;">alex morgan</span><span class="sub" style="font-size:12px; font-weight:700;">#0148</span></div>
+              <div class="sub" style="font-size:11px; margin-bottom:7px;">computer science · imperial</div>
+              <div style="display:flex; gap:6px;"><span style="width:20px; height:20px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span><span style="width:20px; height:20px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span><span style="width:20px; height:20px; border-radius:50%; border:1.5px dashed #b7b7be; background:#e6e6ea;"></span></div>
+            </div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="text-align:center; margin-top:16px;">
+            <div class="h" style="font-size:17px; margin-bottom:5px;">one passport. any role.</div>
+            <div class="sub" style="font-size:12px;">no new brief. no new cv. one tap.</div>
+          </div>
+
+          <div style="display:flex; align-items:center; justify-content:center; gap:5px; margin:14px 0 12px;">
+            <span style="width:1.5px; height:22px; background:#d4d4da; transform:rotate(-18deg);"></span>
+            <span style="width:1.5px; height:26px; background:#d4d4da;"></span>
+            <span style="width:1.5px; height:22px; background:#d4d4da; transform:rotate(18deg);"></span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #e0e0e4; border-radius:16px; padding:13px 14px;"><div class="avatar" style="width:34px; height:34px; border-radius:10px;"></div><div style="flex:1;"><div class="h" style="font-size:14px; margin-bottom:3px;">frontend engineer</div><div class="sub" style="font-size:11px;">incident.io · seed</div></div><span class="badge">1 tap</span></div>
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #e0e0e4; border-radius:16px; padding:13px 14px;"><div class="avatar" style="width:34px; height:34px; border-radius:10px;"></div><div style="flex:1;"><div class="h" style="font-size:14px; margin-bottom:3px;">product engineer</div><div class="sub" style="font-size:11px;">ashby · series B</div></div><span class="badge">1 tap</span></div>
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #e0e0e4; border-radius:16px; padding:13px 14px; opacity:.6;"><div class="avatar" style="width:34px; height:34px; border-radius:10px;"></div><div style="flex:1;"><div class="h" style="font-size:14px; margin-bottom:3px;">founding engineer</div><div class="sub" style="font-size:11px;">stealth · pre-seed</div></div><span class="badge">1 tap</span></div>
+          </div>
+
+          <div class="tab" style="margin-top:16px;"><span class="tabdot"></span><span class="tabdot on"></span><span class="tabdot"></span><span class="tabdot"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:64px 0 2px; letter-spacing:.02em;">round 03 · small photo + proof / stamps / work · top 3 skills instead of stamps</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 24px; max-width:820px;">same spine on every screen: compact photo, name, the segmented proof / stamps / work control, one italic line of proof, studied + uni, then top 3 skills.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:72px;">
+
+  <!-- ============ S10 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S10 · compact header · proof panel gets the space, skills as chips</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport · #0148</span><div class="barbtn">↗</div></div>
+
+          <div style="display:flex; align-items:center; gap:13px; margin-top:6px;">
+            <div class="avatar" style="width:58px; height:58px;"></div>
+            <div style="flex:1;">
+              <div class="h" style="font-size:19px; margin-bottom:5px;">alex morgan</div>
+              <span class="chip">frontend · track</span>
+            </div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="display:flex; margin-top:16px; background:#e9e9ed; border-radius:999px; padding:4px;">
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:700; color:#2f3037; background:#d2d2d8; border-radius:999px; padding:8px 0;">proof</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">stamps</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">work</span>
+          </div>
+
+          <div style="margin-top:16px; border:1.5px solid #e0e0e4; border-radius:18px; padding:16px; background:#fbfbfc;">
+            <div class="lbl" style="margin-bottom:9px;">one line of proof</div>
+            <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:17px; line-height:1.38; color:#3f3f47;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+            <div style="display:flex; align-items:center; gap:14px;"><span class="lbl" style="width:66px;">studied</span><span class="h" style="font-size:13px;">computer science</span></div>
+            <div style="display:flex; align-items:center; gap:14px;"><span class="lbl" style="width:66px;">uni</span><span class="h" style="font-size:13px;">imperial college london</span></div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:10px; margin-top:16px;">
+            <span class="lbl" style="width:66px;">top 3</span>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;"><span class="chip">react</span><span class="chip">typescript</span><span class="chip">payments</span></div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:18px; font-size:15px;">apply with passport</div>
+          <div class="tab" style="margin-top:14px;"><span class="tabdot on"></span><span class="tabdot"></span><span class="tabdot"></span><span class="tabdot"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S11 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S11 · ranked skills · top 3 numbered with strength bars</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">your passport</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+            <div class="avatar" style="width:52px; height:52px;"></div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:7px; margin-bottom:3px;"><span class="h" style="font-size:18px;">alex morgan</span><span class="sub" style="font-size:13px; font-weight:700;">#0148</span></div>
+              <div class="sub" style="font-size:12px;">frontend engineer · london</div>
+            </div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="display:flex; margin-top:14px; background:#e9e9ed; border-radius:999px; padding:4px;">
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:700; color:#2f3037; background:#d2d2d8; border-radius:999px; padding:8px 0;">proof</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">stamps</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">work</span>
+          </div>
+
+          <div style="margin-top:16px; padding-left:14px; border-left:2px solid #c4c4cc; font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; line-height:1.4; color:#4a4a52;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+
+          <div style="display:flex; gap:22px; margin-top:18px;">
+            <div style="flex:1;"><div class="lbl" style="margin-bottom:6px;">studied</div><div class="h" style="font-size:13px;">computer science</div></div>
+            <div style="flex:1;"><div class="lbl" style="margin-bottom:6px;">uni</div><div class="h" style="font-size:13px;">imperial</div></div>
+          </div>
+
+          <div class="lbl" style="margin:18px 0 11px;">top 3 skills</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="width:22px; font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; color:#a4a4ac;">1</span>
+              <div style="flex:1;"><div class="h" style="font-size:13px; margin-bottom:6px;">react</div><div style="height:6px; background:#e6e6ea; border-radius:99px;"><div style="width:92%; height:100%; background:#a4a4ac; border-radius:99px;"></div></div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="width:22px; font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; color:#a4a4ac;">2</span>
+              <div style="flex:1;"><div class="h" style="font-size:13px; margin-bottom:6px;">typescript</div><div style="height:6px; background:#e6e6ea; border-radius:99px;"><div style="width:78%; height:100%; background:#a4a4ac; border-radius:99px;"></div></div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="width:22px; font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; color:#a4a4ac;">3</span>
+              <div style="flex:1;"><div class="h" style="font-size:13px; margin-bottom:6px;">payments infra</div><div style="height:6px; background:#e6e6ea; border-radius:99px;"><div style="width:64%; height:100%; background:#a4a4ac; border-radius:99px;"></div></div></div>
+            </div>
+          </div>
+
+          <div class="tab" style="margin-top:18px;"><span class="tabdot on"></span><span class="tabdot"></span><span class="tabdot"></span><span class="tabdot"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S12 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S12 · framed card · everything inside one passport card, skills as tiles</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">preview</span><div class="barbtn">↗</div></div>
+
+          <div style="border:1.5px solid #d4d4da; border-radius:22px; padding:16px; margin-top:6px; box-shadow:0 12px 30px rgba(0,0,0,.06); background:#fbfbfc;">
+            <div style="display:flex; align-items:flex-start; gap:12px;">
+              <div class="imgbox" style="width:56px; height:68px; border-radius:10px; flex:0 0 auto;"></div>
+              <div style="flex:1;">
+                <div class="h" style="font-size:17px; margin-bottom:4px;">alex morgan</div>
+                <div class="sub" style="font-size:11px; margin-bottom:7px;">unc · 0148 · frontend</div>
+                <span class="badge">verified ✓</span>
+              </div>
+            </div>
+
+            <div style="display:flex; margin-top:14px; background:#eeeef1; border-radius:999px; padding:4px;">
+              <span style="flex:1; text-align:center; font-size:11px; font-weight:700; color:#2f3037; background:#d8d8de; border-radius:999px; padding:7px 0;">proof</span>
+              <span style="flex:1; text-align:center; font-size:11px; font-weight:600; color:#8a8a92; padding:7px 0;">stamps</span>
+              <span style="flex:1; text-align:center; font-size:11px; font-weight:600; color:#8a8a92; padding:7px 0;">work</span>
+            </div>
+
+            <div style="margin-top:14px; font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; line-height:1.4; color:#3f3f47;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+
+            <div style="height:1px; background:#e8e8ec; margin:16px 0;"></div>
+
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <div style="display:flex; align-items:center; gap:14px;"><span class="lbl" style="width:60px;">studied</span><span class="h" style="font-size:12.5px;">computer science</span></div>
+              <div style="display:flex; align-items:center; gap:14px;"><span class="lbl" style="width:60px;">uni</span><span class="h" style="font-size:12.5px;">imperial college london</span></div>
+            </div>
+
+            <div class="lbl" style="margin:16px 0 9px;">top 3 skills</div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+              <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:11px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">react</div>
+              <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:11px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">typescript</div>
+              <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:11px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">payments</div>
+            </div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:14px; font-size:15px;">apply with passport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S13 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S13 · quote-led · big proof block, skills with tiny meta under each</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; align-items:center; gap:11px; margin-top:6px;">
+            <div class="avatar" style="width:44px; height:44px;"></div>
+            <div style="flex:1;"><div class="h" style="font-size:16px; margin-bottom:2px;">alex morgan</div><div class="sub" style="font-size:11px;">#0148 · frontend · london</div></div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="display:flex; margin-top:14px; background:#e9e9ed; border-radius:999px; padding:4px;">
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:700; color:#2f3037; background:#d2d2d8; border-radius:999px; padding:8px 0;">proof</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">stamps</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">work</span>
+          </div>
+
+          <div style="margin-top:16px; background:#efeff2; border-radius:18px; padding:18px 16px;">
+            <span style="font-family:'Instrument Serif',serif; font-style:italic; font-size:34px; line-height:.6; color:#c4c4cc; display:block; margin-bottom:8px;">“</span>
+            <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:18px; line-height:1.34; color:#3f3f47;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+          </div>
+
+          <div style="margin-top:18px; border-top:1.5px solid #e4e4e8; padding-top:14px; display:flex; flex-direction:column; gap:11px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;"><span class="lbl">studied</span><span class="h" style="font-size:13px;">computer science</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline;"><span class="lbl">uni</span><span class="h" style="font-size:13px;">imperial college london</span></div>
+          </div>
+
+          <div class="lbl" style="margin:18px 0 10px;">top 3 skills</div>
+          <div style="display:flex; gap:10px;">
+            <div style="flex:1; display:flex; flex-direction:column; gap:4px;"><div class="h" style="font-size:13px;">react</div><div class="sub" style="font-size:10px;">4 yrs</div></div>
+            <div style="width:1.5px; background:#e4e4e8;"></div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:4px;"><div class="h" style="font-size:13px;">typescript</div><div class="sub" style="font-size:10px;">4 yrs</div></div>
+            <div style="width:1.5px; background:#e4e4e8;"></div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:4px;"><div class="h" style="font-size:13px;">payments</div><div class="sub" style="font-size:10px;">2 yrs</div></div>
+          </div>
+
+          <div class="tab" style="margin-top:20px;"><span class="tabdot on"></span><span class="tabdot"></span><span class="tabdot"></span><span class="tabdot"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:64px 0 2px; letter-spacing:.02em;">round 04 · S8 variations · one stacked document, everything visible without scrolling</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 24px; max-width:820px;">all four keep the S8 idea: a single bordered document split into labelled bands, no tabs, no scroll.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:72px;">
+
+  <!-- ============ S14 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S14 · document · data page, proof, top 3 skills, stamps</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">career passport</span><div class="barbtn">↗</div></div>
+
+          <div style="border:1.5px solid #d4d4da; border-radius:20px; overflow:hidden; margin-top:6px;">
+            <div style="padding:14px; display:flex; gap:13px; background:#f1f1f4;">
+              <div class="imgbox" style="width:84px; height:106px; border-radius:8px; flex:0 0 auto;"><span class="sub" style="font-size:10px;">photo</span></div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+                <div><div class="lbl" style="font-size:9px;">name</div><div class="h" style="font-size:15px;">alex morgan</div></div>
+                <div><div class="lbl" style="font-size:9px;">passport no.</div><div class="h" style="font-size:12.5px;">unc · 0148</div></div>
+                <div><div class="lbl" style="font-size:9px;">studied</div><div class="h" style="font-size:12px;">computer science · imperial</div></div>
+                <span class="badge" style="align-self:flex-start;">verified ✓</span>
+              </div>
+            </div>
+
+            <div style="padding:14px; background:#fbfbfc; border-top:1.5px solid #e4e4e8;">
+              <div class="lbl" style="margin-bottom:7px;">one line of proof</div>
+              <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; line-height:1.4; color:#4a4a52;">shipped the payments rewrite that now moves £40m a month.</div>
+            </div>
+
+            <div style="padding:14px; border-top:1.5px solid #e4e4e8;">
+              <div class="lbl" style="margin-bottom:9px;">top 3 skills</div>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+                <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">react</div>
+                <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">typescript</div>
+                <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">payments</div>
+              </div>
+            </div>
+
+            <div style="padding:14px; border-top:1.5px dashed #cfcfd6; background:#f6f6f7;">
+              <div class="lbl" style="margin-bottom:10px;">stamps</div>
+              <div style="display:flex; gap:10px;">
+                <span style="width:46px; height:46px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-7deg);"></span>
+                <span style="width:46px; height:46px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(5deg);"></span>
+                <span style="width:46px; height:46px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-3deg);"></span>
+                <span style="width:46px; height:46px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.5;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:14px; font-size:15px;">apply with passport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S15 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S15 · id card · landscape header card, then proof / skills / stamps rows</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport · #0148</span><div class="barbtn">···</div></div>
+
+          <div style="border:1.5px solid #c9c9d0; border-radius:16px; background:#f1f1f4; padding:13px; display:flex; gap:12px; align-items:center; margin-top:6px;">
+            <div class="imgbox" style="width:52px; height:64px; border-radius:7px; flex:0 0 auto;"></div>
+            <div style="flex:1;">
+              <div class="h" style="font-size:16px; margin-bottom:3px;">alex morgan</div>
+              <div class="sub" style="font-size:11px;">frontend engineer · london</div>
+              <div class="sub" style="font-size:11px;">computer science · imperial</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+              <span class="badge">verified ✓</span>
+              <span class="sub" style="font-size:10px; font-weight:700; letter-spacing:.1em;">UNC·0148</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:3px; margin-top:7px;">
+            <div class="line" style="flex:3; height:6px; background:#c9c9d0;"></div><div class="line" style="flex:1; height:6px; background:#c9c9d0;"></div><div class="line" style="flex:2; height:6px; background:#c9c9d0;"></div><div class="line" style="flex:4; height:6px; background:#c9c9d0;"></div>
+          </div>
+
+          <div style="margin-top:16px; border:1.5px solid #e0e0e4; border-radius:16px; padding:14px;">
+            <div class="lbl" style="margin-bottom:7px;">proof</div>
+            <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; line-height:1.38; color:#3f3f47;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+          </div>
+
+          <div style="margin-top:12px; border:1.5px solid #e0e0e4; border-radius:16px; padding:14px;">
+            <div class="lbl" style="margin-bottom:9px;">top 3 skills</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;"><span class="chip">react</span><span class="chip">typescript</span><span class="chip">payments infra</span></div>
+          </div>
+
+          <div style="margin-top:12px; border:1.5px dashed #cfcfd6; border-radius:16px; padding:14px; background:#f6f6f7;">
+            <div class="lbl" style="margin-bottom:10px;">stamps</div>
+            <div style="display:flex; gap:9px;">
+              <span style="width:42px; height:42px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+              <span style="width:42px; height:42px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+              <span style="width:42px; height:42px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+              <span style="width:42px; height:42px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.5;"></span>
+            </div>
+          </div>
+
+          <div class="tab" style="margin-top:16px;"><span class="tabdot on"></span><span class="tabdot"></span><span class="tabdot"></span><span class="tabdot"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S16 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S16 · form document · label/value grid, proof at the bottom as the payoff</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">career passport</span><div class="barbtn">↗</div></div>
+
+          <div style="border:1.5px solid #d4d4da; border-radius:20px; overflow:hidden; margin-top:6px;">
+            <div style="padding:13px 14px; background:#e9e9ed; display:flex; align-items:center; justify-content:space-between; border-bottom:1.5px solid #d4d4da;">
+              <span class="lbl" style="font-size:9px;">uncooked · career passport</span>
+              <span class="sub" style="font-size:10px; font-weight:700; letter-spacing:.1em;">UNC·0148</span>
+            </div>
+
+            <div style="padding:14px; display:flex; gap:13px;">
+              <div class="imgbox" style="width:76px; height:96px; border-radius:8px; flex:0 0 auto;"></div>
+              <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:11px 10px;">
+                <div><div class="lbl" style="font-size:9px;">name</div><div class="h" style="font-size:13px;">alex morgan</div></div>
+                <div><div class="lbl" style="font-size:9px;">track</div><div class="h" style="font-size:13px;">frontend</div></div>
+                <div><div class="lbl" style="font-size:9px;">studied</div><div class="h" style="font-size:12px;">computer science</div></div>
+                <div><div class="lbl" style="font-size:9px;">uni</div><div class="h" style="font-size:12px;">imperial</div></div>
+              </div>
+            </div>
+
+            <div style="display:flex; border-top:1.5px solid #e4e4e8;">
+              <div style="flex:1; padding:14px; border-right:1.5px solid #e4e4e8;">
+                <div class="lbl" style="margin-bottom:9px;">top 3 skills</div>
+                <div style="display:flex; flex-direction:column; gap:7px;">
+                  <div class="h" style="font-size:12.5px;">react</div>
+                  <div class="h" style="font-size:12.5px;">typescript</div>
+                  <div class="h" style="font-size:12.5px;">payments</div>
+                </div>
+              </div>
+              <div style="flex:1; padding:14px; background:#f6f6f7;">
+                <div class="lbl" style="margin-bottom:9px;">stamps</div>
+                <div style="display:flex; flex-wrap:wrap; gap:7px;">
+                  <span style="width:32px; height:32px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+                  <span style="width:32px; height:32px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+                  <span style="width:32px; height:32px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee;"></span>
+                  <span style="width:32px; height:32px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.5;"></span>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:16px 14px; border-top:1.5px dashed #cfcfd6; background:#efeff2;">
+              <div class="lbl" style="margin-bottom:8px;">one line of proof</div>
+              <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; line-height:1.38; color:#3f3f47;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+            </div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:14px; font-size:15px;">apply with passport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S17 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S17 · proof first · headline proof, identity strip, perforated stamp stub</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport</span><div class="barbtn">···</div></div>
+
+          <div style="border:1.5px solid #d4d4da; border-radius:20px; overflow:hidden; margin-top:6px;">
+            <div style="padding:18px 16px; background:#f1f1f4;">
+              <div class="lbl" style="margin-bottom:9px;">one line of proof</div>
+              <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:19px; line-height:1.32; color:#33343b;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+            </div>
+
+            <div style="padding:13px 16px; display:flex; align-items:center; gap:12px; border-top:1.5px solid #e4e4e8; background:#fbfbfc;">
+              <div class="avatar" style="width:44px; height:44px;"></div>
+              <div style="flex:1;">
+                <div style="display:flex; align-items:center; gap:7px;"><span class="h" style="font-size:15px;">alex morgan</span><span class="sub" style="font-size:12px; font-weight:700;">#0148</span></div>
+                <div class="sub" style="font-size:11px;">computer science · imperial</div>
+              </div>
+              <span class="badge">verified ✓</span>
+            </div>
+
+            <div style="padding:14px 16px; border-top:1.5px solid #e4e4e8;">
+              <div class="lbl" style="margin-bottom:9px;">top 3 skills</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;"><span class="chip">react</span><span class="chip">typescript</span><span class="chip">payments</span></div>
+            </div>
+
+            <div style="position:relative; padding:16px; border-top:1.5px dashed #cfcfd6; background:#f6f6f7;">
+              <span style="position:absolute; top:-9px; left:-9px; width:18px; height:18px; border-radius:50%; background:#f6f6f7; border:1.5px solid #d4d4da;"></span>
+              <span style="position:absolute; top:-9px; right:-9px; width:18px; height:18px; border-radius:50%; background:#f6f6f7; border:1.5px solid #d4d4da;"></span>
+              <div class="lbl" style="margin-bottom:11px;">stamps collected</div>
+              <div style="display:flex; gap:10px;">
+                <span style="width:48px; height:48px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-9deg);"></span>
+                <span style="width:48px; height:48px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(4deg);"></span>
+                <span style="width:48px; height:48px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-2deg);"></span>
+                <span style="width:48px; height:48px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.5;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta" style="height:50px; margin-top:14px; font-size:15px;">apply with passport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:64px 0 2px; letter-spacing:.02em;">round 05 · S13 variant · summary / work only, top achievement box, stamps at the bottom</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 24px; max-width:820px;">skills move behind the work tab, the quote mark becomes a labelled top achievement box, and the tab bar is replaced by the stamp row.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:72px;">
+
+  <!-- ============ S18 ============ -->
+  <div style="position:relative;">
+    <span class="tag">S18 · S13 variant · top achievement box, stamps replace the tab bar</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; align-items:center; gap:11px; margin-top:6px;">
+            <div class="avatar" style="width:44px; height:44px;"></div>
+            <div style="flex:1;"><div class="h" style="font-size:16px; margin-bottom:2px;">alex morgan</div><div class="sub" style="font-size:11px;">aspiring frontend engineer • london</div></div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="display:flex; margin-top:14px; background:#e9e9ed; border-radius:999px; padding:4px;">
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:700; color:#2f3037; background:#d2d2d8; border-radius:999px; padding:8px 0;">summary</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">work</span>
+          </div>
+
+          <div style="margin-top:16px; background:#efeff2; border-radius:18px; padding:16px;">
+            <div class="lbl" style="margin-bottom:10px;">top achievement</div>
+            <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:18px; line-height:1.34; color:#3f3f47;">shipped the payments rewrite that now moves £40m a month — solo, in six weeks.</div>
+          </div>
+
+          <div style="margin-top:18px; border-top:1.5px solid #e4e4e8; padding-top:14px; display:flex; flex-direction:column; gap:11px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;"><span class="lbl">course</span><span class="h" style="font-size:13px;">computer science</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline;"><span class="lbl">institution</span><span class="h" style="font-size:13px;">imperial college london</span></div>
+          </div>
+
+          <div style="margin-top:20px; border-top:1.5px solid #e4e4e8; padding-top:16px;">
+            <div class="lbl" style="margin-bottom:11px;">stamps</div>
+            <div style="display:flex; gap:10px;">
+              <span style="width:62px; height:62px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-8deg);"></span>
+              <span style="width:62px; height:62px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(5deg);"></span>
+              <span style="width:62px; height:62px; border-radius:50%; border:1.5px dashed #b7b7be; background:#eaeaee; transform:rotate(-3deg);"></span>
+              <span style="width:62px; height:62px; border-radius:50%; border:1.5px dashed #cfcfd6; background:#f1f1f4; opacity:.5;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ S19 · work tab ============ -->
+  <div style="position:relative;">
+    <span class="tag">S19 · work tab · top 3 skills, then project cards</span>
+    <div class="phone">
+      <div class="island"></div>
+      <div class="screen">
+        <div class="status"><span>9:41</span><div class="dots"><span class="sig"></span><span class="bat"></span></div></div>
+        <div class="body" style="padding:8px 18px 22px;">
+          <div class="navbar" style="padding-top:10px;"><div class="barbtn">‹</div><span class="lbl" style="letter-spacing:.16em;">passport</span><div class="barbtn">···</div></div>
+
+          <div style="display:flex; align-items:center; gap:11px; margin-top:6px;">
+            <div class="avatar" style="width:44px; height:44px;"></div>
+            <div style="flex:1;"><div class="h" style="font-size:16px; margin-bottom:2px;">rahul desai</div><div class="sub" style="font-size:11px;">geo-engineering • oxford</div></div>
+            <span class="badge">verified ✓</span>
+          </div>
+
+          <div style="display:flex; margin-top:14px; background:#e9e9ed; border-radius:999px; padding:4px;">
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:600; color:#8a8a92; padding:8px 0;">summary</span>
+            <span style="flex:1; text-align:center; font-size:12px; font-weight:700; color:#2f3037; background:#d2d2d8; border-radius:999px; padding:8px 0;">work</span>
+          </div>
+
+          <div style="margin-top:16px;">
+            <div class="lbl" style="margin-bottom:9px;">top 3 skills</div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+              <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">python</div>
+              <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">matlab</div>
+              <div style="border:1.5px solid #e0e0e4; border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; font-weight:700; color:#4a4a52;">data analysis</div>
+            </div>
+          </div>
+
+          <div class="lbl" style="margin:18px 0 10px;">projects</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+
+            <div style="border:1.5px solid #e0e0e4; border-radius:16px; padding:12px; display:flex; gap:12px;">
+              <div class="imgbox" style="width:76px; height:76px; border-radius:11px; flex:0 0 auto;"><span class="sub" style="font-size:9px;">img</span></div>
+              <div style="flex:1; min-width:0;">
+                <div class="h" style="font-size:14px; margin-bottom:5px;">AeroSense Probe</div>
+                <div style="display:flex; flex-direction:column; gap:5px;"><div class="line" style="width:100%; height:8px;"></div><div class="line" style="width:86%; height:8px;"></div><div class="line" style="width:52%; height:8px;"></div></div>
+              </div>
+            </div>
+
+            <div style="border:1.5px solid #e0e0e4; border-radius:16px; padding:12px; display:flex; gap:12px;">
+              <div class="imgbox" style="width:76px; height:76px; border-radius:11px; flex:0 0 auto;"><span class="sub" style="font-size:9px;">img</span></div>
+              <div style="flex:1; min-width:0;">
+                <div class="h" style="font-size:14px; margin-bottom:5px;">Viobot</div>
+                <div style="display:flex; flex-direction:column; gap:5px;"><div class="line" style="width:94%; height:8px;"></div><div class="line" style="width:100%; height:8px;"></div><div class="line" style="width:44%; height:8px;"></div></div>
+              </div>
+            </div>
+
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:64px 0 2px; letter-spacing:.02em;">round 06 · hi-fi passport spread · downloadable svg</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 20px; max-width:820px;">the S18 layout at full fidelity — real photo, brand red segmented control, earned seals. built as one vector, so it exports as an svg.</p>
+
+  <div style="display:flex; align-items:flex-start; gap:28px; flex-wrap:wrap;">
+    <div style="box-shadow:0 30px 70px rgba(0,0,0,.14); border-radius:40px; overflow:hidden; width:520px;">
+      <svg ref="{{ setSpread }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1006" style="width:100%; height:auto; display:block;">
+        <defs>
+          <clipPath id="pfClip"><circle cx="118" cy="228" r="66"></circle></clipPath>
+          <path id="sArcTop" d="M 190 500 A 310 310 0 0 1 810 500"></path>
+          <path id="sArcBot" d="M 104 500 A 396 396 0 0 0 896 500"></path>
+          <path id="sStar" d="M0 -34 L9.5 -11.5 L34 -10.5 L15 4.5 L21.5 28 L0 14.5 L-21.5 28 L-15 4.5 L-34 -10.5 L-9.5 -11.5 Z"></path>
+          <g id="sIconChip" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"></rect><rect x="9.5" y="9.5" width="5" height="5"></rect><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"></path></g>
+          <g id="sIconLeaf" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></g>
+          <g id="sSeal">
+            <circle cx="500" cy="500" r="440" fill="none" stroke="currentColor" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8"></circle>
+            <circle cx="500" cy="500" r="440" fill="currentColor"></circle>
+            <circle cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9"></circle>
+            <circle cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128"></circle>
+            <circle cx="500" cy="500" r="288" fill="#FAFAFA"></circle>
+            <circle cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7"></circle>
+            <use href="#sStar" fill="#FAFAFA" transform="translate(132,500)"></use>
+            <use href="#sStar" fill="#FAFAFA" transform="translate(868,500)"></use>
+          </g>
+        </defs>
+
+        <rect width="900" height="1006" rx="40" fill="#F6F6F6"></rect>
+
+        <text x="450" y="82" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="22" letter-spacing="4" fill="#a4a4ac">PASSPORT</text>
+        <line x1="52" y1="118" x2="848" y2="118" stroke="#E2E2E5" stroke-width="2"></line>
+
+        <circle cx="118" cy="228" r="66" fill="#e6e6ea"></circle>
+        <image href="uploads/rahul profile.png" x="52" y="162" width="132" height="132" clip-path="url(#pfClip)" preserveAspectRatio="xMidYMid slice"></image>
+        <circle cx="118" cy="228" r="66" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="2"></circle>
+        <text x="212" y="218" font-family="Satoshi" font-weight="700" font-size="42" letter-spacing="-1.2" fill="#1c1c20">rahul desai</text>
+        <text x="212" y="262" font-family="Satoshi" font-weight="500" font-size="24" fill="#8a8a92">geo-engineering • oxford</text>
+        <rect x="676" y="174" width="172" height="58" rx="29" fill="#FFFFFF" stroke="#0B6E3A" stroke-width="2.5"></rect>
+        <text x="762" y="212" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="23" fill="#0B6E3A">verified ✓</text>
+
+        <rect x="52" y="320" width="796" height="92" rx="46" fill="#2B2B2E"></rect>
+        <rect x="62" y="330" width="388" height="72" rx="36" fill="#E72B15"></rect>
+        <text x="256" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#FFFFFF">summary</text>
+        <text x="649" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#C9C9CE">work</text>
+
+        <rect x="52" y="452" width="796" height="228" rx="26" fill="#ECECEE"></rect>
+        <text x="90" y="514" font-family="Satoshi" font-weight="700" font-size="20" letter-spacing="3.4" fill="#8a8a92">TOP ACHIEVEMENT</text>
+        <text x="90" y="578" font-family="Satoshi" font-weight="500" font-size="30" fill="#1c1c20">built a weather probe from scratch that measures</text>
+        <text x="90" y="626" font-family="Satoshi" font-weight="500" font-size="30" fill="#1c1c20">temperature, humidity and air pressure in real time.</text>
+
+        <line x1="52" y1="734" x2="848" y2="734" stroke="#E2E2E5" stroke-width="2"></line>
+        <text x="52" y="796" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac">STAMPS</text>
+
+        <image class="stampImg" data-src="uploads/track hardware no scalloped edge v2.png" href="uploads/track hardware no scalloped edge v2.png" x="52" y="822" width="152" height="152"></image>
+        <image class="stampImg" data-src="uploads/sector climate v2.png" href="uploads/sector climate v2.png" x="232" y="822" width="152" height="152"></image>
+        
+      </svg>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px; padding-top:6px;">
+      <button onClick="{{ downloadSpread }}" style="font-family:'Satoshi'; font-weight:700; font-size:14px; color:#fff; background:#E72B15; border:none; border-radius:999px; padding:13px 26px; cursor:pointer;">download svg</button>
+      <span style="font-family:'Satoshi'; font-size:12px; color:#8a8a92; max-width:220px; line-height:1.45;">photo embeds as base64 so the file stands alone. text stays live vector — install Satoshi or outline the type in your editor.</span>
+    </div>
+  </div>
+
+
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:56px 0 2px; letter-spacing:.02em;">round 06b · hi-fi work tab · downloadable svg</p>
+  <p style="font-family:'Satoshi'; font-size:13px; color:#8a8a92; margin:0 0 20px; max-width:820px;">the work side of the same card — top 3 skills, then projects with real cover photos.</p>
+
+  <div style="display:flex; align-items:flex-start; gap:28px; flex-wrap:wrap;">
+    <div style="box-shadow:0 30px 70px rgba(0,0,0,.14); border-radius:40px; overflow:hidden; width:520px;">
+      <svg ref="{{ setWorkSpread }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1070" style="width:100%; height:auto; display:block;">
+        <defs>
+          <clipPath id="wfClip"><circle cx="118" cy="228" r="66"></circle></clipPath>
+          <clipPath id="p1Clip"><rect x="88" y="530" width="178" height="178" rx="20"></rect></clipPath>
+          <clipPath id="p2Clip"><rect x="88" y="804" width="178" height="178" rx="20"></rect></clipPath>
+        </defs>
+
+        <rect width="900" height="1070" rx="40" fill="#F6F6F6"></rect>
+
+        <text x="450" y="82" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="22" letter-spacing="4" fill="#a4a4ac">PASSPORT</text>
+        <line x1="52" y1="118" x2="848" y2="118" stroke="#E2E2E5" stroke-width="2"></line>
+
+        <circle cx="118" cy="228" r="66" fill="#e6e6ea"></circle>
+        <image data-src="uploads/rahul profile.png" href="uploads/rahul profile.png" x="52" y="162" width="132" height="132" clip-path="url(#wfClip)" preserveAspectRatio="xMidYMid slice"></image>
+        <circle cx="118" cy="228" r="66" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="2"></circle>
+        <text x="212" y="218" font-family="Satoshi" font-weight="700" font-size="42" letter-spacing="-1.2" fill="#1c1c20">rahul desai</text>
+        <text x="212" y="262" font-family="Satoshi" font-weight="500" font-size="24" fill="#8a8a92">geo-engineering • oxford</text>
+        <rect x="676" y="174" width="172" height="58" rx="29" fill="#FFFFFF" stroke="#0B6E3A" stroke-width="2.5"></rect>
+        <text x="762" y="212" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="23" fill="#0B6E3A">verified ✓</text>
+
+        <rect x="52" y="320" width="796" height="92" rx="46" fill="#2B2B2E"></rect>
+        <rect x="450" y="330" width="388" height="72" rx="36" fill="#E72B15"></rect>
+        <text x="256" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#C9C9CE">summary</text>
+        <text x="644" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#FFFFFF">work</text>
+
+        <text x="52" y="478" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac">PROJECTS</text>
+
+        <rect x="52" y="502" width="796" height="234" rx="26" fill="#FFFFFF" stroke="rgba(0,0,0,0.08)" stroke-width="2"></rect>
+        <image data-src="proj-probe.png" href="proj-probe.png" x="88" y="530" width="178" height="178" clip-path="url(#p1Clip)" preserveAspectRatio="xMidYMid slice"></image>
+        <text x="296" y="570" font-family="Satoshi" font-weight="700" font-size="31" letter-spacing="-0.6" fill="#1c1c20">AeroSense Probe</text>
+        <text x="296" y="616" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">A compact environmental sensor that tracks air</text>
+        <text x="296" y="652" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">quality, temperature and humidity in real time.</text>
+        <text x="296" y="688" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">Built to collect local environmental data…</text>
+
+        <rect x="52" y="776" width="796" height="234" rx="26" fill="#FFFFFF" stroke="rgba(0,0,0,0.08)" stroke-width="2"></rect>
+        <image data-src="proj-viobot.png" href="proj-viobot.png" x="88" y="804" width="178" height="178" clip-path="url(#p2Clip)" preserveAspectRatio="xMidYMid slice"></image>
+        <text x="296" y="844" font-family="Satoshi" font-weight="700" font-size="31" letter-spacing="-0.6" fill="#1c1c20">Viobot</text>
+        <text x="296" y="890" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">A small autonomous robot that uses computer</text>
+        <text x="296" y="926" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">vision to navigate unfamiliar environments.</text>
+        <text x="296" y="962" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">Designed to detect obstacles, map its route…</text>
+      </svg>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px; padding-top:6px;">
+      <button onClick="{{ downloadWorkSpread }}" style="font-family:'Satoshi'; font-weight:700; font-size:14px; color:#fff; background:#E72B15; border:none; border-radius:999px; padding:13px 26px; cursor:pointer;">download svg</button>
+      <span style="font-family:'Satoshi'; font-size:12px; color:#8a8a92; max-width:220px; line-height:1.45;">photos crop square around the balloon and the robot, and embed as base64 on export.</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  async exportSvg(src, w, h, name) {
+    if (!src) return;
+    const clone = src.cloneNode(true);
+    clone.setAttribute('width', String(w));
+    clone.setAttribute('height', String(h));
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+    for (const img of clone.querySelectorAll('image')) {
+      const path = img.dataset.src || img.getAttribute('href');
+      if (!path || path.startsWith('data:')) continue;
+      try {
+        const res = await fetch(path);
+        const blob = await res.blob();
+        const data = await new Promise((r) => {
+          const f = new FileReader();
+          f.onload = () => r(f.result);
+          f.readAsDataURL(blob);
+        });
+        img.setAttribute('href', data);
+        img.setAttribute('xlink:href', data);
+      } catch (e) {}
+    }
+    const out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+    const url = URL.createObjectURL(new Blob([out], { type: 'image/svg+xml' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name + '.svg';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }
+
+  renderVals() {
+    return {
+      setSpread: (el) => { this.spreadEl = el; },
+      setWorkSpread: (el) => { this.workSpreadEl = el; },
+      downloadWorkSpread: () => this.exportSvg(this.workSpreadEl, 900, 1070, 'uncooked-passport-work'),
+      downloadSpread: async () => {
+        const src = this.spreadEl;
+        if (!src) return;
+        const clone = src.cloneNode(true);
+        clone.setAttribute('width', '900');
+        clone.setAttribute('height', '1006');
+        clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+        const toData = async (path) => {
+          const res = await fetch(path);
+          const blob = await res.blob();
+          return await new Promise((r) => {
+            const f = new FileReader();
+            f.onload = () => r(f.result);
+            f.readAsDataURL(blob);
+          });
+        };
+        for (const img of clone.querySelectorAll('image')) {
+          const path = img.dataset.src || img.getAttribute('href');
+          if (!path || path.startsWith('data:')) continue;
+          try {
+            const data = await toData(path);
+            img.setAttribute('href', data);
+            img.setAttribute('xlink:href', data);
+          } catch (e) {}
+        }
+        const out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+        const url = URL.createObjectURL(new Blob([out], { type: 'image/svg+xml' }));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'uncooked-passport-spread.svg';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

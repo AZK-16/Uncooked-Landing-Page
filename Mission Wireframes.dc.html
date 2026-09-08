@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ececed; font-family:'Satoshi',system-ui,sans-serif; }
+  .frame { position:relative; background:#f4f4f5; border:1.5px solid #b7b7be; border-radius:14px; width:1280px; overflow:hidden; }
+  .tag { position:absolute; top:-13px; left:0; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8a8a92; }
+  .sec-title { font-family:'Instrument Serif',serif; font-weight:400; color:#33333a; letter-spacing:-.01em; line-height:1; }
+  .letter { color:#4a4a52; line-height:1.75; }
+  .letter b { color:#22232a; font-weight:700; }
+  .miss { font-family:'Satoshi',system-ui,sans-serif; font-weight:700; color:#2e2e34; line-height:1.2; letter-spacing:-.01em; }
+  .foot { color:#a0a0a8; font-size:12px; letter-spacing:.01em; }
+  .llink { color:#7a7a82; font-weight:600; }
+  .llink b { color:#7a7a82; }
+  .imgbox { border:1.5px dashed #b3b3bb; border-radius:14px; background:repeating-linear-gradient(135deg,#e6e6ea 0 16px,#dfdfe4 16px 32px); display:flex; align-items:flex-end; padding:14px; color:#9a9aa2; font-size:12px; letter-spacing:.04em; }
+</style>
+</helmet>
+
+<div style="padding:56px; display:flex; flex-direction:column; gap:12px;">
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:0 0 4px; letter-spacing:.02em;">mission · section 7 · 5 layouts · a letter, not a dashboard · stats set inline in prose · one event photo (striped placeholder) · muted sources + red-arrow letter link</p>
+
+  <div style="display:flex; flex-direction:column; gap:72px; margin-top:12px;">
+
+  <!-- ============ M1 · letter left, tall image right ============ -->
+  <div style="position:relative;">
+    <span class="tag">M1 · letter left, tall event photo right, sources + link beneath</span>
+    <div class="frame" style="padding:64px 80px 68px;">
+      <div style="display:grid; grid-template-columns:1.25fr .75fr; gap:64px; align-items:start;">
+        <div>
+          <div class="sec-title" style="font-size:50px; margin-bottom:32px;">why we're doing this.</div>
+          <div class="letter" style="font-size:17px; display:flex; flex-direction:column; gap:18px;">
+            <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+            <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</div>
+            <div>we think what you can do should matter more than where you went or who you know.</div>
+            <div class="miss" style="font-size:22px; margin:6px 0;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+            <div>every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+          </div>
+          <div class="llink" style="font-size:16px; margin-top:26px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+          <div class="foot" style="margin-top:22px;">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+        </div>
+        <div class="imgbox" style="height:560px;">uncooked event photo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ M2 · full-bleed image top, letter below ============ -->
+  <div style="position:relative;">
+    <span class="tag">M2 · wide event photo up top, letter in two prose columns below</span>
+    <div class="frame" style="padding:0;">
+      <div class="imgbox" style="height:300px; border-radius:0; border:none; border-bottom:1.5px dashed #b3b3bb;">uncooked event photo · full room, mid conversation</div>
+      <div style="padding:56px 80px 64px;">
+        <div class="sec-title" style="font-size:48px; margin-bottom:34px;">why we're doing this.</div>
+        <div class="letter" style="font-size:16px; columns:2; column-gap:56px;">
+          <div style="margin-bottom:16px;">it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+          <div style="margin-bottom:16px;">but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms. we think what you can do should matter more than where you went or who you know.</div>
+          <div class="miss" style="font-size:21px; margin:6px 0 16px;">to help 1 million young people into meaningful opportunities by 2030.</div>
+          <div>every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:28px; gap:24px; flex-wrap:wrap;">
+          <div class="llink" style="font-size:16px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+          <div class="foot">ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ M3 · image left, letter right ============ -->
+  <div style="position:relative;">
+    <span class="tag">M3 · mirror · tall photo left, letter right</span>
+    <div class="frame" style="padding:64px 80px 68px;">
+      <div style="display:grid; grid-template-columns:.75fr 1.25fr; gap:64px; align-items:start;">
+        <div class="imgbox" style="height:580px;">uncooked event photo</div>
+        <div>
+          <div class="sec-title" style="font-size:50px; margin-bottom:32px;">why we're doing this.</div>
+          <div class="letter" style="font-size:17px; display:flex; flex-direction:column; gap:18px;">
+            <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+            <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</div>
+            <div>we think what you can do should matter more than where you went or who you know.</div>
+            <div class="miss" style="font-size:22px; margin:6px 0;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+            <div>every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+          </div>
+          <div class="llink" style="font-size:16px; margin-top:26px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+          <div class="foot" style="margin-top:22px;">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ M4 · centred letter, image band beneath mission ============ -->
+  <div style="position:relative;">
+    <span class="tag">M4 · centred letter, mission line emphasised, wide photo band beneath</span>
+    <div class="frame" style="padding:64px 80px 0; text-align:center;">
+      <div class="sec-title" style="font-size:50px; margin-bottom:34px;">why we're doing this.</div>
+      <div class="letter" style="font-size:17px; max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
+        <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+        <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups. real responsibility early, real skills, real rooms. we think what you can do should matter more than where you went or who you know.</div>
+      </div>
+      <div class="miss" style="font-size:26px; max-width:820px; margin:30px auto 26px;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+      <div class="llink" style="font-size:16px; margin-bottom:8px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+      <div class="foot" style="margin-bottom:40px;">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+      <div class="imgbox" style="height:260px; border-radius:14px 14px 0 0; margin:0 -80px;">uncooked event photo · full-width band</div>
+    </div>
+  </div>
+
+  <!-- ============ M5 · letter with inset square image ============ -->
+  <div style="position:relative;">
+    <span class="tag">M5 · single-column letter, square photo inset to the right of the opening</span>
+    <div class="frame" style="padding:64px 80px 68px;">
+      <div class="sec-title" style="font-size:52px; margin-bottom:34px;">why we're doing this.</div>
+      <div class="letter" style="font-size:17px; line-height:1.8;">
+        <div class="imgbox" style="width:320px; height:320px; float:right; margin:4px 0 22px 40px;">uncooked event photo</div>
+        <p style="margin:0 0 18px;">it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</p>
+        <p style="margin:0 0 18px;">but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</p>
+        <p style="margin:0 0 18px;">we think what you can do should matter more than where you went or who you know.</p>
+        <p class="miss" style="font-size:22px; margin:0 0 18px;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</p>
+        <p style="margin:0;">every offer made through the platform works towards that goal. so does every room uncooked labs opens.</p>
+      </div>
+      <div class="llink" style="font-size:16px; margin-top:26px; clear:both;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+      <div class="foot" style="margin-top:22px;">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+    </div>
+  </div>
+
+  <!-- ============ M6 · centred letter, no image, tight measure ============ -->
+  <div style="position:relative;">
+    <span class="tag">M6 · centred letter · no photo, tight measure, mission line isolated</span>
+    <div class="frame" style="padding:72px 80px 76px; text-align:center;">
+      <div class="sec-title" style="font-size:50px; margin-bottom:40px;">why we're doing this.</div>
+      <div class="letter" style="font-size:18px; max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+        <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+        <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</div>
+        <div>we think what you can do should matter more than where you went or who you know.</div>
+      </div>
+      <div class="miss" style="font-size:26px; max-width:780px; margin:36px auto 22px;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+      <div class="letter" style="font-size:18px; max-width:680px; margin:0 auto 30px;">every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+      <div class="llink" style="font-size:16px; margin-bottom:20px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+      <div class="foot">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+    </div>
+  </div>
+
+  <!-- ============ M6A · M6 on greyscale striped background ============ -->
+  <div style="position:relative;">
+    <span class="tag">M6A · like M6, whole panel on a greyscale striped background</span>
+    <div class="frame" style="padding:72px 80px 76px; text-align:center; background:repeating-linear-gradient(135deg,#eeeef1 0 16px,#e7e7ec 16px 32px);">
+      <div class="sec-title" style="font-size:50px; margin-bottom:40px;">why we're doing this.</div>
+      <div class="letter" style="font-size:18px; max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+        <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+        <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</div>
+        <div>we think what you can do should matter more than where you went or who you know.</div>
+      </div>
+      <div class="miss" style="font-size:26px; max-width:780px; margin:36px auto 22px;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+      <div class="letter" style="font-size:18px; max-width:680px; margin:0 auto 30px;">every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+      <div class="llink" style="font-size:16px; margin-bottom:20px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+      <div class="foot">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+    </div>
+  </div>
+
+  <!-- ============ M6B · M6 with striped photo box under the mission line ============ -->
+  <div style="position:relative;">
+    <span class="tag">M6B · like M6, striped photo box directly under "that's why we're here…"</span>
+    <div class="frame" style="padding:72px 80px 76px; text-align:center;">
+      <div class="sec-title" style="font-size:50px; margin-bottom:40px;">why we're doing this.</div>
+      <div class="letter" style="font-size:18px; max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+        <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+        <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</div>
+        <div>we think what you can do should matter more than where you went or who you know.</div>
+      </div>
+      <div class="miss" style="font-size:26px; max-width:780px; margin:36px auto 24px;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+      <div class="imgbox" style="height:280px; max-width:780px; margin:0 auto 30px; justify-content:center; align-items:center;">uncooked event photo</div>
+      <div class="letter" style="font-size:18px; max-width:680px; margin:0 auto 30px;">every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+      <div class="llink" style="font-size:16px; margin-bottom:20px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+      <div class="foot">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+    </div>
+  </div>
+
+  <!-- ============ M7 · centred, square photo above the letter ============ -->
+  <div style="position:relative;">
+    <span class="tag">M7 · centred · square event photo centred above the letter</span>
+    <div class="frame" style="padding:64px 80px 76px; text-align:center;">
+      <div class="imgbox" style="width:360px; height:240px; margin:0 auto 36px; justify-content:center; align-items:center;">uncooked event photo</div>
+      <div class="sec-title" style="font-size:48px; margin-bottom:32px;">why we're doing this.</div>
+      <div class="letter" style="font-size:17px; max-width:700px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+        <div>it's never been harder to be young and looking for work in the UK. <b>over 1 million</b> young people are out of work or education. entry level roles have dropped by <b>nearly a third</b> since ChatGPT launched. <b>70 people</b> now fight for every graduate job. and <b>more than half</b> of candidates get ghosted.</div>
+        <div>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups. real responsibility early, real skills, real rooms. we think what you can do should matter more than where you went or who you know.</div>
+        <div class="miss" style="font-size:24px; margin:6px auto;">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</div>
+        <div>every offer made through the platform works towards that goal. so does every room uncooked labs opens.</div>
+      </div>
+      <div class="llink" style="font-size:16px; margin:28px 0 20px;">the full story, from our founder <b style="color:#7a7a82;">→</b></div>
+      <div class="foot">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst</div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

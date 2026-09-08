@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#000;}
+  *{box-sizing:border-box;}
+  a{color:#E62B15;} a:hover{color:#ff5a44;}
+</style>
+</helmet>
+<div ref="{{ setRoot }}" style="position:relative;width:100%;height:400vh;background:#000;font-family:'Satoshi',sans-serif;">
+  <div style="position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:#000 url('uploads/how it works background 2.png') center/66% auto no-repeat;">
+
+    <!-- title -->
+    <div style="position:absolute;top:4.5vh;left:50%;transform:translateX(-50%);z-index:20;font-family:'Instrument Serif',serif;color:#fff;font-size:clamp(38px,5vh,58px);letter-spacing:-0.04em;line-height:1;white-space:nowrap;">how it works</div>
+
+    <!-- phone -->
+    <div style="position:absolute;left:calc(50vw - 27.95vh - 154px);bottom:11%;height:78vh;aspect-ratio:1489/2078;z-index:10;">
+      <img src="uploads/step2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+      <!-- screen window (base = step2 screen rect) -->
+      <div style="position:absolute;left:30.15%;top:2.65%;width:56.75%;height:85.51%;overflow:hidden;border-radius:8% / 4.6%;background:#000;">
+        <div style="position:absolute;left:0;top:0;width:100%;height:400%;transition:transform .62s cubic-bezier(.72,0,.18,1);transform:translateY({{ stripShift }});">
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step1.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step2.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step3.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step4.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- text block -->
+    <div style="position:absolute;left:calc(50vw + 27.95vh - 126px);top:50%;transform:translateY(-52%);z-index:20;width:min(28vw,280px);">
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;color:#E62B15;font-size:clamp(46px,6vh,72px);line-height:0.9;">{{ stepNum }}</div>
+      <div style="font-family:'Satoshi',sans-serif;font-weight:700;color:#fff;font-size:clamp(30px,4.2vh,48px);line-height:1.04;margin-top:14px;letter-spacing:-0.01em;">{{ stepTitle }}</div>
+      <div style="font-family:'Satoshi',sans-serif;font-weight:500;color:#e9e2df;font-size:clamp(17px,2.1vh,23px);line-height:1.35;margin-top:24px;max-width:19ch;text-wrap:pretty;">{{ stepBody }}</div>
+    </div>
+
+    <!-- shade band -->
+    <div style="position:absolute;left:0;right:0;bottom:0;height:29%;z-index:15;pointer-events:none;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0.88) 34%,rgba(0,0,0,0.5) 62%,rgba(0,0,0,0) 100%);"></div>
+
+    <!-- bottom bar -->
+    <div ref="{{ setBar }}" style="position:absolute;left:50%;bottom:4.5vh;transform:translateX(-50%);z-index:25;display:flex;align-items:stretch;gap:clamp(6px,2vw,34px);padding:10px;border:1.5px solid rgba(230,43,21,0.5);border-radius:22px;background:rgba(8,3,2,0.35);backdrop-filter:blur(2px);">
+      <div ref="{{ setRect }}" style="position:absolute;z-index:0;top:0;left:0;width:0;height:0;display:flex;align-items:stretch;transition:left .55s cubic-bezier(.72,0,.18,1),width .55s cubic-bezier(.72,0,.18,1),top .55s,height .55s;pointer-events:none;">
+        <img src="uploads/red-cap-left.png" alt="" style="height:100%;width:auto;display:block;image-rendering:pixelated;">
+        <div style="flex:1;height:100%;background:#e62b15;"></div>
+        <img src="uploads/red-cap-right.png" alt="" style="height:100%;width:auto;display:block;image-rendering:pixelated;">
+      </div>
+      <sc-for list="{{ items }}" as="it">
+        <div data-item="1" style="position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:10px 20px;white-space:nowrap;">
+          <img src="{{ it.icon }}" alt="" style="height:{{ it.h }};width:auto;display:block;filter:{{ it.filter }};transition:filter .3s ease;">
+          <span style="font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(16px,2.1vh,23px);color:{{ it.color }};transition:color .3s ease;">{{ it.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 0 };
+
+  STEPS = [
+    { num: '01', title: 'build your passport', body: "video pitch. the best thing you've made. once, on the platform." },
+    { num: '02', title: 'get matched', body: 'roles come to you. we ping your phone when one fits.' },
+    { num: '03', title: 'apply in minutes', body: '3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.' },
+    { num: '04', title: 'hear back. always.', body: "from an actual human at the startup. not a bot. not an AI recruiter. it's the rule." }
+  ];
+  ICONS = [
+    { icon: 'uploads/ic-passport.png', label: 'build passport', native: 'black', h: '26px' },
+    { icon: 'uploads/ic-matched.png', label: 'get matched', native: 'white', h: '33px' },
+    { icon: 'uploads/ic-apply.png', label: 'apply', native: 'white', h: '31px' },
+    { icon: 'uploads/ic-hearback.png', label: 'hear back', native: 'white', h: '27px' }
+  ];
+
+  componentDidMount() {
+    this.onScroll = () => {
+      if (!this.rootEl) return;
+      const r = this.rootEl.getBoundingClientRect();
+      const denom = r.height - window.innerHeight;
+      const p = denom > 0 ? Math.min(Math.max(-r.top / denom, 0), 1) : 0;
+      const a = Math.min(Math.max(Math.round(p * 3), 0), 3);
+      if (a !== this.state.active) this.setState({ active: a });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.positionRect);
+    this.onScroll();
+    requestAnimationFrame(this.positionRect);
+  }
+  componentDidUpdate() { this.positionRect(); }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.positionRect);
+  }
+
+  positionRect = () => {
+    if (!this.barEl || !this.rectEl) return;
+    const items = this.barEl.querySelectorAll('[data-item]');
+    const el = items[this.state.active];
+    if (!el) return;
+    this.rectEl.style.left = (el.offsetLeft - 2) + 'px';
+    this.rectEl.style.top = (el.offsetTop - 1) + 'px';
+    this.rectEl.style.width = (el.offsetWidth + 4) + 'px';
+    this.rectEl.style.height = (el.offsetHeight + 2) + 'px';
+  };
+
+  iconFilter(native, isActive) {
+    if (native === 'black') return isActive ? 'none' : 'brightness(0) invert(1)';
+    return isActive ? 'brightness(0)' : 'none';
+  }
+
+  renderVals() {
+    const a = this.state.active;
+    const step = this.STEPS[a];
+    return {
+      setRoot: (el) => { this.rootEl = el; },
+      setBar: (el) => { this.barEl = el; },
+      setRect: (el) => { this.rectEl = el; },
+      stripShift: '-' + (a * 25) + '%',
+      stepNum: step.num,
+      stepTitle: step.title,
+      stepBody: step.body,
+      items: this.ICONS.map((it, i) => ({
+        icon: it.icon,
+        label: it.label,
+        h: it.h,
+        filter: this.iconFilter(it.native, i === a),
+        color: i === a ? '#000000' : '#ffffff'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

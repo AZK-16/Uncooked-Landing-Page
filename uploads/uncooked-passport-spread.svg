@@ -1,0 +1,55 @@
+<?xml version="1.0"?><svg data-dc-tpl="906" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1190" data-om-id="af4226ca:911" style="width: 100%; height: auto; display: block;" width="900" height="1190" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs data-dc-tpl="907" data-om-id="af4226ca:912">
+          <clipPath data-dc-tpl="908" id="pfClip" data-om-id="af4226ca:913"><circle data-dc-tpl="909" cx="118" cy="228" r="66" data-om-id="af4226ca:914"></circle></clipPath>
+          <path data-dc-tpl="910" id="sArcTop" d="M 190 500 A 310 310 0 0 1 810 500" data-om-id="af4226ca:915"></path>
+          <path data-dc-tpl="911" id="sArcBot" d="M 104 500 A 396 396 0 0 0 896 500" data-om-id="af4226ca:916"></path>
+          <path data-dc-tpl="912" id="sStar" d="M0 -34 L9.5 -11.5 L34 -10.5 L15 4.5 L21.5 28 L0 14.5 L-21.5 28 L-15 4.5 L-34 -10.5 L-9.5 -11.5 Z" data-om-id="af4226ca:917"></path>
+          <g data-dc-tpl="913" id="sIconChip" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-om-id="af4226ca:918"><rect data-dc-tpl="914" x="6" y="6" width="12" height="12" rx="2" data-om-id="af4226ca:919"></rect><rect data-dc-tpl="915" x="9.5" y="9.5" width="5" height="5" data-om-id="af4226ca:920"></rect><path data-dc-tpl="916" d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2" data-om-id="af4226ca:921"></path></g>
+          <g data-dc-tpl="917" id="sIconLeaf" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-om-id="af4226ca:922"><path data-dc-tpl="918" d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" data-om-id="af4226ca:923"></path><path data-dc-tpl="919" d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" data-om-id="af4226ca:924"></path></g>
+          <g data-dc-tpl="920" id="sSeal" data-om-id="af4226ca:925">
+            <circle data-dc-tpl="921" cx="500" cy="500" r="440" fill="none" stroke="currentColor" stroke-width="58" stroke-linecap="round" stroke-dasharray="0 76.8" data-om-id="af4226ca:926"></circle>
+            <circle data-dc-tpl="922" cx="500" cy="500" r="440" fill="currentColor" data-om-id="af4226ca:927"></circle>
+            <circle data-dc-tpl="923" cx="500" cy="500" r="430" fill="none" stroke="#FAFAFA" stroke-width="9" data-om-id="af4226ca:928"></circle>
+            <circle data-dc-tpl="924" cx="500" cy="500" r="368" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-dasharray="321 257" stroke-dashoffset="-128" data-om-id="af4226ca:929"></circle>
+            <circle data-dc-tpl="925" cx="500" cy="500" r="288" fill="#FAFAFA" data-om-id="af4226ca:930"></circle>
+            <circle data-dc-tpl="926" cx="500" cy="500" r="300" fill="none" stroke="#FAFAFA" stroke-width="7" data-om-id="af4226ca:931"></circle>
+            <use data-dc-tpl="927" href="#sStar" fill="#FAFAFA" transform="translate(132,500)" data-om-id="af4226ca:932"></use>
+            <use data-dc-tpl="928" href="#sStar" fill="#FAFAFA" transform="translate(868,500)" data-om-id="af4226ca:933"></use>
+          </g>
+        </defs>
+
+        <rect data-dc-tpl="929" width="900" height="1190" rx="40" fill="#F6F6F6" data-om-id="af4226ca:934"></rect>
+
+        <text data-dc-tpl="930" x="450" y="82" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="22" letter-spacing="4" fill="#a4a4ac" data-om-id="af4226ca:935">PASSPORT</text>
+        <line data-dc-tpl="931" x1="52" y1="118" x2="848" y2="118" stroke="#E2E2E5" stroke-width="2" data-om-id="af4226ca:936"></line>
+
+        <circle data-dc-tpl="932" cx="118" cy="228" r="66" fill="#e6e6ea" data-om-id="af4226ca:937"></circle>
+        <image data-dc-tpl="933" x="52" y="162" width="132" height="132" clip-path="url(#pfClip)" preserveAspectRatio="xMidYMid slice" data-om-id="af4226ca:938"></image>
+        <circle data-dc-tpl="934" cx="118" cy="228" r="66" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="2" data-om-id="af4226ca:939"></circle>
+        <text data-dc-tpl="935" x="212" y="218" font-family="Satoshi" font-weight="700" font-size="42" letter-spacing="-1.2" fill="#1c1c20" data-om-id="af4226ca:940">rahul desai</text>
+        <text data-dc-tpl="936" x="212" y="262" font-family="Satoshi" font-weight="500" font-size="24" fill="#8a8a92" data-om-id="af4226ca:941">aspiring geo-engineer • london</text>
+        <rect data-dc-tpl="937" x="676" y="174" width="172" height="58" rx="29" fill="#FFFFFF" stroke="#0B6E3A" stroke-width="2.5" data-om-id="af4226ca:942"></rect>
+        <text data-dc-tpl="938" x="762" y="212" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="23" fill="#0B6E3A" data-om-id="af4226ca:943">verified ✓</text>
+
+        <rect data-dc-tpl="939" x="52" y="320" width="796" height="92" rx="46" fill="#2B2B2E" data-om-id="af4226ca:944"></rect>
+        <rect data-dc-tpl="940" x="62" y="330" width="388" height="72" rx="36" fill="#E72B15" data-om-id="af4226ca:945"></rect>
+        <text data-dc-tpl="941" x="256" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#FFFFFF" data-om-id="af4226ca:946">summary</text>
+        <text data-dc-tpl="942" x="649" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#C9C9CE" data-om-id="af4226ca:947">work</text>
+
+        <rect data-dc-tpl="943" x="52" y="452" width="796" height="228" rx="26" fill="#ECECEE" data-om-id="af4226ca:948"></rect>
+        <text data-dc-tpl="944" x="90" y="514" font-family="Satoshi" font-weight="700" font-size="20" letter-spacing="3.4" fill="#8a8a92" data-om-id="af4226ca:949">TOP ACHIEVEMENT</text>
+        <text data-dc-tpl="945" x="90" y="578" font-family="Satoshi" font-weight="500" font-size="30" fill="#1c1c20" data-om-id="af4226ca:950">built a weather probe from scratch that measures</text>
+        <text data-dc-tpl="946" x="90" y="626" font-family="Satoshi" font-weight="500" font-size="30" fill="#1c1c20" data-om-id="af4226ca:951">temperature, humidity and air pressure in real time.</text>
+
+        <line data-dc-tpl="947" x1="52" y1="734" x2="848" y2="734" stroke="#E2E2E5" stroke-width="2" data-om-id="af4226ca:952"></line>
+        <text data-dc-tpl="948" x="52" y="796" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac" data-om-id="af4226ca:953">COURSE</text>
+        <text data-dc-tpl="949" x="848" y="798" text-anchor="end" font-family="Satoshi" font-weight="700" font-size="27" fill="#1c1c20" data-om-id="af4226ca:954">engineering</text>
+        <text data-dc-tpl="950" x="52" y="872" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac" data-om-id="af4226ca:955">INSTITUTION</text>
+        <text data-dc-tpl="951" x="848" y="874" text-anchor="end" font-family="Satoshi" font-weight="700" font-size="27" fill="#1c1c20" data-om-id="af4226ca:956">imperial college london</text>
+        <line data-dc-tpl="952" x1="52" y1="920" x2="848" y2="920" stroke="#E2E2E5" stroke-width="2" data-om-id="af4226ca:957"></line>
+        <text data-dc-tpl="953" x="52" y="980" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac" data-om-id="af4226ca:958">STAMPS</text>
+
+        <image data-dc-tpl="954" class="stampImg" data-src="uploads/track hardware no scalloped edge v2.png" x="52" y="1006" width="152" height="152" data-om-id="af4226ca:959"></image>
+        <image data-dc-tpl="955" class="stampImg" data-src="uploads/sector climate v2.png" x="232" y="1006" width="152" height="152" data-om-id="af4226ca:960"></image>
+        
+      </svg>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; background:#050507; }
+  a { color:#E62B15; text-decoration:none; }
+  a:hover { color:#ff5236; }
+  @keyframes odFade {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .od-fade { opacity:0; animation:odFade 1.05s cubic-bezier(.22,.61,.36,1) forwards; }
+</style>
+</helmet>
+
+<div style="height:100vh; overflow:hidden; background:radial-gradient(circle 820px at 50% 45%, rgba(230,43,21,.38) 0%, rgba(230,43,21,.15) 42%, rgba(230,43,21,0) 72%), #000; font-family:'Satoshi',system-ui,sans-serif; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,6vh,110px) 40px; text-align:center;">
+
+  <h2 class="od-fade" style="font-family:'Instrument Serif',serif; font-weight:400; color:#fff; font-size:clamp(34px,5vw,60px); line-height:1; letter-spacing:-.01em; margin:0 0 clamp(48px,11vh,150px); animation-delay:.05s;">what makes uncooked <span style="font-style:italic;">different</span>.</h2>
+
+  <div style="display:flex; flex-direction:column; gap:clamp(40px,9vh,130px); max-width:760px; width:100%;">
+
+    <div>
+      <h3 class="od-fade" style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; color:#fff; position:relative; z-index:60; font-size:clamp(22px,2.7vw,32px); line-height:1.1; letter-spacing:-.015em; margin:0 0 clamp(12px,1.8vh,22px); animation-delay:.55s;">you <span style="position:relative; z-index:60; border-bottom:3px dotted #E62B15; padding-bottom:1px; cursor:pointer;" onMouseEnter="{{ onEnter1 }}" onMouseLeave="{{ onLeave }}"><img src="uploads/retro pixelated browser window.png" alt="" style="{{ img1Style }}">never repeat</span> the work.</h3>
+      <p class="od-fade" style="font-family:'Satoshi',system-ui,sans-serif; font-weight:500; color:#e6e6ea; position:relative; z-index:1; font-size:clamp(14px,1.25vw,17px); line-height:1.6; margin:0 auto; max-width:560px; animation-delay:.8s; text-wrap:pretty;">2 honest hours. your proof travels with every application after that. no fresh brief for every company. no rewriting your story 140 times.</p>
+    </div>
+
+    <div>
+      <h3 class="od-fade" style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; color:#fff; position:relative; z-index:60; font-size:clamp(22px,2.7vw,32px); line-height:1.1; letter-spacing:-.015em; margin:0 0 clamp(12px,1.8vh,22px); animation-delay:1.05s;">a <span style="position:relative; z-index:60; border-bottom:3px dotted #E62B15; padding-bottom:1px; cursor:pointer;" onMouseEnter="{{ onEnter2 }}" onMouseLeave="{{ onLeave }}"><img src="uploads/retro pixelated browser window.png" alt="" style="{{ img2Style }}">human</span> always reviews you.</h3>
+      <p class="od-fade" style="font-family:'Satoshi',system-ui,sans-serif; font-weight:500; color:#e6e6ea; position:relative; z-index:1; font-size:clamp(14px,1.25vw,17px); line-height:1.6; margin:0 auto; max-width:560px; animation-delay:1.3s; text-wrap:pretty;">nothing here is auto rejected by a bot. real review, and a real person makes the call.</p>
+    </div>
+
+    <div>
+      <h3 class="od-fade" style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; color:#fff; position:relative; z-index:60; font-size:clamp(22px,2.7vw,32px); line-height:1.1; letter-spacing:-.015em; margin:0 0 clamp(12px,1.8vh,22px); animation-delay:1.55s;">a <span style="position:relative; z-index:60; border-bottom:3px dotted #E62B15; padding-bottom:1px; cursor:pointer;" onMouseEnter="{{ onEnter3 }}" onMouseLeave="{{ onLeave }}"><img src="uploads/retro pixelated browser window.png" alt="" style="{{ img3Style }}">response</span> is the rule.</h3>
+      <p class="od-fade" style="font-family:'Satoshi',system-ui,sans-serif; font-weight:500; color:#e6e6ea; position:relative; z-index:1; font-size:clamp(14px,1.25vw,17px); line-height:1.6; margin:0 auto; max-width:560px; animation-delay:1.8s; text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hover: 0 };
+  renderVals() {
+    const base = {
+      position:'absolute', right:'100%', top:'50%', marginRight:'22px',
+      width:'clamp(200px,22vw,300px)', pointerEvents:'none',
+      imageRendering:'pixelated', filter:'drop-shadow(0 18px 40px rgba(0,0,0,.6))',
+      transition:'opacity .18s ease, transform .18s ease', zIndex:100,
+    };
+    const on = () => ({ ...base, opacity:1, transform:'translateY(-50%) scale(1)' });
+    const off = () => ({ ...base, opacity:0, transform:'translateY(-50%) scale(.92)' });
+    const s = this.state.hover;
+    return {
+      img1Style: s === 1 ? on() : off(),
+      img2Style: s === 2 ? on() : off(),
+      img3Style: s === 3 ? on() : off(),
+      onEnter1: () => this.setState({ hover: 1 }),
+      onEnter2: () => this.setState({ hover: 2 }),
+      onEnter3: () => this.setState({ hover: 3 }),
+      onLeave: () => this.setState({ hover: 0 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

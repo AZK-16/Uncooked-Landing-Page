@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ececed; font-family:'Satoshi',system-ui,sans-serif; }
+  .frame { position:relative; border:1.5px solid #b7b7be; border-radius:14px; width:1280px; overflow:hidden; }
+  .tag { position:absolute; top:-13px; left:0; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8a8a92; }
+  /* temperature: dark grey problem block, light warm turn block */
+  .dark { background:#3a3b44; }
+  .light { background:#f4f4f5; }
+  .lead-d { font-family:'Instrument Serif',serif; font-weight:400; color:#ececed; letter-spacing:-.01em; line-height:1.06; }
+  .lead-l { font-family:'Instrument Serif',serif; font-weight:400; color:#2e2e34; letter-spacing:-.01em; line-height:1.1; }
+  .body-d { color:#b9bac2; line-height:1.7; }
+  .body-l { color:#6a6a72; line-height:1.7; }
+  .ital { font-style:italic; color:#c9c9d0; }
+  .punch-d { font-family:'Instrument Serif',serif; font-weight:400; color:#f0f0f2; line-height:1.18; }
+  .cta { background:#c7c7cd; border:1.5px solid #a4a4ac; border-radius:999px; color:#3a3a40; font-weight:700; display:inline-flex; align-items:center; justify-content:center; }
+  .assur { color:#9a9aa2; font-weight:500; }
+  .kick { font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#8f909c; }
+</style>
+</helmet>
+
+<div style="padding:56px; display:flex; flex-direction:column; gap:12px;">
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:0 0 4px; letter-spacing:.02em;">belief · section 6 · 5 layouts · type only, centred, tighter measure · dark problem block → warmer turn ("we built the opposite") → repeated "get seen" · ("cooked" reads red on brand)</p>
+
+  <div style="display:flex; flex-direction:column; gap:72px; margin-top:12px;">
+
+  <!-- ============ B1 · dark block then light turn, gut punch isolated ============ -->
+  <div style="position:relative;">
+    <span class="tag">B1 · dark problem block → light turn · gut-punch line isolated large</span>
+    <div class="frame">
+      <div class="dark" style="padding:88px 80px 80px; text-align:center;">
+        <div class="lead-d" style="font-size:56px; max-width:820px; margin:0 auto 44px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:18px; max-width:660px; margin:0 auto 40px;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.<br><br>qualified people get filtered out for not matching the wording exactly.<br>most ghosting happens right after you hit submit.</div>
+        <div class="punch-d" style="font-size:40px; max-width:720px; margin:0 auto 40px;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</div>
+        <div class="body-d" style="font-size:18px; max-width:620px; margin:0 auto;">nobody is judging what you can do. a machine is skimming what you wrote about it.</div>
+      </div>
+      <div class="light" style="padding:72px 80px 76px; text-align:center;">
+        <div class="kick" style="margin-bottom:22px;">we built the opposite</div>
+        <div class="lead-l" style="font-size:38px; max-width:760px; margin:0 auto 40px;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B1b · B1 with turn styles swapped ============ -->
+  <div style="position:relative;">
+    <span class="tag">B1b · like B1, turn styles swapped · serif "we built the opposite", calmer satoshi body</span>
+    <div class="frame">
+      <div class="dark" style="padding:88px 80px 80px; text-align:center;">
+        <div class="lead-d" style="font-size:56px; max-width:820px; margin:0 auto 44px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:23px; max-width:700px; margin:0 auto 40px;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.<br><br>qualified people get filtered out for not matching the wording exactly.<br>most ghosting happens right after you hit submit.</div>
+        <div class="punch-d" style="font-size:40px; max-width:720px; margin:0 auto 40px;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</div>
+        <div class="body-d" style="font-size:23px; max-width:660px; margin:0 auto;">nobody is judging what you can do. a machine is skimming what you wrote about it.</div>
+      </div>
+      <div class="light" style="padding:72px 80px 76px; text-align:center;">
+        <div style="font-family:'Instrument Serif',serif; font-weight:400; font-size:38px; color:#2e2e34; letter-spacing:-.01em; margin-bottom:28px;">we built the opposite.</div>
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:500; font-size:23px; line-height:1.55; color:#5a5a62; max-width:680px; margin:0 auto 40px;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B1c · like B1b, top block in light greyscale ============ -->
+  <div style="position:relative;">
+    <span class="tag">B1c · like B1b, top block in light greyscale</span>
+    <div class="frame">
+      <div class="light" style="padding:88px 80px 80px; text-align:center; border-bottom:1.5px solid #dcdce1;">
+        <div class="lead-l" style="font-size:56px; max-width:820px; margin:0 auto 44px;">the job market isn't broken. it's <span style="font-style:italic; color:#7a7a82;">cooked.</span></div>
+        <div class="body-l" style="font-size:23px; max-width:700px; margin:0 auto 40px;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.<br><br>qualified people get filtered out for not matching the wording exactly.<br>most ghosting happens right after you hit submit.</div>
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; color:#2e2e34; line-height:1.2; letter-spacing:-.01em; font-size:32px; max-width:720px; margin:0 auto 40px;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</div>
+        <div class="body-l" style="font-size:23px; max-width:660px; margin:0 auto;">nobody is judging what you can do. a machine is skimming what you wrote about it.</div>
+      </div>
+      <div class="light" style="padding:72px 80px 76px; text-align:center;">
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; font-size:30px; color:#2e2e34; letter-spacing:-.01em; margin-bottom:28px;">we built the opposite.</div>
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:500; font-size:23px; line-height:1.55; color:#5a5a62; max-width:680px; margin:0 auto 40px;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B1c-dark · B1c on dark background ============ -->
+  <div style="position:relative;">
+    <span class="tag">B1c-dark · like B1c, dark background</span>
+    <div class="frame">
+      <div class="dark" style="padding:88px 80px 80px; text-align:center; border-bottom:1.5px solid rgba(255,255,255,.1);">
+        <div class="lead-d" style="font-size:56px; max-width:820px; margin:0 auto 44px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:23px; max-width:700px; margin:0 auto 40px;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.<br><br>qualified people get filtered out for not matching the wording exactly.<br>most ghosting happens right after you hit submit.</div>
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; color:#f0f0f2; line-height:1.2; letter-spacing:-.01em; font-size:32px; max-width:720px; margin:0 auto 40px;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</div>
+        <div class="body-d" style="font-size:23px; max-width:660px; margin:0 auto;">nobody is judging what you can do. a machine is skimming what you wrote about it.</div>
+      </div>
+      <div class="light" style="padding:72px 80px 76px; text-align:center;">
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:700; font-size:32px; color:#2e2e34; letter-spacing:-.01em; margin-bottom:28px;">we built the opposite.</div>
+        <div style="font-family:'Satoshi',system-ui,sans-serif; font-weight:500; font-size:23px; line-height:1.55; color:#5a5a62; max-width:680px; margin:0 auto 40px;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B2 · gut punch inline (alt treatment), single dark field ============ -->
+  <div style="position:relative;">
+    <span class="tag">B2 · gut-punch set inline (alt) · one continuous dark field, turn panel below</span>
+    <div class="frame">
+      <div class="dark" style="padding:88px 80px 80px; text-align:center;">
+        <div class="lead-d" style="font-size:56px; max-width:820px; margin:0 auto 44px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:19px; max-width:680px; margin:0 auto;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all. qualified people get filtered out for not matching the wording exactly. most ghosting happens right after you hit submit. rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it. nobody is judging what you can do. a machine is skimming what you wrote about it.</div>
+      </div>
+      <div class="light" style="padding:72px 80px 76px; text-align:center;">
+        <div class="kick" style="margin-bottom:22px;">we built the opposite</div>
+        <div class="lead-l" style="font-size:38px; max-width:760px; margin:0 auto 40px;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B3 · full dark, turn as inset light card ============ -->
+  <div style="position:relative;">
+    <span class="tag">B3 · full dark field · the turn arrives as an inset light card</span>
+    <div class="frame">
+      <div class="dark" style="padding:88px 80px 88px; text-align:center;">
+        <div class="lead-d" style="font-size:54px; max-width:820px; margin:0 auto 40px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:18px; max-width:660px; margin:0 auto 36px;">software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all. qualified people get filtered out for not matching the wording exactly.</div>
+        <div class="punch-d" style="font-size:38px; max-width:720px; margin:0 auto 48px;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</div>
+        <div class="light" style="border-radius:16px; padding:48px 52px; max-width:760px; margin:0 auto; box-shadow:0 24px 60px rgba(0,0,0,.28);">
+          <div class="kick" style="margin-bottom:18px;">we built the opposite</div>
+          <div class="lead-l" style="font-size:34px; margin-bottom:34px;">startups see your actual work, verified, before the first call. a human reviews every application. every single one gets an answer. it's the rule.</div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div class="cta" style="height:54px; padding:0 44px; font-size:18px;">get seen</div>
+            <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B4 · left-aligned tight measure, rule divides temperature ============ -->
+  <div style="position:relative;">
+    <span class="tag">B4 · left-aligned tight measure · hairline divides dark from light turn</span>
+    <div class="frame">
+      <div class="dark" style="padding:80px 96px 72px;">
+        <div class="lead-d" style="font-size:52px; max-width:680px; margin-bottom:36px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:18px; max-width:600px; margin-bottom:34px;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.<br><br>qualified people get filtered out for not matching the wording exactly.<br>most ghosting happens right after you hit submit.</div>
+        <div class="punch-d" style="font-size:36px; max-width:620px;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</div>
+      </div>
+      <div class="light" style="padding:64px 96px 72px;">
+        <div class="kick" style="margin-bottom:20px;">we built the opposite</div>
+        <div class="lead-l" style="font-size:36px; max-width:640px; margin-bottom:36px;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px; max-width:180px; line-height:1.4;">free for candidates · early members matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ B5 · gut punch as full-bleed hero line ============ -->
+  <div style="position:relative;">
+    <span class="tag">B5 · gut-punch as a full-bleed hero line, framed by setup + turn</span>
+    <div class="frame">
+      <div class="dark" style="padding:72px 80px 40px; text-align:center;">
+        <div class="lead-d" style="font-size:48px; max-width:780px; margin:0 auto 32px;">the job market isn't broken. it's <span class="ital">cooked.</span></div>
+        <div class="body-d" style="font-size:17px; max-width:640px; margin:0 auto;">software ranks you by keywords before any person looks. 7 seconds with your CV, if they see it at all. qualified people get filtered out for not matching the wording. most ghosting happens right after you hit submit.</div>
+      </div>
+      <div class="dark" style="padding:8px 60px 64px; text-align:center; border-top:1.5px solid rgba(255,255,255,.1);">
+        <div class="punch-d" style="font-size:54px; max-width:900px; margin:36px auto 0;">rejection emails go out at 1:30 in the morning.<br>nobody was awake. nobody read it.</div>
+      </div>
+      <div class="light" style="padding:68px 80px 74px; text-align:center;">
+        <div class="kick" style="margin-bottom:20px;">we built the opposite</div>
+        <div class="lead-l" style="font-size:36px; max-width:740px; margin:0 auto 38px;">startups see your actual work, verified, before the first call. a human reviews every application. every single one gets an answer. it's the rule.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <div class="cta" style="height:56px; padding:0 46px; font-size:19px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

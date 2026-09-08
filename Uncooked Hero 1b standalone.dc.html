@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #060608; }
+  a { color: #E62B15; text-decoration: none; }
+  a:hover { color: #ff5236; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rise { animation: rise .9s cubic-bezier(.16,.84,.44,1) both; }
+  @keyframes ghost {
+    0%   { opacity: .25; filter: blur(12px); }
+    100% { opacity: 1;   filter: blur(0); }
+  }
+  .ghost-word { display:inline-block; animation: ghost 3.2s cubic-bezier(.2,.7,.2,1) .5s both; }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none !important; }
+    .ghost-word { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</helmet>
+
+<div style="height:100vh; display:flex; flex-direction:column; background:radial-gradient(90% 70% at 50% 30%, rgba(230,43,21,.13), rgba(230,43,21,0) 60%), linear-gradient(180deg,#0a0a10 0%,#060608 100%); font-family:'Satoshi',system-ui,sans-serif; color:#fff; overflow:hidden;">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:26px 48px; gap:24px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="width:34px; height:34px; border:1.5px solid rgba(255,255,255,.85); border-radius:9px; display:flex; align-items:center; justify-content:center;"><span style="width:8px; height:8px; background:#fff; border-radius:50%; display:block;"></span></div>
+      <span style="font-weight:700; font-size:22px; letter-spacing:-.01em;">uncooked</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:2px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07); border-radius:999px; padding:6px;">
+      <span style="background:#E62B15; color:#fff; font-weight:700; font-size:15px; border-radius:999px; padding:9px 22px;">jobs</span>
+      <span style="color:#9a9aa2; font-weight:500; font-size:15px; padding:9px 18px;">tracker</span>
+      <span style="color:#9a9aa2; font-weight:500; font-size:15px; padding:9px 18px;">events</span>
+      <span style="color:#9a9aa2; font-weight:500; font-size:15px; padding:9px 18px;">labs&nbsp;↗</span>
+    </div>
+    <div style="border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:10px 20px; font-weight:500; font-size:15px; color:#e6e6ea;">for startups&nbsp;→</div>
+  </div>
+  <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);"></div>
+
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:14px 60px 22px;">
+    <p class="rise" style="display:inline-flex; align-items:center; gap:9px; margin:0 0 clamp(14px,3vh,28px); font-size:14.5px; color:#8a8a93;">
+      <span style="width:6px; height:6px; border-radius:50%; background:#E62B15; display:inline-block;"></span>
+      already trusted by students and grads from Oxford, Cambridge, Imperial and UCL.
+    </p>
+    <h1 class="rise" style="font-family:'Instrument Serif',serif; font-weight:400; font-size:150px; line-height:.9; letter-spacing:-.01em; margin:0 0 28px;">never get<br><span class="ghost-word" style="font-style:italic;">ghosted.</span></h1>
+    <p class="rise" style="font-size:23px; line-height:1.5; color:#b7b7bf; margin:0 auto 6px; max-width:640px;">no CVs. no cover letters. no repeating yourself 140 times.</p>
+    <p class="rise" style="font-size:23px; line-height:1.5; color:#71717a; margin:0 auto 38px; max-width:640px;">apply from your phone. a guaranteed answer in 7 days. launching soon.</p>
+    <button class="rise" style="background:#E62B15; color:#fff; border:none; font-family:'Satoshi'; font-weight:700; font-size:20px; border-radius:999px; padding:20px 54px; cursor:pointer; box-shadow:0 10px 40px rgba(230,43,21,.35);">get seen</button>
+    <p class="rise" style="font-size:15px; color:#71717a; margin:18px 0 0;">free for candidates · early members get matched first</p>
+    <p class="rise" style="font-size:16px; color:#9a9aa2; margin:clamp(16px,2.5vh,24px) 0 0;">or start with the <a href="#" style="border-bottom:1px solid rgba(230,43,21,.4); padding-bottom:1px;">tracker</a>: 6,000+ live startup jobs. save the ones you like <span style="color:#E62B15;">→</span></p>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

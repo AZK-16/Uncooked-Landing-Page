@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ececed; font-family:'Satoshi',system-ui,sans-serif; }
+  .frame { position:relative; background:#f4f4f5; border:1.5px solid #b7b7be; border-radius:14px; width:1280px; overflow:hidden; }
+  .tag { position:absolute; top:-13px; left:0; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8a8a92; }
+  .howtitle { font-family:'Instrument Serif',serif; font-weight:400; font-size:60px; color:#33333a; letter-spacing:-.01em; }
+  .num { font-family:'Instrument Serif',serif; font-style:italic; line-height:1; color:#E62B15; }
+  .step-title { font-weight:700; color:#2e2e34; letter-spacing:-.01em; }
+  .step-desc { color:#6a6a72; line-height:1.5; }
+  .comp-label { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#a4a4ac; margin-top:10px; }
+  /* wireframe primitives */
+  .card { background:#fff; border:1.5px solid #d2d2d8; border-radius:14px; box-shadow:0 10px 26px rgba(0,0,0,.06); width:100%; }
+  .imgbox { border:1.5px dashed #b3b3bb; border-radius:8px; background:repeating-linear-gradient(135deg,#dcdce1 0 12px,#e4e4e8 12px 24px); display:flex; align-items:center; justify-content:center; }
+  .line { background:#d9d9de; border-radius:4px; height:11px; }
+  .reddot { width:9px; height:9px; border-radius:50%; background:#E62B15; flex:0 0 auto; }
+  .chip { border:1.5px solid #c8c8ce; border-radius:999px; font-size:11px; color:#7a7a82; padding:4px 10px; background:#eeeef1; white-space:nowrap; }
+  .playbtn { width:44px; height:44px; border-radius:50%; background:rgba(20,20,26,.55); color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; flex:0 0 auto; }
+  .vnote { display:flex; align-items:center; gap:10px; background:#eeeef1; border-radius:999px; padding:7px 12px; }
+  .wave { flex:1; height:18px; background:repeating-linear-gradient(90deg,#bcbcc4 0 3px,transparent 3px 7px); border-radius:2px; }
+  .vbtn { display:inline-flex; align-items:center; gap:8px; background:#c7c7cd; border:1.5px solid #a4a4ac; border-radius:999px; padding:10px 18px; font-size:13px; font-weight:700; color:#3a3a40; }
+  .spine { position:absolute; top:0; bottom:0; width:2px; background:#E62B15; opacity:.55; }
+  .node { width:15px; height:15px; border-radius:50%; background:#E62B15; border:3px solid #f4f4f5; flex:0 0 auto; z-index:2; }
+  /* greyscale variant */
+  .grey .num { color:#7a7a82 !important; }
+  .grey .reddot { background:#b0b0b8 !important; }
+  .grey .spine { background:#c4c4cc !important; opacity:.9 !important; }
+  .grey .node { background:#b0b0b8 !important; }
+</style>
+</helmet>
+
+<div style="padding:56px; display:flex; flex-direction:column; gap:12px;">
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:0 0 4px; letter-spacing:.02em;">how it works · section 3 · 5 layout wireframes · 4 steps, each paired with its UI component (numbers shown in red italic serif)</p>
+
+  <div style="display:flex; flex-direction:column; gap:72px; margin-top:12px;">
+
+  <!-- ============ H1 · zigzag, alternating ============ -->
+  <div style="display:flex; gap:56px; align-items:flex-start;">
+  <div style="position:relative;">
+    <span class="tag">H1 · zigzag · copy and component alternate left/right</span>
+    <div class="frame" style="padding:56px 72px 64px;">
+      <div class="howtitle" style="margin-bottom:52px;">how it works.</div>
+      <div style="display:flex; flex-direction:column; gap:56px;">
+
+        <div style="display:flex; align-items:center; gap:72px;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">01</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">build your passport</div><div class="step-desc" style="font-size:16px; max-width:400px;">video pitch. the best thing you've made. once, on the platform.</div></div>
+          <div style="width:320px; flex:0 0 auto;">
+            <div class="card" style="padding:16px;">
+              <div class="imgbox" style="height:158px; position:relative; margin-bottom:14px;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:10px; right:10px;">verified ✓</div></div>
+              <div style="display:flex; align-items:center; gap:12px;"><div style="width:42px; height:42px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div style="flex:1; display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:58%;"></div><div class="chip" style="align-self:flex-start;">frontend · track</div></div></div>
+            </div>
+            <div class="comp-label">persona card</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:72px; flex-direction:row-reverse;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">02</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">get matched</div><div class="step-desc" style="font-size:16px; max-width:400px; margin-left:auto;">roles come to you. we ping your phone when one fits.</div></div>
+          <div style="width:320px; flex:0 0 auto;">
+            <div class="card" style="padding:18px;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div>
+              <div style="display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:100%;"></div><div class="line" style="width:88%;"></div><div class="line" style="width:46%;"></div></div>
+            </div>
+            <div class="comp-label">whatsapp ping card</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:72px;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">03</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">apply in minutes</div><div class="step-desc" style="font-size:16px; max-width:400px;">3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.</div></div>
+          <div style="width:340px; flex:0 0 auto;">
+            <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+              <div class="vnote"><span class="playbtn" style="width:28px; height:28px; font-size:11px;">▶</span><div class="wave"></div></div>
+              <div class="vnote"><span class="playbtn" style="width:28px; height:28px; font-size:11px;">▶</span><div class="wave"></div></div>
+              <div class="vnote"><span class="playbtn" style="width:28px; height:28px; font-size:11px;">▶</span><div class="wave"></div></div>
+              <div style="display:flex; align-items:center; gap:8px; margin-top:2px;"><span class="chip">applied ✓</span><span style="font-size:12px; color:#7a7a82;">responds within 7 days · no ghosting</span></div>
+            </div>
+            <div class="comp-label">voice notes + applied</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:72px; flex-direction:row-reverse;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">04</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">hear back. always.</div><div class="step-desc" style="font-size:16px; max-width:400px; margin-left:auto;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div></div>
+          <div style="width:320px; flex:0 0 auto;">
+            <div class="card" style="padding:18px;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div>
+              <div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:70%;"></div></div>
+              <div class="vbtn">book interview →</div>
+            </div>
+            <div class="comp-label">shortlist ping + booking</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;">
+    <span class="tag">H1 (greyscale) · zigzag · copy and component alternate left/right</span>
+    <div class="frame grey" style="padding:56px 72px 64px;">
+      <div class="howtitle" style="margin-bottom:52px;">how it works.</div>
+      <div style="display:flex; flex-direction:column; gap:56px;">
+
+        <div style="display:flex; align-items:center; gap:72px;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">01</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">build your passport</div><div class="step-desc" style="font-size:16px; max-width:400px;">video pitch. the best thing you've made. once, on the platform.</div></div>
+          <div style="width:320px; flex:0 0 auto;">
+            <div class="card" style="padding:16px;">
+              <div class="imgbox" style="height:158px; position:relative; margin-bottom:14px;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:10px; right:10px;">verified ✓</div></div>
+              <div style="display:flex; align-items:center; gap:12px;"><div style="width:42px; height:42px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div style="flex:1; display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:58%;"></div><div class="chip" style="align-self:flex-start;">frontend · track</div></div></div>
+            </div>
+            <div class="comp-label">persona card</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:72px; flex-direction:row-reverse;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">02</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">get matched</div><div class="step-desc" style="font-size:16px; max-width:400px; margin-left:auto;">roles come to you. we ping your phone when one fits.</div></div>
+          <div style="width:320px; flex:0 0 auto;">
+            <div class="card" style="padding:18px;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div>
+              <div style="display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:100%;"></div><div class="line" style="width:88%;"></div><div class="line" style="width:46%;"></div></div>
+            </div>
+            <div class="comp-label">whatsapp ping card</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:72px;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">03</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">apply in minutes</div><div class="step-desc" style="font-size:16px; max-width:400px;">3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.</div></div>
+          <div style="width:340px; flex:0 0 auto;">
+            <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+              <div class="vnote"><span class="playbtn" style="width:28px; height:28px; font-size:11px;">▶</span><div class="wave"></div></div>
+              <div class="vnote"><span class="playbtn" style="width:28px; height:28px; font-size:11px;">▶</span><div class="wave"></div></div>
+              <div class="vnote"><span class="playbtn" style="width:28px; height:28px; font-size:11px;">▶</span><div class="wave"></div></div>
+              <div style="display:flex; align-items:center; gap:8px; margin-top:2px;"><span class="chip">applied ✓</span><span style="font-size:12px; color:#7a7a82;">responds within 7 days · no ghosting</span></div>
+            </div>
+            <div class="comp-label">voice notes + applied</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:72px; flex-direction:row-reverse;">
+          <div style="flex:1;"><div class="num" style="font-size:46px;">04</div><div class="step-title" style="font-size:27px; margin:8px 0 10px;">hear back. always.</div><div class="step-desc" style="font-size:16px; max-width:400px; margin-left:auto;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div></div>
+          <div style="width:320px; flex:0 0 auto;">
+            <div class="card" style="padding:18px;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div>
+              <div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:70%;"></div></div>
+              <div class="vbtn">book interview →</div>
+            </div>
+            <div class="comp-label">shortlist ping + booking</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ============ H2 · centre spine timeline ============ -->
+  <div style="display:flex; gap:56px; align-items:flex-start;">
+  <div style="position:relative;">
+    <span class="tag">H2 · centre spine · steps alternate around a vertical timeline</span>
+    <div class="frame" style="padding:56px 64px 64px;">
+      <div class="howtitle" style="text-align:center; margin-bottom:48px;">how it works.</div>
+      <div style="position:relative;">
+        <div class="spine" style="left:50%; transform:translateX(-1px);"></div>
+        <div style="display:flex; flex-direction:column; gap:48px;">
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="text-align:right;"><div class="num" style="font-size:42px;">01</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">build your passport</div><div class="step-desc" style="font-size:15px; margin-left:auto; max-width:340px;">video pitch. the best thing you've made. once, on the platform.</div></div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div style="width:300px;">
+              <div class="card" style="padding:14px;">
+                <div class="imgbox" style="height:130px; position:relative; margin-bottom:12px;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:8px; right:8px;">verified ✓</div></div>
+                <div style="display:flex; align-items:center; gap:10px;"><div style="width:36px; height:36px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div style="flex:1; display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:60%;"></div><div class="chip" style="align-self:flex-start;">frontend · track</div></div></div>
+              </div>
+              <div class="comp-label">persona card</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="width:300px; justify-self:end; text-align:right;">
+              <div class="card" style="padding:16px; text-align:left;">
+                <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div>
+                <div style="display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:100%;"></div><div class="line" style="width:85%;"></div><div class="line" style="width:46%;"></div></div>
+              </div>
+              <div class="comp-label" style="text-align:left;">whatsapp ping card</div>
+            </div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div><div class="num" style="font-size:42px;">02</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">get matched</div><div class="step-desc" style="font-size:15px; max-width:340px;">roles come to you. we ping your phone when one fits.</div></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="text-align:right;"><div class="num" style="font-size:42px;">03</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:15px; margin-left:auto; max-width:340px;">3 voice notes from your phone, or record on the platform. under 5 minutes.</div></div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div style="width:320px;">
+              <div class="card" style="padding:14px; display:flex; flex-direction:column; gap:8px;">
+                <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+                <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+                <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:2px;"><span class="chip">applied ✓</span><span style="font-size:11px; color:#7a7a82;">responds in 7 days · no ghosting</span></div>
+              </div>
+              <div class="comp-label">voice notes + applied</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="width:300px; justify-self:end;">
+              <div class="card" style="padding:16px;">
+                <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:70%;"></div></div>
+                <div class="vbtn">book interview →</div>
+              </div>
+              <div class="comp-label">shortlist ping + booking</div>
+            </div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div><div class="num" style="font-size:42px;">04</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:15px; max-width:340px;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;">
+    <span class="tag">H2 (greyscale) · centre spine · steps alternate around a vertical timeline</span>
+    <div class="frame grey" style="padding:56px 64px 64px;">
+      <div class="howtitle" style="text-align:center; margin-bottom:48px;">how it works.</div>
+      <div style="position:relative;">
+        <div class="spine" style="left:50%; transform:translateX(-1px);"></div>
+        <div style="display:flex; flex-direction:column; gap:48px;">
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="text-align:right;"><div class="num" style="font-size:42px;">01</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">build your passport</div><div class="step-desc" style="font-size:15px; margin-left:auto; max-width:340px;">video pitch. the best thing you've made. once, on the platform.</div></div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div style="width:300px;">
+              <div class="card" style="padding:14px;">
+                <div class="imgbox" style="height:130px; position:relative; margin-bottom:12px;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:8px; right:8px;">verified ✓</div></div>
+                <div style="display:flex; align-items:center; gap:10px;"><div style="width:36px; height:36px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div style="flex:1; display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:60%;"></div><div class="chip" style="align-self:flex-start;">frontend · track</div></div></div>
+              </div>
+              <div class="comp-label">persona card</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="width:300px; justify-self:end; text-align:right;">
+              <div class="card" style="padding:16px; text-align:left;">
+                <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div>
+                <div style="display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:100%;"></div><div class="line" style="width:85%;"></div><div class="line" style="width:46%;"></div></div>
+              </div>
+              <div class="comp-label" style="text-align:left;">whatsapp ping card</div>
+            </div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div><div class="num" style="font-size:42px;">02</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">get matched</div><div class="step-desc" style="font-size:15px; max-width:340px;">roles come to you. we ping your phone when one fits.</div></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="text-align:right;"><div class="num" style="font-size:42px;">03</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:15px; margin-left:auto; max-width:340px;">3 voice notes from your phone, or record on the platform. under 5 minutes.</div></div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div style="width:320px;">
+              <div class="card" style="padding:14px; display:flex; flex-direction:column; gap:8px;">
+                <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+                <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+                <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:2px;"><span class="chip">applied ✓</span><span style="font-size:11px; color:#7a7a82;">responds in 7 days · no ghosting</span></div>
+              </div>
+              <div class="comp-label">voice notes + applied</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:24px;">
+            <div style="width:300px; justify-self:end;">
+              <div class="card" style="padding:16px;">
+                <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:70%;"></div></div>
+                <div class="vbtn">book interview →</div>
+              </div>
+              <div class="comp-label">shortlist ping + booking</div>
+            </div>
+            <div style="display:flex; justify-content:center;"><div class="node"></div></div>
+            <div><div class="num" style="font-size:42px;">04</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:15px; max-width:340px;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ============ H3 · 2x2 card grid ============ -->
+  <div style="display:flex; gap:56px; align-items:flex-start;">
+  <div style="position:relative;">
+    <span class="tag">H3 · 2×2 card grid · each step a self-contained card</span>
+    <div class="frame" style="padding:56px 64px 64px;">
+      <div class="howtitle" style="margin-bottom:44px;">how it works.</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">01</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">build your passport</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">video pitch. the best thing you've made. once, on the platform.</div>
+          <div class="imgbox" style="height:150px; position:relative;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:10px; right:10px;">verified ✓</div><div class="chip" style="position:absolute; bottom:10px; left:10px;">persona card</div></div>
+        </div>
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">02</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">get matched</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">roles come to you. we ping your phone when one fits.</div>
+          <div style="background:#f2f2f4; border:1.5px solid #e0e0e4; border-radius:12px; padding:16px;">
+            <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div>
+            <div style="display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:100%;"></div><div class="line" style="width:80%;"></div></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">03</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">3 voice notes from your phone, or record on the platform. under 5 minutes.</div>
+          <div style="background:#f2f2f4; border:1.5px solid #e0e0e4; border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:8px;">
+            <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div style="display:flex; align-items:center; gap:8px;"><span class="chip">applied ✓</span><span style="font-size:11px; color:#7a7a82;">responds in 7 days</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">04</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div>
+          <div style="background:#f2f2f4; border:1.5px solid #e0e0e4; border-radius:12px; padding:16px;">
+            <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div>
+            <div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:64%;"></div></div>
+            <div class="vbtn">book interview →</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;">
+    <span class="tag">H3 (greyscale) · 2×2 card grid · each step a self-contained card</span>
+    <div class="frame grey" style="padding:56px 64px 64px;">
+      <div class="howtitle" style="margin-bottom:44px;">how it works.</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">01</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">build your passport</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">video pitch. the best thing you've made. once, on the platform.</div>
+          <div class="imgbox" style="height:150px; position:relative;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:10px; right:10px;">verified ✓</div><div class="chip" style="position:absolute; bottom:10px; left:10px;">persona card</div></div>
+        </div>
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">02</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">get matched</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">roles come to you. we ping your phone when one fits.</div>
+          <div style="background:#f2f2f4; border:1.5px solid #e0e0e4; border-radius:12px; padding:16px;">
+            <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div>
+            <div style="display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:100%;"></div><div class="line" style="width:80%;"></div></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">03</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">3 voice notes from your phone, or record on the platform. under 5 minutes.</div>
+          <div style="background:#f2f2f4; border:1.5px solid #e0e0e4; border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:8px;">
+            <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div style="display:flex; align-items:center; gap:8px;"><span class="chip">applied ✓</span><span style="font-size:11px; color:#7a7a82;">responds in 7 days</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:28px; box-shadow:none; background:#fff;">
+          <div class="num" style="font-size:40px;">04</div><div class="step-title" style="font-size:24px; margin:6px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:15px; margin-bottom:22px;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div>
+          <div style="background:#f2f2f4; border:1.5px solid #e0e0e4; border-radius:12px; padding:16px;">
+            <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div>
+            <div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:64%;"></div></div>
+            <div class="vbtn">book interview →</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ============ H4 · horizontal 4 across ============ -->
+  <div style="display:flex; gap:56px; align-items:flex-start;">
+  <div style="position:relative;">
+    <span class="tag">H4 · horizontal · 4 steps across, component under each</span>
+    <div class="frame" style="padding:56px 56px 64px;">
+      <div class="howtitle" style="margin-bottom:44px;">how it works.</div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:28px;">
+
+        <div>
+          <div class="num" style="font-size:38px;">01</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">build your passport</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">video pitch. the best thing you've made. once.</div>
+          <div class="card" style="padding:12px;">
+            <div class="imgbox" style="height:110px; position:relative; margin-bottom:10px;"><div class="playbtn" style="width:34px; height:34px; font-size:12px;">▶</div><div class="chip" style="position:absolute; top:8px; right:8px;">verified ✓</div></div>
+            <div style="display:flex; align-items:center; gap:8px;"><div style="width:30px; height:30px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div class="line" style="width:60%;"></div></div>
+          </div>
+          <div class="comp-label">persona card</div>
+        </div>
+
+        <div>
+          <div class="num" style="font-size:38px;">02</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">get matched</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">roles come to you. we ping your phone when one fits.</div>
+          <div class="card" style="padding:14px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:13px; color:#33333a;">uncooked</span><span style="font-size:12px; color:#9a9aa2;">· now</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:100%;"></div><div class="line" style="width:82%;"></div><div class="line" style="width:45%;"></div></div>
+          </div>
+          <div class="comp-label">ping card</div>
+        </div>
+
+        <div>
+          <div class="num" style="font-size:38px;">03</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">3 voice notes from your phone. under 5 minutes.</div>
+          <div class="card" style="padding:14px; display:flex; flex-direction:column; gap:8px;">
+            <div class="vnote"><span class="playbtn" style="width:24px; height:24px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div class="vnote"><span class="playbtn" style="width:24px; height:24px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span class="chip">applied ✓</span></div>
+          </div>
+          <div class="comp-label">voice notes</div>
+        </div>
+
+        <div>
+          <div class="num" style="font-size:38px;">04</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">from an actual human at the startup. not a bot.</div>
+          <div class="card" style="padding:14px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;"><span class="reddot"></span><span style="font-weight:700; font-size:13px; color:#33333a;">uncooked</span><span style="font-size:12px; color:#9a9aa2;">· shortlist</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;"><div class="line" style="width:100%;"></div><div class="line" style="width:66%;"></div></div>
+            <div class="vbtn" style="padding:8px 14px; font-size:12px;">book interview →</div>
+          </div>
+          <div class="comp-label">shortlist ping</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;">
+    <span class="tag">H4 (greyscale) · horizontal · 4 steps across, component under each</span>
+    <div class="frame grey" style="padding:56px 56px 64px;">
+      <div class="howtitle" style="margin-bottom:44px;">how it works.</div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:28px;">
+
+        <div>
+          <div class="num" style="font-size:38px;">01</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">build your passport</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">video pitch. the best thing you've made. once.</div>
+          <div class="card" style="padding:12px;">
+            <div class="imgbox" style="height:110px; position:relative; margin-bottom:10px;"><div class="playbtn" style="width:34px; height:34px; font-size:12px;">▶</div><div class="chip" style="position:absolute; top:8px; right:8px;">verified ✓</div></div>
+            <div style="display:flex; align-items:center; gap:8px;"><div style="width:30px; height:30px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div class="line" style="width:60%;"></div></div>
+          </div>
+          <div class="comp-label">persona card</div>
+        </div>
+
+        <div>
+          <div class="num" style="font-size:38px;">02</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">get matched</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">roles come to you. we ping your phone when one fits.</div>
+          <div class="card" style="padding:14px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:13px; color:#33333a;">uncooked</span><span style="font-size:12px; color:#9a9aa2;">· now</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:100%;"></div><div class="line" style="width:82%;"></div><div class="line" style="width:45%;"></div></div>
+          </div>
+          <div class="comp-label">ping card</div>
+        </div>
+
+        <div>
+          <div class="num" style="font-size:38px;">03</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">3 voice notes from your phone. under 5 minutes.</div>
+          <div class="card" style="padding:14px; display:flex; flex-direction:column; gap:8px;">
+            <div class="vnote"><span class="playbtn" style="width:24px; height:24px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div class="vnote"><span class="playbtn" style="width:24px; height:24px; font-size:10px;">▶</span><div class="wave"></div></div>
+            <div style="display:flex; align-items:center; gap:6px;"><span class="chip">applied ✓</span></div>
+          </div>
+          <div class="comp-label">voice notes</div>
+        </div>
+
+        <div>
+          <div class="num" style="font-size:38px;">04</div><div class="step-title" style="font-size:20px; margin:6px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:14px; margin-bottom:20px;">from an actual human at the startup. not a bot.</div>
+          <div class="card" style="padding:14px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;"><span class="reddot"></span><span style="font-weight:700; font-size:13px; color:#33333a;">uncooked</span><span style="font-size:12px; color:#9a9aa2;">· shortlist</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;"><div class="line" style="width:100%;"></div><div class="line" style="width:66%;"></div></div>
+            <div class="vbtn" style="padding:8px 14px; font-size:12px;">book interview →</div>
+          </div>
+          <div class="comp-label">shortlist ping</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ============ H5 · left-rail timeline ============ -->
+  <div style="display:flex; gap:56px; align-items:flex-start;">
+  <div style="position:relative;">
+    <span class="tag">H5 · left rail · red spine down the left, copy + component to the right</span>
+    <div class="frame" style="padding:56px 72px 64px;">
+      <div class="howtitle" style="margin-bottom:48px; padding-left:52px;">how it works.</div>
+      <div style="position:relative; padding-left:52px;">
+        <div class="spine" style="left:7px;"></div>
+        <div style="display:flex; flex-direction:column; gap:52px;">
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">01</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">build your passport</div><div class="step-desc" style="font-size:16px; max-width:420px;">video pitch. the best thing you've made. once, on the platform.</div></div>
+            <div style="width:300px; flex:0 0 auto;">
+              <div class="card" style="padding:14px;"><div class="imgbox" style="height:140px; position:relative; margin-bottom:12px;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:8px; right:8px;">verified ✓</div></div><div style="display:flex; align-items:center; gap:10px;"><div style="width:36px; height:36px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div style="flex:1; display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:60%;"></div><div class="chip" style="align-self:flex-start;">frontend · track</div></div></div></div>
+              <div class="comp-label">persona card</div>
+            </div>
+          </div>
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">02</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">get matched</div><div class="step-desc" style="font-size:16px; max-width:420px;">roles come to you. we ping your phone when one fits.</div></div>
+            <div style="width:300px; flex:0 0 auto;">
+              <div class="card" style="padding:16px;"><div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div><div style="display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:100%;"></div><div class="line" style="width:84%;"></div><div class="line" style="width:46%;"></div></div></div>
+              <div class="comp-label">whatsapp ping card</div>
+            </div>
+          </div>
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">03</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:16px; max-width:420px;">3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.</div></div>
+            <div style="width:320px; flex:0 0 auto;">
+              <div class="card" style="padding:14px; display:flex; flex-direction:column; gap:8px;"><div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div><div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div><div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div><div style="display:flex; align-items:center; gap:8px; margin-top:2px;"><span class="chip">applied ✓</span><span style="font-size:11px; color:#7a7a82;">responds in 7 days · no ghosting</span></div></div>
+              <div class="comp-label">voice notes + applied</div>
+            </div>
+          </div>
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">04</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:16px; max-width:420px;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div></div>
+            <div style="width:300px; flex:0 0 auto;">
+              <div class="card" style="padding:16px;"><div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div><div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:70%;"></div></div><div class="vbtn">book interview →</div></div>
+              <div class="comp-label">shortlist ping + booking</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;">
+    <span class="tag">H5 (greyscale) · left rail · red spine down the left, copy + component to the right</span>
+    <div class="frame grey" style="padding:56px 72px 64px;">
+      <div class="howtitle" style="margin-bottom:48px; padding-left:52px;">how it works.</div>
+      <div style="position:relative; padding-left:52px;">
+        <div class="spine" style="left:7px;"></div>
+        <div style="display:flex; flex-direction:column; gap:52px;">
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">01</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">build your passport</div><div class="step-desc" style="font-size:16px; max-width:420px;">video pitch. the best thing you've made. once, on the platform.</div></div>
+            <div style="width:300px; flex:0 0 auto;">
+              <div class="card" style="padding:14px;"><div class="imgbox" style="height:140px; position:relative; margin-bottom:12px;"><div class="playbtn">▶</div><div class="chip" style="position:absolute; top:8px; right:8px;">verified ✓</div></div><div style="display:flex; align-items:center; gap:10px;"><div style="width:36px; height:36px; border-radius:50%; background:#d6d6db; flex:0 0 auto;"></div><div style="flex:1; display:flex; flex-direction:column; gap:8px;"><div class="line" style="width:60%;"></div><div class="chip" style="align-self:flex-start;">frontend · track</div></div></div></div>
+              <div class="comp-label">persona card</div>
+            </div>
+          </div>
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">02</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">get matched</div><div class="step-desc" style="font-size:16px; max-width:420px;">roles come to you. we ping your phone when one fits.</div></div>
+            <div style="width:300px; flex:0 0 auto;">
+              <div class="card" style="padding:16px;"><div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· now</span></div><div style="display:flex; flex-direction:column; gap:9px;"><div class="line" style="width:100%;"></div><div class="line" style="width:84%;"></div><div class="line" style="width:46%;"></div></div></div>
+              <div class="comp-label">whatsapp ping card</div>
+            </div>
+          </div>
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">03</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">apply in minutes</div><div class="step-desc" style="font-size:16px; max-width:420px;">3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.</div></div>
+            <div style="width:320px; flex:0 0 auto;">
+              <div class="card" style="padding:14px; display:flex; flex-direction:column; gap:8px;"><div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div><div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div><div class="vnote"><span class="playbtn" style="width:26px; height:26px; font-size:10px;">▶</span><div class="wave"></div></div><div style="display:flex; align-items:center; gap:8px; margin-top:2px;"><span class="chip">applied ✓</span><span style="font-size:11px; color:#7a7a82;">responds in 7 days · no ghosting</span></div></div>
+              <div class="comp-label">voice notes + applied</div>
+            </div>
+          </div>
+
+          <div style="position:relative; display:flex; align-items:center; gap:56px;">
+            <div class="node" style="position:absolute; left:-52px; top:6px;"></div>
+            <div style="flex:1;"><div class="num" style="font-size:44px;">04</div><div class="step-title" style="font-size:25px; margin:8px 0 8px;">hear back. always.</div><div class="step-desc" style="font-size:16px; max-width:420px;">from an actual human at the startup. not a bot. not an AI recruiter. it's the rule.</div></div>
+            <div style="width:300px; flex:0 0 auto;">
+              <div class="card" style="padding:16px;"><div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;"><span class="reddot"></span><span style="font-weight:700; font-size:14px; color:#33333a;">uncooked</span><span style="font-size:13px; color:#9a9aa2;">· shortlist</span></div><div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;"><div class="line" style="width:100%;"></div><div class="line" style="width:70%;"></div></div><div class="vbtn">book interview →</div></div>
+              <div class="comp-label">shortlist ping + booking</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

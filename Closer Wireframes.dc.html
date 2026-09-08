@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ececed; font-family:'Satoshi',system-ui,sans-serif; }
+  .frame { position:relative; background:#f4f4f5; border:1.5px solid #b7b7be; border-radius:14px; width:1280px; overflow:hidden; }
+  .tag { position:absolute; top:-13px; left:0; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8a8a92; }
+  .q { font-family:'Instrument Serif',serif; font-weight:400; color:#2e2e34; letter-spacing:-.01em; line-height:1.04; }
+  .ital { font-style:italic; color:#7a7a82; }
+  .body { color:#6a6a72; line-height:1.6; }
+  .cta { background:#c7c7cd; border:1.5px solid #a4a4ac; border-radius:999px; color:#3a3a40; font-weight:700; white-space:nowrap; display:inline-flex; align-items:center; justify-content:center; }
+  .assur { color:#9a9aa2; font-weight:500; }
+  .xlink { color:#7a7a82; font-size:15px; }
+  .xlink b { color:#7a7a82; font-weight:700; }
+  /* footer */
+  .footer { border-top:1.5px solid #dcdce1; }
+  .flink { color:#8a8a92; font-size:14px; }
+  .fsoc { width:30px; height:30px; border-radius:50%; background:#d6d6db; }
+  .logo { display:flex; align-items:center; gap:12px; }
+  .logomark { width:30px; height:30px; border:1.5px solid #a4a4ac; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+  .logomark span { width:7px; height:7px; border-radius:50%; background:#8a8a92; display:block; }
+</style>
+</helmet>
+
+<div style="padding:56px; display:flex; flex-direction:column; gap:12px;">
+  <p style="font-family:'Satoshi'; font-weight:700; font-size:15px; color:#5a5a62; margin:0 0 4px; letter-spacing:.02em;">closer · section 8 · 5 layouts · big serif question ("cooked" italic red on brand) · one dominant "get seen" · muted recruiter cross-link · standard footer beneath</p>
+
+  <div style="display:flex; flex-direction:column; gap:72px; margin-top:12px;">
+
+  <!-- ============ C1 · centred, dominant CTA ============ -->
+  <div style="position:relative;">
+    <span class="tag">C1 · centred · dominant CTA, muted cross-link beside it</span>
+    <div class="frame">
+      <div style="padding:110px 80px 100px; text-align:center;">
+        <div class="q" style="font-size:76px; max-width:900px; margin:0 auto 40px;">tired of the <span class="ital">cooked</span> job market?</div>
+        <div class="body" style="font-size:19px; max-width:600px; margin:0 auto 44px;">get seen. early members get matched first. while you wait, the tracker's already live. save roles today, get matched when we launch.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+          <div class="cta" style="height:60px; padding:0 54px; font-size:21px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+          <div class="xlink" style="margin-top:14px;">looking to hire instead? we got you <b>→</b></div>
+        </div>
+      </div>
+      <div class="footer" style="padding:30px 60px; display:flex; align-items:center; justify-content:space-between;">
+        <div class="logo"><div class="logomark"><span></span></div><span style="font-weight:700; font-size:16px; color:#5a5a62;">uncooked</span></div>
+        <div style="display:flex; gap:26px;"><span class="flink">jobs</span><span class="flink">tracker</span><span class="flink">events</span><span class="flink">for startups</span><span class="flink">privacy</span></div>
+        <div style="display:flex; align-items:center; gap:16px;"><span class="fsoc"></span><span class="fsoc"></span><span class="fsoc"></span></div>
+      </div>
+      <div style="padding:0 60px 26px;"><span class="flink" style="font-size:13px; color:#a4a4ac;">© 2026 uncooked</span></div>
+    </div>
+  </div>
+
+  <!-- ============ C2 · left-aligned, CTA block right ============ -->
+  <div style="position:relative;">
+    <span class="tag">C2 · question left, CTA + subcopy in a right column</span>
+    <div class="frame">
+      <div style="padding:100px 80px 96px; display:grid; grid-template-columns:1.3fr .7fr; gap:64px; align-items:center;">
+        <div class="q" style="font-size:72px;">tired of the <span class="ital">cooked</span> job market?</div>
+        <div>
+          <div class="body" style="font-size:17px; margin-bottom:30px;">get seen. early members get matched first. while you wait, the tracker's already live. save roles today, get matched when we launch.</div>
+          <div class="cta" style="height:58px; padding:0 50px; font-size:20px; margin-bottom:12px;">get seen</div>
+          <div class="assur" style="font-size:13px; margin-bottom:18px;">free for candidates · early members matched first</div>
+          <div class="xlink">looking to hire instead? we got you <b>→</b></div>
+        </div>
+      </div>
+      <div class="footer" style="padding:30px 60px; display:flex; align-items:center; justify-content:space-between;">
+        <div class="logo"><div class="logomark"><span></span></div><span style="font-weight:700; font-size:16px; color:#5a5a62;">uncooked</span></div>
+        <div style="display:flex; gap:26px;"><span class="flink">jobs</span><span class="flink">tracker</span><span class="flink">events</span><span class="flink">for startups</span><span class="flink">privacy</span></div>
+        <div style="display:flex; align-items:center; gap:16px;"><span class="fsoc"></span><span class="fsoc"></span><span class="fsoc"></span></div>
+      </div>
+      <div style="padding:0 60px 26px;"><span class="flink" style="font-size:13px; color:#a4a4ac;">© 2026 uncooked</span></div>
+    </div>
+  </div>
+
+  <!-- ============ C3 · oversized question, minimal ============ -->
+  <div style="position:relative;">
+    <span class="tag">C3 · oversized question fills the field, CTA sits quietly beneath</span>
+    <div class="frame">
+      <div style="padding:104px 72px 96px; text-align:center;">
+        <div class="q" style="font-size:104px; max-width:1080px; margin:0 auto 52px;">tired of the <span class="ital">cooked</span> job market?</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+          <div class="cta" style="height:60px; padding:0 54px; font-size:21px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first · tracker live today</div>
+          <div class="xlink" style="margin-top:14px;">looking to hire instead? we got you <b>→</b></div>
+        </div>
+      </div>
+      <div class="footer" style="padding:30px 60px; display:flex; align-items:center; justify-content:space-between;">
+        <div class="logo"><div class="logomark"><span></span></div><span style="font-weight:700; font-size:16px; color:#5a5a62;">uncooked</span></div>
+        <div style="display:flex; gap:26px;"><span class="flink">jobs</span><span class="flink">tracker</span><span class="flink">events</span><span class="flink">for startups</span><span class="flink">privacy</span></div>
+        <div style="display:flex; align-items:center; gap:16px;"><span class="fsoc"></span><span class="fsoc"></span><span class="fsoc"></span></div>
+      </div>
+      <div style="padding:0 60px 26px;"><span class="flink" style="font-size:13px; color:#a4a4ac;">© 2026 uncooked</span></div>
+    </div>
+  </div>
+
+  <!-- ============ C4 · stacked, subcopy above CTA, tracker note apart ============ -->
+  <div style="position:relative;">
+    <span class="tag">C4 · centred stack · tracker note set slightly apart as soft exit</span>
+    <div class="frame">
+      <div style="padding:100px 80px 92px; text-align:center;">
+        <div class="q" style="font-size:74px; max-width:900px; margin:0 auto 36px;">tired of the <span class="ital">cooked</span> job market?</div>
+        <div class="body" style="font-size:19px; max-width:520px; margin:0 auto 40px;">get seen. early members get matched first.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:44px;">
+          <div class="cta" style="height:60px; padding:0 54px; font-size:21px;">get seen</div>
+          <div class="assur" style="font-size:13px;">free for candidates · early members get matched first</div>
+        </div>
+        <div class="body" style="font-size:15px; max-width:560px; margin:0 auto 12px; color:#8a8a92;">while you wait, the tracker's already live. save roles today, get matched when we launch.</div>
+        <div class="xlink">looking to hire instead? we got you <b>→</b></div>
+      </div>
+      <div class="footer" style="padding:30px 60px; display:flex; align-items:center; justify-content:space-between;">
+        <div class="logo"><div class="logomark"><span></span></div><span style="font-weight:700; font-size:16px; color:#5a5a62;">uncooked</span></div>
+        <div style="display:flex; gap:26px;"><span class="flink">jobs</span><span class="flink">tracker</span><span class="flink">events</span><span class="flink">for startups</span><span class="flink">privacy</span></div>
+        <div style="display:flex; align-items:center; gap:16px;"><span class="fsoc"></span><span class="fsoc"></span><span class="fsoc"></span></div>
+      </div>
+      <div style="padding:0 60px 26px;"><span class="flink" style="font-size:13px; color:#a4a4ac;">© 2026 uncooked</span></div>
+    </div>
+  </div>
+
+  <!-- ============ C5 · full-bleed dark closer, footer inside ============ -->
+  <div style="position:relative;">
+    <span class="tag">C5 · full-bleed dark closer panel, footer nested within the dark</span>
+    <div class="frame" style="background:#3a3b44; border-color:#3a3b44;">
+      <div style="padding:110px 80px 96px; text-align:center;">
+        <div style="font-family:'Instrument Serif',serif; font-weight:400; font-size:80px; letter-spacing:-.01em; line-height:1.04; color:#ececed; max-width:920px; margin:0 auto 40px;">tired of the <span style="font-style:italic; color:#c9c9d0;">cooked</span> job market?</div>
+        <div style="color:#b9bac2; font-size:19px; line-height:1.6; max-width:600px; margin:0 auto 44px;">get seen. early members get matched first. while you wait, the tracker's already live. save roles today, get matched when we launch.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+          <div style="background:#d8d8dd; border-radius:999px; color:#2e2e34; font-weight:700; white-space:nowrap; height:60px; padding:0 54px; font-size:21px; display:inline-flex; align-items:center;">get seen</div>
+          <div style="color:#8f909c; font-size:13px;">free for candidates · early members get matched first</div>
+          <div style="color:#a4a5ad; font-size:15px; margin-top:14px;">looking to hire instead? we got you <b style="color:#c9c9d0;">→</b></div>
+        </div>
+      </div>
+      <div style="border-top:1.5px solid rgba(255,255,255,.12); padding:30px 60px; display:flex; align-items:center; justify-content:space-between;">
+        <div class="logo"><div class="logomark" style="border-color:rgba(255,255,255,.3);"><span style="background:#b9bac2;"></span></div><span style="font-weight:700; font-size:16px; color:#c9c9d0;">uncooked</span></div>
+        <div style="display:flex; gap:26px;"><span style="color:#9a9ba4; font-size:14px;">jobs</span><span style="color:#9a9ba4; font-size:14px;">tracker</span><span style="color:#9a9ba4; font-size:14px;">events</span><span style="color:#9a9ba4; font-size:14px;">for startups</span><span style="color:#9a9ba4; font-size:14px;">privacy</span></div>
+        <div style="display:flex; align-items:center; gap:16px;"><span class="fsoc" style="background:#4c4d57;"></span><span class="fsoc" style="background:#4c4d57;"></span><span class="fsoc" style="background:#4c4d57;"></span></div>
+      </div>
+      <div style="padding:0 60px 26px;"><span style="font-size:13px; color:#75767f;">© 2026 uncooked</span></div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

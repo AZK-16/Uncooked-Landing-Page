@@ -1,0 +1,49 @@
+<?xml version="1.0"?><svg data-dc-tpl="955" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1250" data-om-id="c1c734e2:960" style="width: 100%; height: auto; display: block;" width="900" height="1250" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs data-dc-tpl="956" data-om-id="c1c734e2:961">
+          <clipPath data-dc-tpl="957" id="wfClip" data-om-id="c1c734e2:962"><circle data-dc-tpl="958" cx="118" cy="228" r="66" data-om-id="c1c734e2:963"></circle></clipPath>
+          <clipPath data-dc-tpl="959" id="p1Clip" data-om-id="c1c734e2:964"><rect data-dc-tpl="960" x="88" y="710" width="178" height="178" rx="20" data-om-id="c1c734e2:965"></rect></clipPath>
+          <clipPath data-dc-tpl="961" id="p2Clip" data-om-id="c1c734e2:966"><rect data-dc-tpl="962" x="88" y="984" width="178" height="178" rx="20" data-om-id="c1c734e2:967"></rect></clipPath>
+        </defs>
+
+        <rect data-dc-tpl="963" width="900" height="1250" rx="40" fill="#F6F6F6" data-om-id="c1c734e2:968"></rect>
+
+        <text data-dc-tpl="964" x="450" y="82" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="22" letter-spacing="4" fill="#a4a4ac" data-om-id="c1c734e2:969">PASSPORT</text>
+        <line data-dc-tpl="965" x1="52" y1="118" x2="848" y2="118" stroke="#E2E2E5" stroke-width="2" data-om-id="c1c734e2:970"></line>
+
+        <circle data-dc-tpl="966" cx="118" cy="228" r="66" fill="#e6e6ea" data-om-id="c1c734e2:971"></circle>
+        <image data-dc-tpl="967" data-src="uploads/rahul profile.png" x="52" y="162" width="132" height="132" clip-path="url(#wfClip)" preserveAspectRatio="xMidYMid slice" data-om-id="c1c734e2:972"></image>
+        <circle data-dc-tpl="968" cx="118" cy="228" r="66" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="2" data-om-id="c1c734e2:973"></circle>
+        <text data-dc-tpl="969" x="212" y="218" font-family="Satoshi" font-weight="700" font-size="42" letter-spacing="-1.2" fill="#1c1c20" data-om-id="c1c734e2:974">rahul desai</text>
+        <text data-dc-tpl="970" x="212" y="262" font-family="Satoshi" font-weight="500" font-size="24" fill="#8a8a92" data-om-id="c1c734e2:975">aspiring geo-engineer • london</text>
+        <rect data-dc-tpl="971" x="676" y="174" width="172" height="58" rx="29" fill="#FFFFFF" stroke="#0B6E3A" stroke-width="2.5" data-om-id="c1c734e2:976"></rect>
+        <text data-dc-tpl="972" x="762" y="212" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="23" fill="#0B6E3A" data-om-id="c1c734e2:977">verified ✓</text>
+
+        <rect data-dc-tpl="973" x="52" y="320" width="796" height="92" rx="46" fill="#2B2B2E" data-om-id="c1c734e2:978"></rect>
+        <rect data-dc-tpl="974" x="450" y="330" width="388" height="72" rx="36" fill="#E72B15" data-om-id="c1c734e2:979"></rect>
+        <text data-dc-tpl="975" x="256" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#C9C9CE" data-om-id="c1c734e2:980">summary</text>
+        <text data-dc-tpl="976" x="644" y="377" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="27" fill="#FFFFFF" data-om-id="c1c734e2:981">work</text>
+
+        <text data-dc-tpl="977" x="52" y="478" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac" data-om-id="c1c734e2:982">TOP 3 SKILLS</text>
+        <rect data-dc-tpl="978" x="52" y="506" width="254" height="84" rx="24" fill="#FFFFFF" stroke="rgba(0,0,0,0.09)" stroke-width="2" data-om-id="c1c734e2:983"></rect>
+        <text data-dc-tpl="979" x="179" y="557" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="26" fill="#1c1c20" data-om-id="c1c734e2:984">python</text>
+        <rect data-dc-tpl="980" x="323" y="506" width="254" height="84" rx="24" fill="#FFFFFF" stroke="rgba(0,0,0,0.09)" stroke-width="2" data-om-id="c1c734e2:985"></rect>
+        <text data-dc-tpl="981" x="450" y="557" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="26" fill="#1c1c20" data-om-id="c1c734e2:986">matlab</text>
+        <rect data-dc-tpl="982" x="594" y="506" width="254" height="84" rx="24" fill="#FFFFFF" stroke="rgba(0,0,0,0.09)" stroke-width="2" data-om-id="c1c734e2:987"></rect>
+        <text data-dc-tpl="983" x="721" y="557" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="26" fill="#1c1c20" data-om-id="c1c734e2:988">data analysis</text>
+
+        <text data-dc-tpl="984" x="52" y="658" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac" data-om-id="c1c734e2:989">PROJECTS</text>
+
+        <rect data-dc-tpl="985" x="52" y="682" width="796" height="234" rx="26" fill="#FFFFFF" stroke="rgba(0,0,0,0.08)" stroke-width="2" data-om-id="c1c734e2:990"></rect>
+        <image data-dc-tpl="986" data-src="proj-probe.png" x="88" y="710" width="178" height="178" clip-path="url(#p1Clip)" preserveAspectRatio="xMidYMid slice" data-om-id="c1c734e2:991"></image>
+        <text data-dc-tpl="987" x="296" y="750" font-family="Satoshi" font-weight="700" font-size="31" letter-spacing="-0.6" fill="#1c1c20" data-om-id="c1c734e2:992">AeroSense Probe</text>
+        <text data-dc-tpl="988" x="296" y="796" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74" data-om-id="c1c734e2:993">A compact environmental sensor that tracks air</text>
+        <text data-dc-tpl="989" x="296" y="832" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74" data-om-id="c1c734e2:994">quality, temperature and humidity in real time.</text>
+        <text data-dc-tpl="990" x="296" y="868" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74" data-om-id="c1c734e2:995">Built to collect local environmental data…</text>
+
+        <rect data-dc-tpl="991" x="52" y="956" width="796" height="234" rx="26" fill="#FFFFFF" stroke="rgba(0,0,0,0.08)" stroke-width="2" data-om-id="c1c734e2:996"></rect>
+        <image data-dc-tpl="992" data-src="proj-viobot.png" x="88" y="984" width="178" height="178" clip-path="url(#p2Clip)" preserveAspectRatio="xMidYMid slice" data-om-id="c1c734e2:997"></image>
+        <text data-dc-tpl="993" x="296" y="1024" font-family="Satoshi" font-weight="700" font-size="31" letter-spacing="-0.6" fill="#1c1c20" data-om-id="c1c734e2:998">Viobot</text>
+        <text data-dc-tpl="994" x="296" y="1070" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74" data-om-id="c1c734e2:999">A small autonomous robot that uses computer</text>
+        <text data-dc-tpl="995" x="296" y="1106" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74" data-om-id="c1c734e2:1000">vision to navigate unfamiliar environments.</text>
+        <text data-dc-tpl="996" x="296" y="1142" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74" data-om-id="c1c734e2:1001">Designed to detect obstacles, map its route…</text>
+      </svg>
