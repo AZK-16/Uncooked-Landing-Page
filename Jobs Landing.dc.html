@@ -113,6 +113,26 @@
     .hiw-orbit [style*="width:15px;height:15px;"]{width:18px !important;height:18px !important;}
   }
 
+  /* how-it-works: tablet + mobile drop the orbit rings and collapse to a simple
+     centered-text-then-mockup stack, the same shape as the passport section --
+     the JS keeps driving scroll/crossfade/scale, this just repositions the anchors */
+  @media (max-width:1024px){
+    .hiw-rings{display:none !important;}
+    .hiw-center{top:70% !important;}
+    .hiw-copy{
+      left:50% !important;
+      top:29vh !important;
+      transform:translateX(-50%) !important;
+      text-align:center !important;
+      width:min(80vw,380px) !important;
+    }
+    .hiw-copy .copy div[style*="max-width"]{max-width:none !important;}
+    .hiw-rail .rail-item span{display:none;}
+    .hiw-rail .rail-item{padding:13px !important;}
+    .hiw-rail .rail-item.rail-active span{display:inline;}
+    .hiw-rail .rail-item.rail-active{padding:14px 16px !important;}
+  }
+
   /* passport: stack the text/visual pairs instead of sitting side-by-side --
      text always first, animation centered underneath, thin rule between steps */
   @media (max-width:820px){
@@ -302,10 +322,10 @@
       </div>
 
       <!-- centerpiece: rings + orbit + phone -->
-      <div ref="{{ setCenter }}" class="dfin dfin-o" data-di="0" style="opacity:0;transition:opacity .8s ease;position:absolute;top:54%;left:50%;width:1100px;height:1100px;display:flex;align-items:center;justify-content:center;z-index:10;">
+      <div ref="{{ setCenter }}" class="dfin dfin-o hiw-center" data-di="0" style="opacity:0;transition:opacity .8s ease;position:absolute;top:54%;left:50%;width:1100px;height:1100px;display:flex;align-items:center;justify-content:center;z-index:10;">
 
         <!-- dashed rings -->
-        <svg ref="{{ setRings }}" viewBox="0 0 1100 1100" style="position:absolute;width:100%;height:100%;pointer-events:none;overflow:visible;">
+        <svg ref="{{ setRings }}" class="hiw-rings" viewBox="0 0 1100 1100" style="position:absolute;width:100%;height:100%;pointer-events:none;overflow:visible;">
           <circle cx="550" cy="550" r="372" stroke="rgba(0,0,0,0.19)" stroke-width="1.5" stroke-dasharray="5 7" fill="none"></circle>
           <circle cx="550" cy="550" r="487" stroke="rgba(0,0,0,0.175)" stroke-width="1.5" stroke-dasharray="5 7" fill="none"></circle>
           <circle cx="550" cy="550" r="602" stroke="rgba(0,0,0,0.16)" stroke-width="1.5" stroke-dasharray="5 7" fill="none"></circle>
@@ -475,24 +495,24 @@
       <!-- RIGHT COPY -->
       <div ref="{{ setCopyWrap }}" class="hiw-copy" style="position:absolute;left:calc(50% + 280px);top:50%;transform:translateY(-50%);width:min(28vw,400px);z-index:50;">
         <div class="copy" data-copy="0" style="position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:1;">
-          <div class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,5vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">01</div>
-          <div class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-weight:700;font-size:clamp(25px,2.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">build your passport</div>
-          <div class="dfin" data-di="0" style="opacity: 0; transform: translateY(16px); transition: opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1); font-size: clamp(15px,1.2vw,16.5px); color: #2c2c30; line-height: 1.4; max-width: 20ch; text-wrap: pretty; font-weight: 500">video pitch. the best thing you've made. once, on the platform.</div>
+          <div class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,6.2vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">01</div>
+          <div class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-weight:700;font-size:clamp(25px,3.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">build your passport</div>
+          <div class="dfin" data-di="0" style="opacity: 0; transform: translateY(16px); transition: opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1); font-size: clamp(16px,2.15vw,17.5px); color: #2c2c30; line-height: 1.4; max-width: 20ch; text-wrap: pretty; font-weight: 500">video pitch. the best thing you've made. once, on the platform.</div>
         </div>
         <div class="copy" data-copy="1" style="position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;">
-          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,5vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">02</div>
-          <div style="font-weight:700;font-size:clamp(25px,2.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">get matched</div>
-          <div style="font-size:clamp(15px,1.2vw,16.5px);color:#2c2c30;line-height:1.4;max-width:20ch;text-wrap:pretty;font-weight:500;">roles come to you. we ping your phone when one fits.</div>
+          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,6.2vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">02</div>
+          <div style="font-weight:700;font-size:clamp(25px,3.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">get matched</div>
+          <div style="font-size:clamp(16px,2.15vw,17.5px);color:#2c2c30;line-height:1.4;max-width:20ch;text-wrap:pretty;font-weight:500;">roles come to you. we ping your phone when one fits.</div>
         </div>
         <div class="copy" data-copy="2" style="position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;">
-          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,5vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">03</div>
-          <div style="font-weight:700;font-size:clamp(25px,2.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">apply in minutes</div>
-          <div style="font-size:clamp(15px,1.2vw,16.5px);color:#2c2c30;line-height:1.4;max-width:22ch;text-wrap:pretty;">3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.</div>
+          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,6.2vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">03</div>
+          <div style="font-weight:700;font-size:clamp(25px,3.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">apply in minutes</div>
+          <div style="font-size:clamp(16px,2.15vw,17.5px);color:#2c2c30;line-height:1.4;max-width:22ch;text-wrap:pretty;font-weight:500;">3 voice notes from your phone, or record on the platform. under 5 minutes. from the bus if you want.</div>
         </div>
         <div class="copy" data-copy="3" style="position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;">
-          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,5vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">04</div>
-          <div style="font-weight:700;font-size:clamp(25px,2.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">hear back</div>
-          <div style="font-size:clamp(15px,1.2vw,16.5px);color:#2c2c30;line-height:1.4;max-width:20ch;text-wrap:pretty;">an answer, either way. every time. no ghosting.</div>
+          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(42px,6.2vw,56px);color:#E62B15;line-height:0.86;margin-bottom:6px;letter-spacing:-0.02em;">04</div>
+          <div style="font-weight:700;font-size:clamp(25px,3.8vw,32px);letter-spacing:-0.03em;line-height:1.06;margin-bottom:12px;">hear back</div>
+          <div style="font-size:clamp(16px,2.15vw,17.5px);color:#2c2c30;line-height:1.4;max-width:20ch;text-wrap:pretty;font-weight:500;">an answer, either way. every time. no ghosting.</div>
         </div>
       </div>
 
@@ -1067,7 +1087,7 @@ class Component extends DCLogic {
     // tablets (roughly 640-1024px wide) get a shorter width divisor so the phone/orbit
     // centerpiece renders noticeably larger instead of shrinking as if it were a phone
     const isTablet = window.innerWidth >= 640 && window.innerWidth <= 1024;
-    const widthDivisor = isTablet ? 1100 : 1560;
+    const widthDivisor = isTablet ? 1300 : 1560;
     const s = Math.max(0.42, Math.min(1, window.innerHeight / 1080, window.innerWidth / widthDivisor));
     this.scaleC = s;
     if (this.centerEl) {
@@ -1648,10 +1668,13 @@ class Component extends DCLogic {
     if (wm4) wm4.style.opacity = active === 3 ? '1' : '0';
     if (active !== this._active) {
       this._active = active;
-      this.positionRail();
       document.querySelectorAll('.rail-item').forEach((el, i) => {
         el.style.color = '#fff';
+        el.classList.toggle('rail-active', i === active);
       });
+      // measured after the class toggle above, so on the condensed (tablet/mobile)
+      // rail the pill sizes to the now-visible icon+label width, not the old icon-only one
+      this.positionRail();
     }
 
     // nav dark mode over the belief band
