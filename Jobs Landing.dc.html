@@ -113,12 +113,18 @@
     .hiw-orbit [style*="width:15px;height:15px;"]{width:18px !important;height:18px !important;}
   }
 
-  /* how-it-works: tablet + mobile drop the orbit rings and collapse to a simple
-     centered-text-then-mockup stack, the same shape as the passport section --
-     the JS keeps driving scroll/crossfade/scale, this just repositions the anchors */
-  @media (max-width:1024px){
+  /* how-it-works: enters its stacked layout at the same 820px breakpoint the passport
+     section stacks at, not 1024px -- the two should switch together. Rings AND the
+     orbiting icon bubbles both drop out (too much clutter at this size); the JS keeps
+     driving scroll/crossfade, this just repositions the anchors and resizes the type */
+  @media (max-width:820px){
     .hiw-rings{display:none !important;}
-    .hiw-center{top:70% !important;}
+    .hiw-orbit{display:none !important;}
+    .hiw-title{font-size:clamp(28px,6vw,34px) !important;}
+    /* fixed scale instead of the JS-computed one. 0.5 is a deliberate step up from
+       the previous 0.3 -- sized/positioned to keep clearance from the copy above and
+       the rail below on a ~390x844 phone; a few px tighter on very short phones (~667px) */
+    .hiw-center{top:62% !important;transform:translate(-50%,-50%) scale(0.5) !important;}
     .hiw-copy{
       left:50% !important;
       top:29vh !important;
@@ -127,6 +133,10 @@
       width:min(80vw,380px) !important;
     }
     .hiw-copy .copy div[style*="max-width"]{max-width:none !important;}
+    /* match the passport section's stacked type scale (number / heading / body) */
+    .hiw-copy .copy > div:nth-child(1){font-size:clamp(26px,3vw,37px) !important;}
+    .hiw-copy .copy > div:nth-child(2){font-size:clamp(18px,1.85vw,23px) !important;}
+    .hiw-copy .copy > div:nth-child(3){font-size:clamp(13px,1.05vw,14.5px) !important;}
     .hiw-rail .rail-item span{display:none;}
     .hiw-rail .rail-item{padding:13px !important;}
     .hiw-rail .rail-item.rail-active span{display:inline;}
@@ -281,7 +291,7 @@
 
 
       <header class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:absolute;top:max(10vh,100px);left:0;width:100%;text-align:center;z-index:12;pointer-events:none;">
-        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,6vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;">how it works.</h2>
+        <h2 class="hiw-title" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,6vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;">how it works.</h2>
       </header>
 
       <!-- watermark glyphs behind step 01 -->
