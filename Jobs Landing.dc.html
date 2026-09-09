@@ -80,7 +80,12 @@
   .nav-more summary.nav-hamburger::-webkit-details-marker{display:none;}
   .nav-more:not([open]) .nav-mobile-menu{display:none;}
   .nav-more[open] .nav-mobile-menu{display:flex;}
-  @media (max-width:860px){
+  @media (max-width:900px) and (min-width:681px){
+    /* tablet keeps the full navbar, just tightened so it doesn't crowd the edges */
+    .site-nav{gap:16px !important;}
+    .nav-links a.nav-link{padding:9px 9px !important;}
+  }
+  @media (max-width:680px){
     .site-nav{gap:14px !important;}
     .nav-div,.nav-links,.nav-cta{display:none !important;}
     .nav-more{display:block;}
@@ -92,6 +97,20 @@
     .hiw-rail::-webkit-scrollbar{display:none;}
     .hiw-copy{width:min(78vw,340px) !important;}
     .rail-item{padding:14px 16px !important;}
+  }
+
+  /* how-it-works: on tablets, grow the orbit's circle icons + pill/card chips
+     (they orbit at a fixed radius, so bigger chips read better once the whole
+     centerpiece itself renders larger via the tablet-only JS scale bump) */
+  @media (max-width:1024px) and (min-width:640px){
+    .hiw-orbit [style*="width:70px;height:70px;"]{width:92px !important;height:92px !important;}
+    .hiw-orbit [style*="width:26px;height:26px;"]{width:32px !important;height:32px !important;}
+    .hiw-orbit [style*="width:27px;height:27px;"]{width:33px !important;height:33px !important;}
+    .hiw-orbit [style*="width:220px;height:54px;"]{width:268px !important;height:64px !important;}
+    .hiw-orbit [style*="width:290px;height:74px;"]{width:346px !important;height:86px !important;}
+    .hiw-orbit [style*="width:42px;height:42px;"]{width:48px !important;height:48px !important;}
+    .hiw-orbit [style*="width:20px;height:20px;"]{width:24px !important;height:24px !important;}
+    .hiw-orbit [style*="width:15px;height:15px;"]{width:18px !important;height:18px !important;}
   }
 
   /* passport: stack the text/visual pairs instead of sitting side-by-side */
@@ -226,7 +245,7 @@
 
 
       <header class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:absolute;top:max(10vh,100px);left:0;width:100%;text-align:center;z-index:12;pointer-events:none;">
-        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;">how it works.</h2>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,6vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;">how it works.</h2>
       </header>
 
       <!-- watermark glyphs behind step 01 -->
@@ -277,7 +296,7 @@
         </svg>
 
         <!-- orbit (rotates) -->
-        <div ref="{{ setOrbit }}" style="position:absolute;width:100%;height:100%;pointer-events:none;">
+        <div ref="{{ setOrbit }}" class="hiw-orbit" style="position:absolute;width:100%;height:100%;pointer-events:none;">
 
           <!-- GROUP 1: passport -->
           <div class="cg-1">
@@ -476,36 +495,36 @@
   <!-- ===================== PASSPORT ===================== -->
   <section data-screen-label="Passport" style="position:relative;padding:clamp(150px,20vh,260px) 24px clamp(120px,16vh,200px);">
 
-    <h2 data-reveal="" class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(48px,6vh,80px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">verify once. apply anywhere.</h2>
+    <h2 data-reveal="" class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(48px,6vh,80px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,3.7vw,44px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">verify once. apply anywhere.</h2>
 
     <div style="position:relative;width:min(1120px,92vw);margin:0 auto;display:flex;flex-direction:column;gap:clamp(46px,6vh,80px);">
-      <span class="passport-line" style="position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:1px;background:#e2e2e6;pointer-events:none;"></span>
+      <span ref="{{ setPassportLine }}" class="passport-line" style="position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:1px;background:#e2e2e6;pointer-events:none;"></span>
       <div data-reveal="" class="passport-row" style="display:grid;grid-template-columns:1fr 1px 1fr;column-gap:clamp(34px,4.4vw,68px);align-items:center;">
       <div class="dfin passport-text" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:9px;">
-        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(30px,3.4vw,42px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">01</div>
-        <div style="font-weight:700;font-synthesis:none;font-size:clamp(20px,2.1vw,26px);letter-spacing:-0.03em;line-height:1.12;color:#111;">pick your track</div>
-        <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">pick the track you're going for. software, marketing, design, hardware. the work you actually want to do. a 60 second video pitch. a 3 minute walkthrough of the best thing you've made, with the real files behind it. set aside 2 hours and do it properly. that's it. you're verified.</p>
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,37px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">01</div>
+        <div style="font-weight:700;font-synthesis:none;font-size:clamp(18px,1.85vw,23px);letter-spacing:-0.03em;line-height:1.12;color:#111;">pick your track</div>
+        <p style="margin:0;font-weight:500;font-size:clamp(13px,1.05vw,14.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">pick the track you're going for. software, marketing, design, hardware. the work you actually want to do. a 60 second video pitch. a 3 minute walkthrough of the best thing you've made, with the real files behind it. set aside 2 hours and do it properly. that's it. you're verified.</p>
       </div>
         <div class="passport-dot" style="position:relative;height:100%;display:flex;align-items:center;justify-content:center;">
         <span class="pdot" style="position:absolute;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#d0d0d6;transition:background .35s ease;"></span>
         </div>
       <div class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;gap:10px;">
-        <div ref="{{ setTrackStage }}" style="position:relative;width:100%;height:clamp(240px,26vw,320px);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-          <div class="tp-row" style="position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.4vw,20px);">
-            <img class="tp-i" data-t="0" src="tp-52.svg" alt="" style="width:clamp(70px,7.6vw,96px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-i" data-t="1" src="tp-55.svg" alt="" style="width:clamp(70px,7.6vw,96px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-i" data-t="2" src="tp-54.svg" alt="" style="width:clamp(70px,7.6vw,96px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-i" data-t="3" src="tp-53.svg" alt="" style="width:clamp(70px,7.6vw,96px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-vid" src="uploads/vid.svg" alt="" style="position:absolute;left:50%;top:50%;height:clamp(96px,10.4vw,132px);width:auto;opacity:0;transform:translate(-50%,-50%);will-change:transform,opacity;pointer-events:none;">
-            <img class="tp-ver" src="uploads/verified.svg" alt="" style="position:absolute;left:50%;top:50%;height:clamp(78px,8.5vw,107px);width:auto;opacity:0;transform:translate(-50%,-50%) scale(.6);will-change:transform,opacity;pointer-events:none;">
-            <span class="tp-cursor" style="position:absolute;top:50%;left:0;width:11px;height:11px;border-radius:50%;background:#9a9aa0;opacity:0;pointer-events:none;will-change:transform,opacity;"></span>
+        <div ref="{{ setTrackStage }}" style="position:relative;width:100%;height:clamp(204px,22.1vw,272px);display:flex;align-items:center;justify-content:flex-start;overflow:hidden;">
+          <div class="tp-row" style="position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(9px,1.2vw,17px);">
+            <img class="tp-i" data-t="0" src="tp-52.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="1" src="tp-55.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="2" src="tp-54.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="3" src="tp-53.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-vid" src="uploads/vid.svg" alt="" style="position:absolute;left:50%;top:50%;height:clamp(82px,8.85vw,112px);width:auto;opacity:0;transform:translate(-50%,-50%);will-change:transform,opacity;pointer-events:none;">
+            <img class="tp-ver" src="uploads/verified.svg" alt="" style="position:absolute;left:50%;top:50%;height:clamp(66px,7.2vw,91px);width:auto;opacity:0;transform:translate(-50%,-50%) scale(.6);will-change:transform,opacity;pointer-events:none;">
+            <span class="tp-cursor" style="position:absolute;top:50%;left:0;width:9px;height:9px;border-radius:50%;background:#9a9aa0;opacity:0;pointer-events:none;will-change:transform,opacity;"></span>
           </div>
         </div>
       </div>
       </div>
       <div data-reveal="" class="passport-row" style="display:grid;grid-template-columns:1fr 1px 1fr;column-gap:clamp(34px,4.4vw,68px);align-items:center;">
       <div class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;gap:10px;">
-        <div ref="{{ setVerifyStage }}" style="position:relative;width:min(272px,88%);margin:0 auto 0 auto;transform:translateX(clamp(10px,1.6vw,26px));aspect-ratio:900 / 1006;">
+        <div ref="{{ setVerifyStage }}" style="position:relative;width:min(300px,85%);margin:0 0 0 auto;aspect-ratio:900 / 1006;">
           <svg class="vf-sum" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 1006" style="position:absolute;left:0;top:0;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 44px rgba(20,20,30,0.16)) drop-shadow(0 4px 12px rgba(20,20,30,0.08));transition:opacity .7s ease;">
         <defs>
           <clipPath id="pfClip"><circle cx="118" cy="228" r="66"></circle></clipPath>
@@ -614,23 +633,23 @@
         <span class="pdot" style="position:absolute;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#d0d0d6;transition:background .35s ease;"></span>
         </div>
       <div class="dfin passport-text" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:9px;">
-        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(30px,3.4vw,42px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">02</div>
-        <div style="font-weight:700;font-synthesis:none;font-size:clamp(20px,2.1vw,26px);letter-spacing:-0.03em;line-height:1.12;color:#111;">it gets checked, for real</div>
-        <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">we verify your work matches your claims. a human reviews it. nothing gets auto rejected by a bot.</p>
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,37px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">02</div>
+        <div style="font-weight:700;font-synthesis:none;font-size:clamp(18px,1.85vw,23px);letter-spacing:-0.03em;line-height:1.12;color:#111;">it gets checked, for real</div>
+        <p style="margin:0;font-weight:500;font-size:clamp(13px,1.05vw,14.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">we verify your work matches your claims. a human reviews it properly, checks the details, and makes sure it backs up what you’ve said. nothing gets auto rejected by a bot.</p>
       </div>
       </div>
       <div data-reveal="" class="passport-row" style="display:grid;grid-template-columns:1fr 1px 1fr;column-gap:clamp(34px,4.4vw,68px);align-items:center;">
       <div class="dfin passport-text" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:9px;">
-        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(30px,3.4vw,42px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">03</div>
-        <div style="font-weight:700;font-synthesis:none;font-size:clamp(20px,2.1vw,26px);letter-spacing:-0.03em;line-height:1.12;color:#111;">more stamps, more matches</div>
-        <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">apply to any role on the platform. want stronger matches on another track? earn its stamp. every stamp sharpens your matches. none of them gate you.</p>
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,37px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">03</div>
+        <div style="font-weight:700;font-synthesis:none;font-size:clamp(18px,1.85vw,23px);letter-spacing:-0.03em;line-height:1.12;color:#111;">more stamps, more matches</div>
+        <p style="margin:0;font-weight:500;font-size:clamp(13px,1.05vw,14.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">apply to any role on the platform. want stronger matches on another track? earn its stamp. every stamp sharpens your matches. none of them gate you.</p>
       </div>
         <div class="passport-dot" style="position:relative;height:100%;display:flex;align-items:center;justify-content:center;">
         <span class="pdot" style="position:absolute;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#d0d0d6;transition:background .35s ease;"></span>
         </div>
       <div class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;gap:10px;">
-        <div style="width:100%;display:flex;align-items:center;justify-content:center;padding:6px 0;">
-          <svg class="pzstage" viewBox="28 40 482 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <div style="width:100%;display:flex;align-items:center;justify-content:flex-start;padding:6px 0;">
+          <svg class="pzstage" viewBox="28 40 482 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:min(430px,70%);height:auto;display:block;">
 <g transform="translate(30,60) rotate(-5 104 104)">
   <g class="pz" data-pz="rob"><path d="M 104.0,0.0 L 208.0,0.0 L 208.0,104.0 L 166.0,104.0 A 12.5 12.5 0 1 0 146.0,104.0 L 104.0,104.0 L 104.0,0.0 Z" fill="#EDEDED" stroke="#DCDCDC" stroke-width="4.5" stroke-linejoin="round"></path>
   <circle cx="156" cy="46" r="26" fill="#fff"></circle>
@@ -659,7 +678,7 @@
       </div>
       <div data-reveal="" class="passport-row" style="display:grid;grid-template-columns:1fr 1px 1fr;column-gap:clamp(34px,4.4vw,68px);align-items:center;margin-top:clamp(38px,5vh,66px);">
       <div class="dfin" data-di="1" style="min-width:0;opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;gap:10px;">
-        <div ref="{{ setLogoStage }}" style="min-width:0;--cl:clamp(42px,4.4vw,58px);--cg:clamp(11px,1.15vw,15px);display:flex;flex-direction:column;gap:var(--cg);width:100%;">
+        <div ref="{{ setLogoStage }}" style="min-width:0;--cl:clamp(36px,3.75vw,49px);--cg:clamp(9px,0.98vw,13px);display:flex;flex-direction:column;gap:var(--cg);width:100%;max-width:38ch;margin-left:auto;font-size:clamp(13px,1.05vw,14.5px);">
         <div style="min-width:0;overflow:hidden;padding:14px 0;margin:-14px 0;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);">
           <div class="lgr lgr-a" style="display:flex;gap:var(--cg);width:max-content;will-change:transform;"><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Ashby-a02fa508.png" alt="Ashby" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Gusto-148b4482.png" alt="Gusto" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Seedcamp-779f9055.png" alt="Seedcamp" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Kleiner Perkins-5b47627c.png" alt="Kleiner Perkins" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Thrive Capital-29d473be.png" alt="Thrive Capital" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Ashby-a02fa508.png" alt="Ashby" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Gusto-148b4482.png" alt="Gusto" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Seedcamp-779f9055.png" alt="Seedcamp" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Kleiner Perkins-5b47627c.png" alt="Kleiner Perkins" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Thrive Capital-29d473be.png" alt="Thrive Capital" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Ashby-a02fa508.png" alt="Ashby" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Gusto-148b4482.png" alt="Gusto" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Seedcamp-779f9055.png" alt="Seedcamp" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Kleiner Perkins-5b47627c.png" alt="Kleiner Perkins" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span><span style="flex:none;width:var(--cl);height:var(--cl);border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 10px 24px -10px rgba(20,20,30,.34),0 2px 6px -1px rgba(20,20,30,.12);display:flex;align-items:center;justify-content:center;"><img src="uploads/Thrive Capital-29d473be.png" alt="Thrive Capital" style="width:62%;height:62%;object-fit:contain;display:block;border-radius:50%;"></span></div>
         </div>
@@ -675,9 +694,9 @@
         <span class="pdot" style="position:absolute;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#d0d0d6;transition:background .35s ease;"></span>
         </div>
       <div class="dfin passport-text" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:9px;">
-        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(30px,3.4vw,42px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">04</div>
-        <div style="font-weight:700;font-synthesis:none;font-size:clamp(20px,2.1vw,26px);letter-spacing:-0.03em;line-height:1.12;color:#111;">the tracker is open to all</div>
-        <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">the tracker's 6,000+ external jobs? open to everyone, stamp or not, live today. you apply to those direct, so the 7 day answer covers platform roles.</p>
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,37px);line-height:.9;letter-spacing:-0.02em;color:#E62B15;">04</div>
+        <div style="font-weight:700;font-synthesis:none;font-size:clamp(18px,1.85vw,23px);letter-spacing:-0.03em;line-height:1.12;color:#111;">the tracker is open to all</div>
+        <p style="margin:0;font-weight:500;font-size:clamp(13px,1.05vw,14.5px);line-height:1.5;color:#5f5f66;max-width:38ch;text-wrap:pretty;">the tracker's 6,000+ external jobs? open to everyone, stamp or not, live today. you apply to those direct, so the 7 day answer covers platform roles.</p>
       </div>
       </div>
     </div>
@@ -1029,7 +1048,11 @@ class Component extends DCLogic {
 
   onResize = () => {
     if (this._vfOn && this._vfT0 != null) this.applyVerify(performance.now() - this._vfT0);
-    const s = Math.max(0.42, Math.min(1, window.innerHeight / 1080, window.innerWidth / 1560));
+    // tablets (roughly 640-1024px wide) get a shorter width divisor so the phone/orbit
+    // centerpiece renders noticeably larger instead of shrinking as if it were a phone
+    const isTablet = window.innerWidth >= 640 && window.innerWidth <= 1024;
+    const widthDivisor = isTablet ? 1100 : 1560;
+    const s = Math.max(0.42, Math.min(1, window.innerHeight / 1080, window.innerWidth / widthDivisor));
     this.scaleC = s;
     if (this.centerEl) {
       // centre the phone in the band between the title and the bottom rail,
@@ -1072,6 +1095,7 @@ class Component extends DCLogic {
       }
     }
     this.positionRail();
+    this.positionPassportLine();
     this.update();
     this.sweepReveals();
     this.watchTrack();
@@ -1377,7 +1401,7 @@ class Component extends DCLogic {
     const prev = centers[Math.max(0, idx - 1)];
     const seg = easeIO(c(((e - START) - idx * HOP) / TRAVEL));
     const cx = e < START ? centers[0] - w * 0.9 : (idx === 0 ? centers[0] : prev + (centers[idx] - prev) * seg);
-    const cy = w / 2 + 30;
+    const cy = w / 2 + 26;   // fixed drop below the icons, scaled down to match the smaller track stage
     const visible = e > START * 0.55 && e < SETTLE + 380;
     const fade = 1 - c((e - SETTLE) / 380);
     cursor.style.opacity = visible ? Math.min(1, fade).toFixed(2) : '0';
@@ -1527,6 +1551,25 @@ class Component extends DCLogic {
     this.indEl.style.width = el.offsetWidth + 'px';
   }
 
+  // the spine should run dot-01-center to dot-04-center, not edge-to-edge of the
+  // column (row heights vary with content/viewport, so this is measured, not guessed)
+  positionPassportLine() {
+    if (!this.passportLineEl) return;
+    const wrap = this.passportLineEl.parentElement;
+    if (!wrap) return;
+    const dots = wrap.querySelectorAll('.pdot');
+    if (dots.length < 2) return;
+    if (dots[0].offsetParent === null) return;   // spine + dots are display:none (stacked mobile layout)
+    const wrapRect = wrap.getBoundingClientRect();
+    const first = dots[0].getBoundingClientRect();
+    const last = dots[dots.length - 1].getBoundingClientRect();
+    const EXTEND = 100;   // small overshoot past dot 01 / dot 04, purely visual
+    const top = (first.top + first.height / 2) - wrapRect.top - EXTEND;
+    const bottom = wrapRect.bottom - (last.top + last.height / 2) - EXTEND;
+    this.passportLineEl.style.top = Math.max(0, top) + 'px';
+    this.passportLineEl.style.bottom = Math.max(0, bottom) + 'px';
+  }
+
   update() {
     if (!this.rootEl) return;
     const rect = this.rootEl.getBoundingClientRect();
@@ -1641,6 +1684,7 @@ class Component extends DCLogic {
       setCopyWrap: (el) => { this.copyWrapEl = el; },
       setNav: (el) => { this.navEl = el; },
       setDarkBand: (el) => { this.darkBandEl = el; },
+      setPassportLine: (el) => { this.passportLineEl = el; },
       setTrackStage: (el) => { this.trackStageEl = el; },
       setLogoStage: (el) => { this.logoStageEl = el; },
       setVerifyStage: (el) => { this.verifyStageEl = el; },
