@@ -122,7 +122,13 @@
     .passport-dot,.passport-line{display:none !important;}
     .passport-text{align-items:center !important;text-align:center !important;order:1;}
     .passport-visual-col{order:3;}
-    .passport-visual{justify-content:center !important;margin-left:auto !important;margin-right:auto !important;height:auto !important;}
+    .passport-visual{justify-content:center !important;margin-left:auto !important;margin-right:auto !important;}
+    /* track-picker only: needs room for the "chosen" icon's 1.55x settle-scale and the
+       video/verified badges, which are absolutely positioned so height:auto ignores them
+       entirely and clips them against the stage's own overflow:hidden. Scoped to this one
+       stage -- the verify-card stage sizes itself from aspect-ratio, and a forced height
+       here would override that ratio and make its SVG spill out over the steps around it. */
+    .passport-track{height:120px !important;}
   }
 
   /* difference: stack the 3 cards instead of squeezing them into one row
@@ -160,6 +166,11 @@
     <div style="position:relative;display:flex;align-items:center;">
       <img class="nav-logo" src="m-nav-mark.png" alt="uncooked (BETA)" style="height:30px;width:auto;display:block;margin-right:-14px;transition:opacity .55s ease;">
       <img class="nav-logo-dark" src="m-nav-mark-dark.png" alt="" style="position:absolute;left:0;top:0;height:30px;width:auto;display:block;opacity:0;transition:opacity .55s ease;pointer-events:none;">
+      <!-- the baked-in BETA badge in m-nav-mark-dark.png is a white pill; this masks it and
+           redraws a dark pill with a white stroke + label for the dark nav state -->
+      <span class="nav-beta-dark" aria-hidden="true" style="position:absolute;left:108px;top:-2px;width:40px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#37373B;border:.5px solid #fff;opacity:0;transition:opacity .55s ease;pointer-events:none;">
+        <span style="font-size:8px;font-weight:700;letter-spacing:0.03em;color:#fff;line-height:1;">BETA</span>
+      </span>
     </div>
     <span class="nav-div" style="position:relative;width:1px;height:22px;background:rgba(0,0,0,0.10);flex:none;transition:background .45s ease;"></span>
     <div class="nav-links" style="display:flex;align-items:center;gap:0;">
@@ -514,7 +525,7 @@
         <span class="pdot" style="position:absolute;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#d0d0d6;transition:background .35s ease;"></span>
         </div>
       <div class="dfin passport-visual-col" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;gap:10px;">
-        <div ref="{{ setTrackStage }}" class="passport-visual" style="position:relative;width:100%;height:clamp(204px,22.1vw,272px);display:flex;align-items:center;justify-content:flex-start;overflow:hidden;">
+        <div ref="{{ setTrackStage }}" class="passport-visual passport-track" style="position:relative;width:100%;height:clamp(204px,22.1vw,272px);display:flex;align-items:center;justify-content:flex-start;overflow:hidden;">
           <div class="tp-row" style="position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(9px,1.2vw,17px);">
             <img class="tp-i" data-t="0" src="tp-52.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
             <img class="tp-i" data-t="1" src="tp-55.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
@@ -776,28 +787,28 @@
     <div ref="{{ setDarkBand }}" style="position:relative;">
       <div style="position:absolute;inset:0;background:#1b1b1e;background-image:linear-gradient(to right,rgba(255,255,255,0.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.045) 1px,transparent 1px);background-size:48px 48px;background-position:center top;pointer-events:none;"></div>
 
-      <div style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(120px,18vh,220px) 24px clamp(120px,18vh,220px);">
+      <div style="position:relative;z-index:1;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(120px,18vh,220px) 24px clamp(120px,18vh,220px);">
         <div style="width:min(560px,88vw);display:flex;flex-direction:column;align-items:center;gap:clamp(26px,3.4vh,40px);">
 
-          <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1.06;color:#fff;text-wrap:balance;">the job market isn't broken.<br>it's <span style="font-style:italic;">cooked.</span></h2>
+          <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.5vw,50px);letter-spacing:-0.03em;line-height:1.06;color:#fff;text-wrap:balance;">the job market isn't broken.<br>it's <span style="font-style:italic;">cooked.</span></h2>
 
-          <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.</p>
+          <p style="margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.</p>
 
-          <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">qualified people get filtered out for not matching the wording exactly. most ghosting happens right after you hit submit.</p>
+          <p style="margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">qualified people get filtered out for not matching the wording exactly. most ghosting happens right after you hit submit.</p>
 
-          <p style="margin:0;font-weight:700;font-synthesis:none;font-size:clamp(17px,1.65vw,21px);line-height:1.32;letter-spacing:-0.025em;color:#fff;white-space:nowrap;">rejection emails go out at 1:30 in the morning.<br>nobody was awake. nobody read it.</p>
+          <p style="margin:0;font-weight:700;font-synthesis:none;font-size:clamp(19px,1.8vw,14px);line-height:1.32;letter-spacing:-0.025em;color:#fff;white-space:nowrap;">rejection emails go out at 1:30 in the morning.<br>nobody was awake. nobody read it.</p>
 
-          <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">nobody is judging what you can do. a machine is skimming what you wrote about it.</p>
+          <p style="margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">nobody is judging what you can do. a machine is skimming what you wrote about it.</p>
 
         </div>
       </div>
     </div>
 
     <!-- light resolve -->
-    <div style="position:relative;min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(46px,7vh,84px) 24px clamp(40px,6vh,76px);">
+    <div style="position:relative;min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(8px,1vh,20px) 24px clamp(40px,6vh,76px);">
       <div data-reveal="" style="width:min(440px,86vw);display:flex;flex-direction:column;align-items:center;gap:22px;">
-        <h3 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:700;font-synthesis:none;font-size:clamp(24px,2.5vw,32px);line-height:1.2;letter-spacing:-0.03em;color:#111;">we built the opposite.</h3>
-        <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</p>
+        <h3 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:700;font-synthesis:none;font-size:clamp(28px,3.8vw,32px);line-height:1.2;letter-spacing:-0.03em;color:#111;">we built the opposite.</h3>
+        <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</p>
         <a href="#" class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin-top:6px;display:inline-flex;align-items:center;justify-content:center;background:#E62B15;color:#fff;font-weight:700;font-size:15px;padding:13px 30px;border-radius:100px;transition:background .2s,transform .2s;box-shadow:0 10px 24px -8px rgba(230,43,21,.5);" style-hover="background:#c31f0c;transform:translateY(-2px);color:#fff;">get seen</a>
         <div class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-weight:500;font-size:13px;color:#9a9aa0;">free for candidates · early members get matched first</div>
       </div>
@@ -1657,13 +1668,15 @@ class Component extends DCLogic {
         const logoDark = n.querySelector('.nav-logo-dark');
         if (logo) logo.style.opacity = dark ? '0' : '1';
         if (logoDark) logoDark.style.opacity = dark ? '1' : '0';
+        const betaDark = n.querySelector('.nav-beta-dark');
+        if (betaDark) betaDark.style.opacity = dark ? '1' : '0';
         n.querySelectorAll('.nav-link').forEach((el) => {
           const act = el.classList.contains('nav-active');
           if (act) { el.style.color = dark ? '#fff' : '#3a3a40'; return; }
           el.style.color = dark ? 'rgba(255,255,255,0.68)' : '#8a8a90';
         });
         const cta = n.querySelector('.nav-cta');
-        if (cta) { cta.style.color = '#fff'; cta.style.background = dark ? '#4E555A' : '#2E3438'; }
+        if (cta) { cta.style.color = '#fff'; cta.style.background = dark ? '#222528' : '#2E3438'; }
         const dv = n.querySelector('.nav-div');
         if (dv) dv.style.background = dark ? 'rgba(255,255,255,0.16)' : 'rgba(0,0,0,0.10)';
 
