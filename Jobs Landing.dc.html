@@ -74,20 +74,31 @@
 
   /* ================= RESPONSIVE ================= */
 
-  /* nav: collapse links + CTA into a hamburger disclosure */
+  /* nav: collapse the jobs/tracker/events/labs links into a hamburger disclosure;
+     "for startups" + the hamburger stay visible in the bar itself on mobile */
   .nav-more{position:relative;display:none;}
   .nav-more summary.nav-hamburger{list-style:none;}
   .nav-more summary.nav-hamburger::-webkit-details-marker{display:none;}
-  .nav-more:not([open]) .nav-mobile-menu{display:none;}
-  .nav-more[open] .nav-mobile-menu{display:flex;}
+  .nav-mobile-menu{display:none;}
+  .nav-more[open] ~ .nav-mobile-menu{display:grid;}
+  /* when open, square off the pill's bottom corners so it reads as one continuous
+     rounded shape with the dropdown flush underneath, rather than two stacked pieces.
+     Toggled via JS + a plain class (see the 'toggle' listener in componentDidMount),
+     not :has(), since :has() support isn't guaranteed in every render target here. */
+  .site-nav.nav-open{border-radius:24px 24px 0 0 !important;}
   @media (max-width:900px) and (min-width:681px){
     /* tablet keeps the full navbar, just tightened so it doesn't crowd the edges */
     .site-nav{gap:16px !important;}
     .nav-links a.nav-link{padding:9px 9px !important;}
   }
   @media (max-width:680px){
-    .site-nav{gap:14px !important;}
-    .nav-div,.nav-links,.nav-cta{display:none !important;}
+    /* stretch the pill toward the viewport width instead of hugging its own content;
+       push the logo to the left edge and cluster "for startups" + the hamburger
+       together at the right edge (margin-right:auto, not justify-content:space-between,
+       so the cta+hamburger pair stays adjacent instead of splitting to opposite ends) */
+    .site-nav{width:92vw !important;max-width:92vw !important;gap:14px !important;border-radius:24px !important;}
+    .nav-logo-wrap{margin-right:auto !important;}
+    .nav-div,.nav-links{display:none !important;}
     .nav-more{display:block;}
   }
 
@@ -199,7 +210,7 @@
   <!-- ===================== FIXED NAV ===================== -->
   <nav ref="{{ setNav }}" class="site-nav" style="position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:200;width:max-content;max-width:94%;display:flex;align-items:center;gap:26px;padding:5px 6px 5px 14px;backdrop-filter:blur(22px) saturate(2.2);-webkit-backdrop-filter:blur(22px) saturate(2.2);border:1px solid transparent;border-radius:100px;background-image:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.80)),linear-gradient(180deg,#F1F1F2 0%,#E4E4E7 55%,#D8D8DC 100%);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 7px 20px -7px rgba(20,20,30,0.13),0 2px 5px -1px rgba(20,20,30,0.07);transition:box-shadow .3s ease,transform .3s ease,background-image .45s ease;">
     <span class="nav-veil" style="position:absolute;inset:-1px;border-radius:100px;background:linear-gradient(180deg,rgba(30,30,34,0.90),rgba(30,30,34,0.86));opacity:0;transition:opacity .55s ease;pointer-events:none;"></span>
-    <div style="position:relative;display:flex;align-items:center;">
+    <div class="nav-logo-wrap" style="position:relative;display:flex;align-items:center;">
       <img class="nav-logo" src="m-nav-mark.png" alt="uncooked (BETA)" style="height:30px;width:auto;display:block;margin-right:-14px;transition:opacity .55s ease;">
       <img class="nav-logo-dark" src="m-nav-mark-dark.png" alt="" style="position:absolute;left:0;top:0;height:30px;width:auto;display:block;opacity:0;transition:opacity .55s ease;pointer-events:none;">
       <!-- the baked-in BETA badge in m-nav-mark-dark.png is a white pill; this masks it and
@@ -217,20 +228,21 @@
     </div>
     <a href="#" class="nav-cta" style="position:relative;display: flex; align-items: center; gap: 7px; white-space: nowrap; font-weight: 600; font-size: 15px; color: #fff; border-radius: 100px; padding: 9px 16px; transition: background .25s ease; background-color: #121214DB" style-hover="background:#41474C;color:#fff;"><span style="white-space:nowrap;">for startups</span> <span>→</span></a>
 
-    <!-- mobile-only: collapses jobs/tracker/events/labs/for startups into a hamburger disclosure -->
+    <!-- mobile-only: collapses jobs/tracker/events/labs into a hamburger disclosure;
+         "for startups" stays visible in the bar next to it (see nav-cta above) -->
     <details class="nav-more">
       <summary class="nav-hamburger" aria-label="Menu" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:#111;cursor:pointer;list-style:none;">
         <i data-lucide="menu" style="width:22px;height:22px;display:block;"></i>
       </summary>
-      <div class="nav-mobile-menu" style="position:absolute;top:calc(100% + 12px);right:0;min-width:210px;flex-direction:column;gap:2px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:20px;padding:10px;box-shadow:0 20px 44px -12px rgba(20,20,30,0.28);">
-        <a href="#" class="nav-link-m" style="font-weight:600;font-size:16px;color:#3A3A40;border-radius:14px;padding:14px 16px;">jobs</a>
-        <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#3a3a40;border-radius:14px;padding:14px 16px;">tracker</a>
-        <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#3a3a40;border-radius:14px;padding:14px 16px;">events</a>
-        <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#3a3a40;border-radius:14px;padding:14px 16px;">labs</a>
-        <span style="height:1px;background:rgba(0,0,0,0.08);margin:6px 4px;"></span>
-        <a href="#" style="display:flex;align-items:center;justify-content:center;gap:7px;font-weight:600;font-size:16px;color:#fff;background-color:#121214DB;border-radius:14px;padding:14px 16px;"><span>for startups</span> <span>→</span></a>
-      </div>
     </details>
+    <!-- sibling, not a child of <details>, so it can be positioned/sized against the
+         full nav pill instead of just the hamburger button's own small box -->
+    <div class="nav-mobile-menu" style="position:absolute;top:100%;left:0;right:0;grid-template-columns:1fr 1fr;gap:2px;background:#f6f6f7;border:1px solid rgba(0,0,0,0.08);border-top:1px solid rgba(0,0,0,0.1);border-radius:0 0 24px 24px;padding:10px;box-shadow:0 20px 44px -12px rgba(20,20,30,0.28);">
+      <a href="#" class="nav-link-m" style="font-weight:600;font-size:16px;color:#3A3A40;border-radius:14px;padding:14px 16px;">jobs</a>
+      <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#8a8a90;border-radius:14px;padding:14px 16px;">events</a>
+      <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#8a8a90;border-radius:14px;padding:14px 16px;">tracker</a>
+      <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#8a8a90;border-radius:14px;padding:14px 16px;">labs</a>
+    </div>
   </nav>
 
   <!-- ===================== HERO ===================== -->
@@ -995,6 +1007,12 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('resize', this.onResize, { passive: true });
+    // squares off the nav pill's bottom corners while the mobile dropdown is open,
+    // so the two read as one continuous shape (see .site-nav.nav-open)
+    const navMore = document.querySelector('.nav-more');
+    if (navMore) navMore.addEventListener('toggle', () => {
+      if (this.navEl) this.navEl.classList.toggle('nav-open', navMore.open);
+    });
     this.attachRailClicks();
     this.resetTrackAnim();
     this.watchTrack();
@@ -1099,6 +1117,16 @@ class Component extends DCLogic {
   }
 
   onResize = () => {
+    // the mobile dropdown's open state (the <details> [open] attribute + the nav-open
+    // class it drives) doesn't auto-clear on its own when a resize crosses back above
+    // the 680px collapse breakpoint -- CSS media queries don't reset element state/attrs,
+    // only which rules apply. Left alone, the dropdown and the squared-off pill corners
+    // it triggers stay visible on top of the full desktop nav. Force it closed here.
+    if (window.innerWidth > 680) {
+      const navMore = document.querySelector('.nav-more');
+      if (navMore && navMore.open) navMore.open = false;
+      if (this.navEl) this.navEl.classList.remove('nav-open');
+    }
     if (this._vfOn && this._vfT0 != null) this.applyVerify(performance.now() - this._vfT0);
     // tablets (roughly 640-1024px wide) get a shorter width divisor so the phone/orbit
     // centerpiece renders noticeably larger instead of shrinking as if it were a phone
@@ -1709,6 +1737,8 @@ class Component extends DCLogic {
         if (logoDark) logoDark.style.opacity = dark ? '1' : '0';
         const betaDark = n.querySelector('.nav-beta-dark');
         if (betaDark) betaDark.style.opacity = dark ? '1' : '0';
+        const hamburger = n.querySelector('.nav-hamburger');
+        if (hamburger) hamburger.style.color = dark ? '#fff' : '#111';
         n.querySelectorAll('.nav-link').forEach((el) => {
           const act = el.classList.contains('nav-active');
           if (act) { el.style.color = dark ? '#fff' : '#3a3a40'; return; }
