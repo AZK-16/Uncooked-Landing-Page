@@ -214,7 +214,15 @@
     .difference-grid{grid-template-columns:1fr !important;row-gap:72px !important;}
   }
   @media (max-width:639px){
-    .difference-grid{row-gap:24px !important;}
+    .difference-grid{row-gap:48px !important;}
+  }
+
+  /* difference: 901-1080px is the squeeze zone right before the 900px stack
+     breakpoint -- the grid column has shrunk to ~250-300px but .dgc is still a
+     fixed 280px box (plus padding, border-box), so it overflows its column and
+     crowds into the next card. Narrow the box down just for this range. */
+  @media (min-width:901px) and (max-width:1080px){
+    .difference-grid .dgc{width:max(100%,220px) !important;max-width:230px !important;padding:16px 18px !important;}
   }
 
   /* difference: on tablet (as opposed to phone) put the illustration and its text
@@ -244,8 +252,8 @@
     .dg-stage > .dgc{
       position:static !important;
       transform:none !important;
-      width:260px !important;
-      max-width:280px !important;
+      width:280px !important;
+      max-width:300px !important;
       flex:none;
     }
     .dg:hover .dg-stage > .dgc{transform:translateY(-7px) !important;}
@@ -879,8 +887,8 @@
           <span class="fc" style="position:absolute;bottom:12px;left:-52px;z-index:3;"><span style="width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -10px rgba(20,20,30,.28),0 2px 5px -1px rgba(20,20,30,.08);display:flex;align-items:center;justify-content:center;color:#111;"><i data-lucide="clapperboard" style="width:21px;height:21px;"></i></span></span>
           </div>
         </div>
-        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
-            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">01</div>
+        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,280px);max-width:320px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:20px 26px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:500;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">01</div>
             <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">you never repeat the work.</div>
             <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">2 honest hours. your proof travels with every application after that. no fresh brief for every company. no rewriting your story 140 times.</p></div>          </div>
         </div>
@@ -899,8 +907,8 @@
           </span>
           </div>
         </div>
-        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
-            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">02</div>
+        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,280px);max-width:320px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:20px 26px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:500;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">02</div>
             <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a human always reviews you.</div>
             <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">nothing here is auto rejected by a bot. real review, and a real person makes the call.</p></div>          </div>
         </div>
@@ -916,10 +924,10 @@
           <span style="position:absolute;top:22px;right:-50px;z-index:3;"><span class="bp2" style="display:block;width:50px;height:30px;border-radius:15px 15px 15px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.32);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
           </div>
         </div>
-        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
-            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">03</div>
+        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,280px);max-width:320px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:20px 26px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:500;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">03</div>
             <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a response is the rule.</div>
-            <div class="dgb"><p style="margin-bottom:2vh;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p></div>          </div>
+            <div class="dgb"><p style="margin-bottom:1vh;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p></div>          </div>
         </div>
       </div>
 
