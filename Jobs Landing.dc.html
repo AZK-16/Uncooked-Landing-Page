@@ -86,6 +86,12 @@
      Toggled via JS + a plain class (see the 'toggle' listener in componentDidMount),
      not :has(), since :has() support isn't guaranteed in every render target here. */
   .site-nav.nav-open{border-radius:24px 24px 0 0 !important;}
+  /* .nav-veil (the dark-mode overlay) had its own hardcoded border-radius:100px,
+     independent of the pill's own radius -- at the smaller mobile/open radii that
+     left slivers of the pill's light background-image showing through at the
+     corners instead of being covered by the dark veil. Keep them in sync. */
+  @media (max-width:680px){ .nav-veil{border-radius:24px !important;} }
+  .site-nav.nav-open .nav-veil{border-radius:24px 24px 0 0 !important;}
   @media (max-width:900px) and (min-width:681px){
     /* tablet keeps the full navbar, just tightened so it doesn't crowd the edges */
     .site-nav{gap:16px !important;}
@@ -238,7 +244,7 @@
     <!-- sibling, not a child of <details>, so it can be positioned/sized against the
          full nav pill instead of just the hamburger button's own small box -->
     <div class="nav-mobile-menu" style="position:absolute;top:100%;left:0;right:0;grid-template-columns:1fr 1fr;gap:2px;background:#f6f6f7;border:1px solid rgba(0,0,0,0.08);border-top:1px solid rgba(0,0,0,0.1);border-radius:0 0 24px 24px;padding:10px;box-shadow:0 20px 44px -12px rgba(20,20,30,0.28);">
-      <a href="#" class="nav-link-m" style="font-weight:600;font-size:16px;color:#3A3A40;border-radius:14px;padding:14px 16px;">jobs</a>
+      <a href="#" class="nav-link-m nav-active" style="font-weight:600;font-size:16px;color:#3A3A40;border-radius:14px;padding:14px 16px;">jobs</a>
       <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#8a8a90;border-radius:14px;padding:14px 16px;">events</a>
       <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#8a8a90;border-radius:14px;padding:14px 16px;">tracker</a>
       <a href="#" class="nav-link-m" style="font-weight:550;font-size:16px;color:#8a8a90;border-radius:14px;padding:14px 16px;">labs</a>
@@ -557,7 +563,7 @@
   </div><!-- /how it works -->
 
   <!-- ===================== PASSPORT ===================== -->
-  <section data-screen-label="Passport" style="position:relative;padding:clamp(140px,19vh,240px) 24px clamp(24px,3vh,40px);">
+  <section data-screen-label="Passport" style="position:relative;padding:clamp(60px,19vh,240px) 24px clamp(24px,3vh,40px);">
 
     <h2 data-reveal="" class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(48px,6vh,80px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">verify once. apply anywhere.</h2>
 
@@ -768,7 +774,7 @@
   </section>
 
   <!-- ===================== DIFFERENCE ===================== -->
-  <section data-screen-label="Difference" style="position:relative;padding:clamp(140px,19vh,240px) 0 clamp(140px,19vh,240px);overflow:hidden;">
+  <section data-screen-label="Difference" style="position:relative;padding:clamp(60px,19vh,240px) 0 clamp(60px,19vh,240px);overflow:hidden;">
 
     <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(-28px,-2vh,-6px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">what makes uncooked different.</h2>
 
@@ -853,7 +859,7 @@
     </div>
 
     <!-- light resolve -->
-    <div style="position:relative;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(80px,10vh,130px) 24px clamp(24px,3vh,40px);">
+    <div style="position:relative;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(40px,10vh,130px) 24px clamp(16px,2vh,30px);">
       <div data-reveal="" style="width:min(440px,86vw);display:flex;flex-direction:column;align-items:center;gap:22px;">
         <h3 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:700;font-synthesis:none;font-size:clamp(28px,3.8vw,32px);line-height:1.2;letter-spacing:-0.03em;color:#111;">we built the opposite.</h3>
         <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</p>
@@ -865,7 +871,7 @@
   </section>
 
   <!-- ===================== MISSION ===================== -->
-  <section data-screen-label="Mission" style="position:relative;padding:clamp(140px,19vh,240px) 24px clamp(140px,19vh,240px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <section data-screen-label="Mission" style="position:relative;padding:clamp(60px,19vh,240px) 24px clamp(60px,19vh,240px);display:flex;flex-direction:column;align-items:center;text-align:center;">
     <div ref="{{ setPolLayer }}" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
       <div class="pol" data-tilt="-8" style="position:absolute;left:3.5%;top:16%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
@@ -932,7 +938,7 @@
   </section>
 
   <!-- ===================== FINAL CTA ===================== -->
-  <section data-screen-label="Final CTA" data-reveal-center="" style="position:relative;overflow:hidden;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px clamp(140px,19vh,240px);overflow:hidden;">
+  <section data-screen-label="Final CTA" data-reveal-center="" style="position:relative;overflow:hidden;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px clamp(60px,19vh,240px);overflow:hidden;">
 
 
     <!-- paper-plane trails: crop with the viewport, hidden on mobile -->
@@ -1748,6 +1754,17 @@ class Component extends DCLogic {
         if (cta) { cta.style.color = '#fff'; cta.style.background = dark ? '#222528' : '#2E3438'; }
         const dv = n.querySelector('.nav-div');
         if (dv) dv.style.background = dark ? 'rgba(255,255,255,0.16)' : 'rgba(0,0,0,0.10)';
+        const mobileMenu = n.querySelector('.nav-mobile-menu');
+        if (mobileMenu) {
+          mobileMenu.style.background = dark ? '#26262a' : '#f6f6f7';
+          mobileMenu.style.borderColor = dark ? 'rgba(255,255,255,0.14)' : 'rgba(0,0,0,0.08)';
+          mobileMenu.style.borderTopColor = dark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.1)';
+        }
+        n.querySelectorAll('.nav-link-m').forEach((el) => {
+          const act = el.classList.contains('nav-active');
+          if (act) { el.style.color = dark ? '#fff' : '#3A3A40'; return; }
+          el.style.color = dark ? 'rgba(255,255,255,0.55)' : '#8a8a90';
+        });
 
       }
     }
