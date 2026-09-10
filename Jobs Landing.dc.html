@@ -187,7 +187,41 @@
   /* difference: stack the 3 cards instead of squeezing them into one row
      (each card's info bubble has a 240px floor, so 3-up starts clipping below ~900px) */
   @media (max-width:900px){
-    .difference-grid{grid-template-columns:1fr !important;row-gap:48px !important;}
+    .difference-grid{grid-template-columns:1fr !important;row-gap:72px !important;}
+  }
+
+  /* difference: on tablet (as opposed to phone) put the illustration and its text
+     box side by side instead of stacked. .dgc drops out of absolute positioning into
+     a normal flex child, so align-items:center on .dg-stage keeps it vertically
+     centered against the illustration automatically as .dgb's expanded/collapsed
+     height changes -- no JS recalculation needed, that's just how flex centering works. */
+  @media (max-width:900px) and (min-width:640px){
+    .dg{width:100% !important;justify-content:center !important;}
+    .dg-stage{
+      flex:none !important;
+      flex-direction:row !important;
+      align-items:center !important;
+      justify-content:center !important;
+      height:auto !important;
+      margin:0 auto !important;
+      width:fit-content !important;
+      gap:72px;
+    }
+    /* fixed width, same for all 3 cards, with the (differently-sized) illustration
+       centered inside it -- otherwise each .dg-stage's total width differs by however
+       wide its own illustration happens to be, so centering each one independently
+       still leaves the text boxes landing at different horizontal positions per card.
+       With this, all three .dg-stage widths match exactly, so identically-centering
+       each one also lines up their text boxes. */
+    .dg-stage > .dg-illus{flex:none;width:210px;display:flex;align-items:flex-end;justify-content:center;}
+    .dg-stage > .dgc{
+      position:static !important;
+      transform:none !important;
+      width:260px !important;
+      max-width:280px !important;
+      flex:none;
+    }
+    .dg:hover .dg-stage > .dgc{transform:translateY(-3px) !important;}
   }
 
   /* mission: this doodle clips past the viewport edge below ~640px */
@@ -774,59 +808,71 @@
   </section>
 
   <!-- ===================== DIFFERENCE ===================== -->
-  <section data-screen-label="Difference" style="position:relative;padding:clamp(60px,19vh,240px) 0 clamp(60px,19vh,240px);overflow:hidden;">
+  <section data-screen-label="Difference" style="position:relative;padding:clamp(60px,19vh,240px) 0 clamp(48px,15vh,190px);overflow:hidden;">
 
-    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(-28px,-2vh,-6px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">what makes uncooked different.</h2>
+    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(4px,0.8vh,20px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">what makes uncooked different.</h2>
 
-    <div class="difference-grid" style="position:relative;width:min(1240px,90vw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,52px);align-items:start;padding-top:clamp(60px,8vh,110px);">
+    <div class="difference-grid" style="position:relative;width:min(1240px,90vw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,52px);align-items:start;padding-top:clamp(60px,6vh,80px);">
 
       <!-- 1 -->
       <div class="dg dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:relative;align-self:center;height:clamp(132px,13vw,180px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(210px,23vh,244px);">
-        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,240px);max-width:270px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:16px 20px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
-            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:22px;line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">01</div>
-            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:17px;line-height:1.2;letter-spacing:-0.02em;color:#111;">you never repeat the work.</div>
-            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:14.5px;line-height:1.5;color:#5f5f66;text-wrap:pretty;">2 honest hours. your proof travels with every application after that. no fresh brief for every company. no rewriting your story 140 times.</p></div>
-            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
-          </div>
-          <img src="uploads/ghost using phone-2816c0bb.svg" alt="" style="height:clamp(128px,12.6vw,176px);width:auto;display:block;position:relative;z-index:2;">
+        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(225px,24vh,260px);">
+        <div class="dg-illus" style="position:relative;">
+          <div style="position:relative;">
+          <img src="uploads/ghost using phone-2816c0bb.svg" alt="" style="height:clamp(144px,14.1vw,197px);width:auto;display:block;position:relative;z-index:2;">
           <span class="fa" style="position:absolute;top:-6px;right:-40px;z-index:3;"><span style="width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -10px rgba(20,20,30,.28),0 2px 5px -1px rgba(20,20,30,.08);display:flex;align-items:center;justify-content:center;color:#111;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:21px;height:21px;display:block;"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span></span>
           <span class="fb" style="position:absolute;top:44px;right:-58px;z-index:3;"><span style="width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -10px rgba(20,20,30,.28),0 2px 5px -1px rgba(20,20,30,.08);display:flex;align-items:center;justify-content:center;color:#111;"><img src="uploads/Sequoia.png" alt="Sequoia" style="width:26px;height:26px;border-radius:50%;object-fit:cover;display:block;"></span></span>
           <span class="fd" style="position:absolute;bottom:74px;left:-62px;z-index:3;"><span style="width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -10px rgba(20,20,30,.28),0 2px 5px -1px rgba(20,20,30,.08);display:flex;align-items:center;justify-content:center;color:#111;"><img src="uploads/Sequencing-1fa22c63.png" alt="Sequencing" style="width:26px;height:26px;border-radius:50%;object-fit:cover;display:block;"></span></span>
           <span class="fc" style="position:absolute;bottom:12px;left:-52px;z-index:3;"><span style="width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -10px rgba(20,20,30,.28),0 2px 5px -1px rgba(20,20,30,.08);display:flex;align-items:center;justify-content:center;color:#111;"><i data-lucide="clapperboard" style="width:21px;height:21px;"></i></span></span>
+          </div>
+        </div>
+        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">01</div>
+            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">you never repeat the work.</div>
+            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">2 honest hours. your proof travels with every application after that. no fresh brief for every company. no rewriting your story 140 times.</p></div>
+            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
+          </div>
         </div>
       </div>
 
       <!-- 2 -->
       <div class="dg dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:relative;align-self:center;height:clamp(132px,13vw,180px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(210px,23vh,244px);">
-        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,240px);max-width:270px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:16px 20px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
-            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:22px;line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">02</div>
-            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:17px;line-height:1.2;letter-spacing:-0.02em;color:#111;">a human always reviews you.</div>
-            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:14.5px;line-height:1.5;color:#5f5f66;text-wrap:pretty;">nothing here is auto rejected by a bot. real review, and a real person makes the call.</p></div>
-            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
-          </div>
-          <img src="uploads/human review.svg" alt="" style="height:clamp(118px,11.6vw,160px);width:auto;display:block;position:relative;z-index:2;">
-          <span style="position:absolute;top:-14px;right:-46px;z-index:3;display:flex;align-items:center;justify-content:center;gap:6px;width:72px;height:40px;border-radius:20px 20px 20px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);">
+        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(225px,24vh,260px);">
+        <div class="dg-illus" style="position:relative;">
+          <div style="position:relative;">
+          <img src="uploads/human review.svg" alt="" style="height:clamp(132px,13vw,179px);width:auto;display:block;position:relative;z-index:2;">
+          <span style="position:absolute;top:-22px;right:-56px;z-index:3;display:flex;align-items:center;justify-content:center;gap:6px;width:72px;height:40px;border-radius:20px 20px 20px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);">
             <span class="td1" style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span>
             <span class="td2" style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span>
             <span class="td3" style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span>
           </span>
+          </div>
+        </div>
+        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">02</div>
+            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a human always reviews you.</div>
+            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">nothing here is auto rejected by a bot. real review, and a real person makes the call.</p></div>
+            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
+          </div>
         </div>
       </div>
 
       <!-- 3 -->
       <div class="dg dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:relative;align-self:center;height:clamp(132px,13vw,180px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(210px,23vh,244px);">
-        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,240px);max-width:270px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:16px 20px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
-            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:22px;line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">03</div>
-            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:17px;line-height:1.2;letter-spacing:-0.02em;color:#111;">a response is<br>the rule.</div>
-            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:14.5px;line-height:1.5;color:#5f5f66;text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p></div>
+        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(225px,24vh,260px);">
+        <div class="dg-illus" style="position:relative;">
+          <div style="position:relative;">
+          <img src="uploads/ghost talking on phone-e9a68fd0.svg" alt="" style="height:clamp(148px,14.5vw,202px);width:auto;display:block;position:relative;z-index:2;">
+          <span style="position:absolute;top:-24px;left:-44px;z-index:3;"><span class="bp1" style="display:block;width:58px;height:34px;border-radius:17px 17px 6px 17px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
+          <span style="position:absolute;top:22px;right:-50px;z-index:3;"><span class="bp2" style="display:block;width:50px;height:30px;border-radius:15px 15px 15px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
+          </div>
+        </div>
+        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">03</div>
+            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a response is<br>the rule.</div>
+            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p></div>
             <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
           </div>
-          <img src="uploads/ghost talking on phone-e9a68fd0.svg" alt="" style="height:clamp(132px,13vw,180px);width:auto;display:block;position:relative;z-index:2;">
-          <span style="position:absolute;top:-16px;left:-34px;z-index:3;"><span class="bp1" style="display:block;width:58px;height:34px;border-radius:17px 17px 6px 17px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
-          <span style="position:absolute;top:16px;right:-40px;z-index:3;"><span class="bp2" style="display:block;width:50px;height:30px;border-radius:15px 15px 15px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
         </div>
       </div>
 
