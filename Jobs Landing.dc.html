@@ -56,11 +56,12 @@
   .dg:hover .bp1{animation:bpulse 2.6s ease-in-out infinite;}
   .dg:hover .bp2{animation:bpulse 2.6s ease-in-out .5s infinite;}
   .dgc{transition:box-shadow .3s ease,transform .3s ease;}
-  .dg:hover .dgc{transform:translate(-50%,-3px);box-shadow:0 18px 40px -14px rgba(20,20,30,.28),0 3px 10px -2px rgba(20,20,30,.1);}
-  .dga{transition:opacity .22s ease,transform .3s ease;}
-  .dg:hover .dga{opacity:0;transform:translateY(4px);}
-  .dgb{max-height:0;opacity:0;overflow:hidden;transition:max-height .42s cubic-bezier(.22,.7,.3,1),opacity .3s ease,margin-top .42s cubic-bezier(.22,.7,.3,1);margin-top:0;}
-  .dg:hover .dgb{max-height:200px;opacity:1;margin-top:10px;}
+  .dg:hover .dgc{transform:translate(-50%,-7px) !important;box-shadow:0 18px 40px -14px rgba(20,20,30,.28),0 3px 10px -2px rgba(20,20,30,.1) !important;}
+  /* description used to be collapsed and only reveal on hover, with a chevron as the
+     "there's more" cue; now it's always shown, so both the expand/retract and the
+     chevron (removed from the markup) are gone -- hover only drives the illustration's
+     own micro-animations (the floating icon badges, dots, bubbles further down) */
+  .dgb{margin-top:10px;}
   @keyframes dropL{0%{opacity:0;transform:rotate(0deg)}10%{opacity:1}100%{opacity:1;transform:rotate(14deg)}}
   @keyframes dropR{0%{opacity:0;transform:rotate(0deg)}10%{opacity:1}100%{opacity:1;transform:rotate(-14deg)}}
   .cq{pointer-events:auto;cursor:default;z-index:1;}
@@ -231,7 +232,7 @@
       height:auto !important;
       margin:0 auto !important;
       width:fit-content !important;
-      gap:72px;
+      gap:84px;
     }
     /* fixed width, same for all 3 cards, with the (differently-sized) illustration
        centered inside it -- otherwise each .dg-stage's total width differs by however
@@ -247,7 +248,7 @@
       max-width:280px !important;
       flex:none;
     }
-    .dg:hover .dg-stage > .dgc{transform:translateY(-3px) !important;}
+    .dg:hover .dg-stage > .dgc{transform:translateY(-7px) !important;}
   }
 
   /* mission: this doodle clips past the viewport edge below ~640px */
@@ -284,12 +285,6 @@
      heading is dropped so it just wraps naturally instead of forcing a break
      at that exact word */
   @media (max-width:900px){.belief-h2-break{display:none;}}
-
-  /* touch devices have no hover: keep the difference-card description reachable */
-  @media (hover:none){
-    .dgb{max-height:200px !important;opacity:1 !important;margin-top:10px !important;}
-    .dga{display:none !important;}
-  }
 
   /* footer: stack logo / nav / social, let the link row wrap, and grow the tap targets */
   @media (max-width:640px){
@@ -884,12 +879,10 @@
           <span class="fc" style="position:absolute;bottom:12px;left:-52px;z-index:3;"><span style="width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -10px rgba(20,20,30,.28),0 2px 5px -1px rgba(20,20,30,.08);display:flex;align-items:center;justify-content:center;color:#111;"><i data-lucide="clapperboard" style="width:21px;height:21px;"></i></span></span>
           </div>
         </div>
-        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
             <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">01</div>
             <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">you never repeat the work.</div>
-            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">2 honest hours. your proof travels with every application after that. no fresh brief for every company. no rewriting your story 140 times.</p></div>
-            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
-          </div>
+            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">2 honest hours. your proof travels with every application after that. no fresh brief for every company. no rewriting your story 140 times.</p></div>          </div>
         </div>
       </div>
 
@@ -899,19 +892,17 @@
         <div class="dg-illus" style="position:relative;">
           <div style="position:relative;">
           <img src="uploads/human review.svg" alt="" style="height:clamp(132px,13vw,179px);width:auto;display:block;position:relative;z-index:2;">
-          <span style="position:absolute;top:-22px;right:-56px;z-index:3;display:flex;align-items:center;justify-content:center;gap:6px;width:72px;height:40px;border-radius:20px 20px 20px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);">
+          <span style="position:absolute;top:-22px;right:-56px;z-index:3;display:flex;align-items:center;justify-content:center;gap:6px;width:72px;height:40px;border-radius:20px 20px 20px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.32);">
             <span class="td1" style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span>
             <span class="td2" style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span>
             <span class="td3" style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span>
           </span>
           </div>
         </div>
-        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
             <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">02</div>
             <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a human always reviews you.</div>
-            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">nothing here is auto rejected by a bot. real review, and a real person makes the call.</p></div>
-            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
-          </div>
+            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">nothing here is auto rejected by a bot. real review, and a real person makes the call.</p></div>          </div>
         </div>
       </div>
 
@@ -921,16 +912,14 @@
         <div class="dg-illus" style="position:relative;">
           <div style="position:relative;">
           <img src="uploads/ghost talking on phone-e9a68fd0.svg" alt="" style="height:clamp(148px,14.5vw,202px);width:auto;display:block;position:relative;z-index:2;">
-          <span style="position:absolute;top:-24px;left:-44px;z-index:3;"><span class="bp1" style="display:block;width:58px;height:34px;border-radius:17px 17px 6px 17px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
-          <span style="position:absolute;top:22px;right:-50px;z-index:3;"><span class="bp2" style="display:block;width:50px;height:30px;border-radius:15px 15px 15px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.22);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
+          <span style="position:absolute;top:-24px;left:-44px;z-index:3;"><span class="bp1" style="display:block;width:58px;height:34px;border-radius:17px 17px 6px 17px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.32);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span><span style="width:6px;height:6px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
+          <span style="position:absolute;top:22px;right:-50px;z-index:3;"><span class="bp2" style="display:block;width:50px;height:30px;border-radius:15px 15px 15px 6px;background:#fff;border:1px solid rgba(0,0,0,0.18);box-shadow:0 8px 20px -14px rgba(20,20,30,.32);"><span style="display:flex;align-items:center;justify-content:center;gap:5px;width:100%;height:100%;"><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span><span style="width:5px;height:5px;border-radius:50%;background:#111;display:block;"></span></span></span></span>
           </div>
         </div>
-        <div class="dgc" style="position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
+        <div class="dgc" style="position:absolute;top:calc(100% + 32px);left:50%;transform:translateX(-50%);width:max(100%,260px);max-width:300px;z-index:6;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 22px;text-align:center;box-shadow:0 10px 26px -14px rgba(20,20,30,.22),0 2px 6px -1px rgba(20,20,30,.07);">
             <div style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2.2vw,23px);line-height:1;letter-spacing:-0.01em;color:#E62B15;margin-bottom:6px;">03</div>
-            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a response is<br>the rule.</div>
-            <div class="dgb"><p style="margin:0;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p></div>
-            <div class="dga" style="display:flex;justify-content:center;margin-top:8px;color:#b9b9c0;"><i data-lucide="chevron-down" style="width:17px;height:17px;"></i></div>
-          </div>
+            <div style="font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-synthesis:none;font-size:clamp(15px,1.7vw,18px);line-height:1.2;letter-spacing:-0.02em;color:#111;">a response is the rule.</div>
+            <div class="dgb"><p style="margin-bottom:2vh;font-family:'Satoshi',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.4vw,15px);line-height:1.5;color:#5f5f66;text-wrap:pretty;">every application on the platform gets an answer within 7 days. from an actual human at the startup. not a bot. not an AI recruiter.</p></div>          </div>
         </div>
       </div>
 
@@ -1316,6 +1305,7 @@ class Component extends DCLogic {
     }
     this.positionRail();
     this.positionPassportLine();
+    this.equalizeDifferenceCards();
     this.positionDifferenceStages();
     this.update();
     this.sweepReveals();
@@ -1737,6 +1727,20 @@ class Component extends DCLogic {
     });
   }
 
+  // makes all 3 .dgc boxes the same height (the tallest one's natural height, which
+  // is card 3's -- the longest description). Reset to auto and re-measure each time
+  // rather than only ever growing, so it stays correct if content/viewport changes.
+  // Content inside stays top-aligned (not vertically centered), so shorter
+  // descriptions just leave blank space at the bottom of their box, matching the
+  // reference layout this was modeled on.
+  equalizeDifferenceCards() {
+    const boxes = [...document.querySelectorAll('.dgc')];
+    if (!boxes.length) return;
+    boxes.forEach((box) => { box.style.minHeight = ''; });
+    const max = Math.max(...boxes.map((box) => box.offsetHeight));
+    boxes.forEach((box) => { box.style.minHeight = max + 'px'; });
+  }
+
   // .dgc (the difference-card tooltip) sits absolutely positioned below its
   // illustration, so the stage above it needs a reserved margin-bottom or the next
   // card would sit on top of it. That margin used to be one large static guess
@@ -1761,7 +1765,7 @@ class Component extends DCLogic {
       const dgb = dgc.querySelector('.dgb');
       const prevMax = dgb ? dgb.style.maxHeight : '';
       if (dgb) dgb.style.maxHeight = 'none';
-      maxNeeded = Math.max(maxNeeded, 22 + dgc.offsetHeight + 10);
+      maxNeeded = Math.max(maxNeeded, 32 + dgc.offsetHeight + 10);
       if (dgb) dgb.style.maxHeight = prevMax;
     });
     stages.forEach((stage) => {
