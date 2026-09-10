@@ -79,8 +79,31 @@
   .nav-more{position:relative;display:none;}
   .nav-more summary.nav-hamburger{list-style:none;}
   .nav-more summary.nav-hamburger::-webkit-details-marker{display:none;}
-  .nav-mobile-menu{display:none;}
-  .nav-more[open] ~ .nav-mobile-menu{display:grid;}
+  /* unfurl the dropdown open/closed instead of an instant display:none/grid swap --
+     display itself can't be transitioned, so it stays display:grid always and
+     max-height/padding/opacity/transform do the animating. max-height:420px on open
+     is a generous cap (not the real content height) -- same "animate toward a
+     roomy fixed max-height" approach already used for .dgb elsewhere in this file. */
+  .nav-mobile-menu{
+    display:grid;
+    max-height:0;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+    opacity:0;
+    transform:translateY(-8px) scaleY(0.92);
+    transform-origin:top center;
+    overflow:hidden;
+    pointer-events:none;
+    transition:max-height .38s cubic-bezier(.22,.7,.3,1),opacity .24s ease,transform .38s cubic-bezier(.22,.7,.3,1),padding-top .38s cubic-bezier(.22,.7,.3,1),padding-bottom .38s cubic-bezier(.22,.7,.3,1);
+  }
+  .nav-more[open] ~ .nav-mobile-menu{
+    max-height:420px;
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+    opacity:1;
+    transform:translateY(0) scaleY(1);
+    pointer-events:auto;
+  }
   /* when open, square off the pill's bottom corners so it reads as one continuous
      rounded shape with the dropdown flush underneath, rather than two stacked pieces.
      Toggled via JS + a plain class (see the 'toggle' listener in componentDidMount),
