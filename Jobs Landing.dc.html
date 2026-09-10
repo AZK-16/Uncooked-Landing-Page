@@ -253,6 +253,38 @@
   /* mission: this doodle clips past the viewport edge below ~640px */
   @media (max-width:640px){.mission-arrow{display:none !important;}}
 
+  /* belief card: desktop is head-beside-body with a vertical rule (row layout);
+     tablet/mobile put the serif head full-width above a horizontal rule instead,
+     with the body below it -- same head/rule/body pieces, just re-flowed. */
+  @media (max-width:900px){
+    .belief-row{flex-direction:column !important;padding-top:0 !important;}
+    .belief-head-col{padding-right:0 !important;justify-content:center !important;align-items:center !important;}
+    .belief-h2{text-align:center !important;padding:clamp(22px,3vw,32px) 0 clamp(20px,2.5vw,26px) !important;}
+    .belief-h3{text-align:center !important;padding:0 0 clamp(20px,2.5vw,24px) !important;}
+    .belief-vdiv{width:100% !important;height:1px !important;}
+    .belief-body-col{padding-left:0 !important;padding-top:clamp(20px,3vw,28px) !important;}
+  }
+  /* tablet only: the dark half's 4 body paragraphs split into two columns
+     (p1+p2 left, quote+p4 right). Each pair is its own flex column
+     (.belief-dark-group) so the two sides size to their OWN content height
+     independently -- a shared grid row (the previous approach) would force
+     both columns' first row to match the taller one, leaving a gap under the
+     shorter item before its own second item that doesn't match the other
+     column's gap. Side by side (flex-direction:row) only at this breakpoint;
+     at desktop/mobile the two groups just stack in the one column, reading as
+     a single flat list since gap matches gap at every level. The divider
+     between the two columns is a pseudo-element rather than a real one, since
+     a real one would collide with the quote's own red accent border. */
+  @media (max-width:900px) and (min-width:640px){
+    .belief-body-dark{position:relative;flex-direction:row !important;}
+    .belief-dark-group{flex:1;min-width:0;}
+    .belief-body-dark::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.16);}
+  }
+  /* tablet + mobile: the doodle at the "isn't / broken" break in the desktop
+     heading is dropped so it just wraps naturally instead of forcing a break
+     at that exact word */
+  @media (max-width:900px){.belief-h2-break{display:none;}}
+
   /* touch devices have no hover: keep the difference-card description reachable */
   @media (hover:none){
     .dgb{max-height:200px !important;opacity:1 !important;margin-top:10px !important;}
@@ -907,37 +939,62 @@
   </section>
 
   <!-- ===================== BELIEF ===================== -->
-  <section data-screen-label="Belief" style="position:relative;">
+  <section data-screen-label="Belief" style="position:relative;padding:clamp(32px,5vh,64px) 24px clamp(16px,2vh,28px);">
 
-    <!-- dark band -->
-    <div ref="{{ setDarkBand }}" style="position:relative;">
-      <div style="position:absolute;inset:0;background:#1b1b1e;background-image:linear-gradient(to right,rgba(255,255,255,0.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.045) 1px,transparent 1px);background-size:48px 48px;background-position:center top;pointer-events:none;"></div>
+    <!-- a single bordered card, dark half over light half, rather than two
+         full-bleed screens -- narrower than the page so the grid backdrop
+         shows around it, but wider than the nav pill above it -->
+    <div class="belief-card dfin" data-reveal="" data-di="0" style="opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,.7,.3,1);position:relative;width:min(1180px,92vw);margin:0 auto;border:1px solid rgba(0,0,0,0.10);border-radius:4px;overflow:hidden;box-shadow:0 30px 70px -34px rgba(20,20,30,0.28);">
 
-      <div style="position:relative;z-index:1;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(120px,18vh,220px) 24px clamp(120px,18vh,220px);">
-        <div data-reveal="" style="width:min(560px,88vw);display:flex;flex-direction:column;align-items:center;gap:clamp(26px,3.4vh,40px);">
+      <!-- dark half -->
+      <div ref="{{ setDarkBand }}" style="position:relative;background:#161618;padding:clamp(28px,6vw,64px) clamp(24px,6.5vw,72px) clamp(34px,5vw,68px);">
 
-          <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.5vw,50px);letter-spacing:-0.03em;line-height:1.06;color:#fff;text-wrap:balance;">the job market isn't broken.<br>it's <span style="font-style:italic;">cooked.</span></h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:clamp(13px,1.5vw,18px);border-bottom:1px solid rgba(255,255,255,0.16);">
+          <span class="dfin" data-di="1" style="opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.7,.3,1);font-weight:700;font-size:clamp(9.5px,1vw,11px);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,0.58);">OUR BELIEF</span>
+          <span class="dfin" data-di="1" style="opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.7,.3,1);font-weight:700;font-size:clamp(9.5px,1vw,11px);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,0.58);">UNCOOKED</span>
+        </div>
 
-          <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.</p>
+        <div class="belief-row" style="display:flex;align-items:stretch;padding-top:clamp(24px,4vw,46px);">
+          <div class="belief-head-col" style="flex:1;min-width:0;padding-right:clamp(24px,4vw,52px);display:flex;align-items:flex-start;">
+            <h2 class="dfin belief-h2" data-di="2" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,6vw,52px);line-height:1;letter-spacing:-0.022em;color:#fff;">the job market isn't <br class="belief-h2-break">broken. <span style="font-style:italic;">it's cooked.</span></h2>
+          </div>
 
-          <p class="dfin" data-di="2" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">qualified people get filtered out for not matching the wording exactly. most ghosting happens right after you hit submit.</p>
+          <div class="belief-vdiv" style="flex:none;width:1px;background:rgba(255,255,255,0.16);"></div>
 
-          <p class="dfin" data-di="3" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:700;font-synthesis:none;font-size:clamp(19px,1.8vw,14px);line-height:1.32;letter-spacing:-0.025em;color:#fff;white-space:nowrap;">rejection emails go out at 1:30 in the morning.<br>nobody was awake. nobody read it.</p>
-
-          <p class="dfin" data-di="4" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:rgba(255,255,255,0.62);text-wrap:pretty;">nobody is judging what you can do. a machine is skimming what you wrote about it.</p>
-
+          <div class="belief-body-col belief-body-dark" style="flex:1;min-width:0;padding-left:clamp(24px,4vw,52px);display:flex;flex-direction:column;gap:clamp(18px,1.5vw,24px);column-gap:clamp(24px,3vw,40px);">
+            <div class="belief-dark-group" style="display:flex;flex-direction:column;gap:clamp(18px,1.5vw,24px);">
+            <p class="dfin" data-di="3" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1vw,16px);line-height:1.6;color:rgba(255,255,255,0.72);">here's what actually happens when you apply. software ranks you by keywords before any person looks. a recruiter gets about 7 seconds with your CV, if they see it at all.</p>
+            <p class="dfin" data-di="3" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1vw,16px);line-height:1.6;color:rgba(255,255,255,0.72);">qualified people get filtered out for not matching the wording exactly. most ghosting happens right after you hit submit.</p>
+            </div>
+            <div class="belief-dark-group" style="display:flex;flex-direction:column;gap:clamp(18px,1.5vw,24px);">
+            <div class="dfin belief-quote" data-di="4" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);padding-left:14px;border-left:3px solid #E62B15;">
+              <p style="margin:0;font-weight:700;font-synthesis:none;font-size:clamp(18px,2vw,21px);line-height:1.3;letter-spacing:-0.02em;color:#fff;">rejection emails go out at 1:30 in the morning. nobody was awake. nobody read it.</p>
+            </div>
+            <p class="dfin" data-di="4" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1vw,16px);line-height:1.6;color:rgba(255,255,255,0.72);">nobody is judging what you can do. a machine is skimming what you wrote about it.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- light resolve -->
-    <div style="position:relative;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(40px,10vh,130px) 24px clamp(16px,2vh,30px);">
-      <div data-reveal="" style="width:min(440px,86vw);display:flex;flex-direction:column;align-items:center;gap:22px;">
-        <h3 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:700;font-synthesis:none;font-size:clamp(28px,3.8vw,32px);line-height:1.2;letter-spacing:-0.03em;color:#111;">we built the opposite.</h3>
-        <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(16px,1.4vw,14px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</p>
-        <a href="#" class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin-top:6px;display:inline-flex;align-items:center;justify-content:center;background:#E62B15;color:#fff;font-weight:700;font-size:15px;padding:13px 30px;border-radius:100px;transition:background .2s,transform .2s;box-shadow:0 10px 24px -8px rgba(230,43,21,.5);" style-hover="background:#c31f0c;transform:translateY(-2px);color:#fff;">get seen</a>
-        <div class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-weight:500;font-size:13px;color:#9a9aa0;">free for candidates · early members get matched first</div>
+      <!-- light half -->
+      <div style="position:relative;background:#fff;padding:clamp(28px,3vw,44px) clamp(24px,5vw,52px) clamp(28px,3vw,46px);">
+        <div class="belief-row" style="display:flex;align-items:stretch;">
+          <div class="belief-head-col" style="flex:1;min-width:0;padding-right:clamp(24px,4vw,52px);display:flex;align-items:flex-start;">
+            <h3 class="dfin belief-h3" data-di="5" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,6vw,52px);line-height:1;letter-spacing:-0.022em;color:#111;">we built the <span style="font-style:italic;">opposite.</span></h3>
+          </div>
+
+          <div class="belief-vdiv" style="flex:none;width:1px;background:rgba(0,0,0,0.12);"></div>
+
+          <div class="belief-body-col" style="flex:1;min-width:0;padding-left:clamp(24px,4vw,52px);display:flex;flex-direction:column;gap:clamp(18px,1.2vw,22px);align-items:center;text-align:center;">
+            <p class="dfin" data-di="6" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1vw,16px);line-height:1.6;color:#5f5f66;max-width:56ch;text-align:justify;text-align-last:center;">startups see your actual work, verified, before the first call. a human reviews every application. and every single one gets an answer. it's the rule.</p>
+            <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+              <a href="#" class="dfin" data-di="6" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:inline-flex;align-items:center;justify-content:center;background:#E62B15;color:#fff;font-weight:700;font-size:15px;padding:14px 34px;border-radius:100px;transition:background .25s ease,transform .25s cubic-bezier(.22,.7,.3,1),box-shadow .25s ease;box-shadow:0 6px 16px -10px rgba(230,43,21,.35),0 0 22px 2px rgba(230,43,21,.2);" style-hover="background:#c31f0c;transform:translateY(-2px) scale(1.035);color:#fff;box-shadow:0 10px 26px -8px rgba(230,43,21,.55),0 0 34px 8px rgba(230,43,21,.38);">get seen</a>
+              <div class="dfin" data-di="6" style="opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);font-weight:500;font-size:clamp(11.5px,1vw,12px);color:#9a9aa0;">free for candidates · early members get matched first</div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
 
   </section>
@@ -945,32 +1002,32 @@
   <!-- ===================== MISSION ===================== -->
   <section data-screen-label="Mission" style="position:relative;padding:clamp(60px,19vh,240px) 24px clamp(60px,19vh,240px);display:flex;flex-direction:column;align-items:center;text-align:center;">
     <div ref="{{ setPolLayer }}" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
-      <div class="pol" data-tilt="-8" style="position:absolute;left:3.5%;top:16%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
+      <div class="pol" data-tilt="-8" style="position:absolute;left:3.5%;top:16%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
           <img src="pol-1.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
       </div>
-      <div class="pol" data-tilt="6" style="position:absolute;left:7%;top:44%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
+      <div class="pol" data-tilt="6" style="position:absolute;left:7%;top:44%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
           <img src="pol-2.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
       </div>
-      <div class="pol" data-tilt="-5" style="position:absolute;left:2.5%;top:70%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
+      <div class="pol" data-tilt="-5" style="position:absolute;left:2.5%;top:70%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
           <img src="pol-3.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
       </div>
-      <div class="pol" data-tilt="7" style="position:absolute;right:3.5%;top:14%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
+      <div class="pol" data-tilt="7" style="position:absolute;right:3.5%;top:14%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
           <img src="pol-4.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
       </div>
-      <div class="pol" data-tilt="-6" style="position:absolute;right:6.5%;top:42%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
+      <div class="pol" data-tilt="-6" style="position:absolute;right:6.5%;top:42%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
           <img src="pol-5.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
       </div>
-      <div class="pol" data-tilt="5" style="position:absolute;right:2.5%;top:69%;width:min(clamp(136px,12.2vw,180px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
+      <div class="pol" data-tilt="5" style="position:absolute;right:2.5%;top:69%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 30px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
           <img src="pol-6.jpg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
@@ -982,11 +1039,11 @@
 
       <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1.06;color:#111;text-wrap:balance;">why we're doing this.</h2>
 
-      <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">it's never been harder to be young and looking for work in the UK. <strong style="font-weight:700;color:#111;">over 1 million</strong> young people are out of work or education. entry level roles have dropped by <strong style="font-weight:700;color:#111;">nearly a third</strong> since ChatGPT launched. <strong style="font-weight:700;color:#111;">70 people</strong> now fight for every graduate job. and <strong style="font-weight:700;color:#111;">more than half</strong> of candidates get ghosted.</p>
+      <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-align:justify;text-align-last:center;">it's never been harder to be young and looking for work in the UK. <strong style="font-weight:700;color:#111;">over 1 million</strong> young people are out of work or education. entry level roles have dropped by <strong style="font-weight:700;color:#111;">nearly a third</strong> since ChatGPT launched. <strong style="font-weight:700;color:#111;">70 people</strong> now fight for every graduate job. and <strong style="font-weight:700;color:#111;">more than half</strong> of candidates get ghosted.</p>
 
-      <p class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</p>
+      <p class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-align:justify;text-align-last:center;">but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</p>
 
-      <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">we think what you can do should matter more than where you went or who you know.</p>
+      <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-align:justify;text-align-last:center;">we think what you can do should matter more than where you went or who you know.</p>
 
       <p class="dfin" data-di="0" style="opacity: 0; transform: translateY(18px); transition: opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1); margin: 0; font-weight: 700; font-synthesis: none; font-size: clamp(17px,1.65vw,21px); line-height: 1.3; letter-spacing: -0.025em; color: #111">that's why we're here: to help 1 million young people into meaningful opportunities by 2030.</p>
 
