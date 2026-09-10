@@ -189,6 +189,9 @@
   @media (max-width:900px){
     .difference-grid{grid-template-columns:1fr !important;row-gap:72px !important;}
   }
+  @media (max-width:639px){
+    .difference-grid{row-gap:24px !important;}
+  }
 
   /* difference: on tablet (as opposed to phone) put the illustration and its text
      box side by side instead of stacked. .dgc drops out of absolute positioning into
@@ -816,7 +819,7 @@
 
       <!-- 1 -->
       <div class="dg dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(225px,24vh,260px);">
+        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(60px,8vh,90px);">
         <div class="dg-illus" style="position:relative;">
           <div style="position:relative;">
           <img src="uploads/ghost using phone-2816c0bb.svg" alt="" style="height:clamp(144px,14.1vw,197px);width:auto;display:block;position:relative;z-index:2;">
@@ -837,7 +840,7 @@
 
       <!-- 2 -->
       <div class="dg dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(225px,24vh,260px);">
+        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(60px,8vh,90px);">
         <div class="dg-illus" style="position:relative;">
           <div style="position:relative;">
           <img src="uploads/human review.svg" alt="" style="height:clamp(132px,13vw,179px);width:auto;display:block;position:relative;z-index:2;">
@@ -859,7 +862,7 @@
 
       <!-- 3 -->
       <div class="dg dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(225px,24vh,260px);">
+        <div class="dg-stage" style="position:relative;align-self:center;height:clamp(148px,14.5vw,202px);display:flex;align-items:flex-end;justify-content:center;margin-bottom:clamp(60px,8vh,90px);">
         <div class="dg-illus" style="position:relative;">
           <div style="position:relative;">
           <img src="uploads/ghost talking on phone-e9a68fd0.svg" alt="" style="height:clamp(148px,14.5vw,202px);width:auto;display:block;position:relative;z-index:2;">
@@ -1228,6 +1231,7 @@ class Component extends DCLogic {
     }
     this.positionRail();
     this.positionPassportLine();
+    this.positionDifferenceStages();
     this.update();
     this.sweepReveals();
     this.watchTrack();
@@ -1645,6 +1649,38 @@ class Component extends DCLogic {
         el.style.opacity = '1';
         if (!el.classList.contains('dfin-o')) el.style.transform = 'none';
       }
+    });
+  }
+
+  // .dgc (the difference-card tooltip) sits absolutely positioned below its
+  // illustration, so the stage above it needs a reserved margin-bottom or the next
+  // card would sit on top of it. That margin used to be one large static guess
+  // (clamp(225px,24vh,260px)) sized for the worst case: .dgb's description fully
+  // expanded, which is always the case on touch (see the hover:none rule) rather
+  // than only on desktop hover.
+  //
+  // First pass measured each card's own .dgc and used that height directly --
+  // tighter, but since the 3 cards' descriptions aren't the same length, that made
+  // the 3 gaps unequal (card 1's shorter description left a smaller reserved
+  // margin than card 2's longer one, so the 1->2 and 2->3 gaps no longer matched).
+  // Measure all three first, then apply the largest to all of them, so every card
+  // has enough room (still no overlap) but the visible rhythm stays consistent.
+  positionDifferenceStages() {
+    const stages = [...document.querySelectorAll('.dg-stage')];
+    let maxNeeded = 0;
+    let anyAbsolute = false;
+    stages.forEach((stage) => {
+      const dgc = stage.querySelector('.dgc');
+      if (!dgc || getComputedStyle(dgc).position !== 'absolute') return;
+      anyAbsolute = true;
+      const dgb = dgc.querySelector('.dgb');
+      const prevMax = dgb ? dgb.style.maxHeight : '';
+      if (dgb) dgb.style.maxHeight = 'none';
+      maxNeeded = Math.max(maxNeeded, 22 + dgc.offsetHeight + 10);
+      if (dgb) dgb.style.maxHeight = prevMax;
+    });
+    stages.forEach((stage) => {
+      stage.style.marginBottom = anyAbsolute ? maxNeeded + 'px' : '';
     });
   }
 
