@@ -125,7 +125,7 @@
        push the logo to the left edge and cluster "for startups" + the hamburger
        together at the right edge (margin-right:auto, not justify-content:space-between,
        so the cta+hamburger pair stays adjacent instead of splitting to opposite ends) */
-    .site-nav{width:92vw !important;max-width:92vw !important;gap:14px !important;border-radius:24px !important;}
+    .site-nav{width:92vw !important;max-width:92vw !important;gap:2px !important;border-radius:24px !important;}
     .nav-logo-wrap{margin-right:auto !important;}
     .nav-div,.nav-links{display:none !important;}
     .nav-more{display:block;}
@@ -274,25 +274,25 @@
 <div style="font-family:'Satoshi',system-ui,sans-serif;color:#111;background:#fafafa;background-image:linear-gradient(to right,rgba(0,0,0,0.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.035) 1px,transparent 1px);background-size:48px 48px;background-position:center top;overflow-x:clip;">
 
   <!-- ===================== FIXED NAV ===================== -->
-  <nav ref="{{ setNav }}" class="site-nav" style="position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:200;width:max-content;max-width:94%;display:flex;align-items:center;gap:26px;padding:5px 6px 5px 14px;backdrop-filter:blur(22px) saturate(2.2);-webkit-backdrop-filter:blur(22px) saturate(2.2);border:1px solid transparent;border-radius:100px;background-image:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.80)),linear-gradient(180deg,#F1F1F2 0%,#E4E4E7 55%,#D8D8DC 100%);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 7px 20px -7px rgba(20,20,30,0.13),0 2px 5px -1px rgba(20,20,30,0.07);transition:box-shadow .3s ease,transform .3s ease,background-image .45s ease;">
+  <nav ref="{{ setNav }}" class="site-nav" style="position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:200;width:max-content;max-width:94%;display:flex;align-items:center;gap:28px;padding:6px 7px 6px 15px;backdrop-filter:blur(22px) saturate(2.2);-webkit-backdrop-filter:blur(22px) saturate(2.2);border:1px solid transparent;border-radius:100px;background-image:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.80)),linear-gradient(180deg,#F1F1F2 0%,#E4E4E7 55%,#D8D8DC 100%);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 8px 24px -7px rgba(20,20,30,0.16),0 3px 7px -1px rgba(20,20,30,0.09);transition:box-shadow .3s ease,transform .3s ease,background-image .45s ease;">
     <span class="nav-veil" style="position:absolute;inset:-1px;border-radius:100px;background:linear-gradient(180deg,rgba(30,30,34,0.90),rgba(30,30,34,0.86));opacity:0;transition:opacity .55s ease;pointer-events:none;"></span>
     <div class="nav-logo-wrap" style="position:relative;display:flex;align-items:center;">
-      <img class="nav-logo" src="m-nav-mark.png" alt="uncooked (BETA)" style="height:30px;width:auto;display:block;margin-right:-14px;transition:opacity .55s ease;">
-      <img class="nav-logo-dark" src="m-nav-mark-dark.png" alt="" style="position:absolute;left:0;top:0;height:30px;width:auto;display:block;opacity:0;transition:opacity .55s ease;pointer-events:none;">
+      <img class="nav-logo" src="m-nav-mark.png" alt="uncooked (BETA)" style="height:32px;width:auto;display:block;margin-right:-15px;transition:opacity .55s ease;">
+      <img class="nav-logo-dark" src="m-nav-mark-dark.png" alt="" style="position:absolute;left:0;top:0;height:32px;width:auto;display:block;opacity:0;transition:opacity .55s ease;pointer-events:none;">
       <!-- the baked-in BETA badge in m-nav-mark-dark.png is a white pill; this masks it and
            redraws a dark pill with a white stroke + label for the dark nav state -->
-      <span class="nav-beta-dark" aria-hidden="true" style="position:absolute;left:108px;top:-2px;width:40px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#37373B;border:.5px solid #fff;opacity:0;transition:opacity .55s ease;pointer-events:none;">
+      <span class="nav-beta-dark" aria-hidden="true" style="position:absolute;left:115px;top:-2px;width:43px;height:21px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#37373B;border:.5px solid #fff;opacity:0;transition:opacity .55s ease;pointer-events:none;">
         <span style="font-size:8px;font-weight:700;letter-spacing:0.03em;color:#fff;line-height:1;">BETA</span>
       </span>
     </div>
-    <span class="nav-div" style="position:relative;width:1px;height:22px;background:rgba(0,0,0,0.10);flex:none;transition:background .45s ease;"></span>
+    <span class="nav-div" style="position:relative;width:1px;height:24px;background:rgba(0,0,0,0.10);flex:none;transition:background .45s ease;"></span>
     <div class="nav-links" style="display:flex;align-items:center;gap:0;">
-      <a href="#" class="nav-link nav-active" style="position: relative; font-weight: 600; font-size: 15px; color: #3A3A40; border-radius: 100px; padding: 9px 12px; transition: color .35s" style-hover="color:#111;">jobs</a>
-      <a href="#" class="nav-link" style="position:relative;font-weight:550;font-size:14.5px;color:#8a8a90;border-radius:100px;padding:9px 12px;transition:color .25s;" style-hover="color:#3a3a40;">tracker</a>
-      <a href="#" class="nav-link" style="position:relative;font-weight:550;font-size:14.5px;color:#8a8a90;border-radius:100px;padding:9px 12px;transition:color .25s;" style-hover="color:#3a3a40;">events</a>
-      <a href="#" class="nav-link" style="position:relative;font-weight:550;font-size:14.5px;color:#8a8a90;border-radius:100px;padding:9px 12px;transition:color .25s;" style-hover="color:#3a3a40;">labs</a>
+      <a href="#" class="nav-link nav-active" style="position: relative; font-weight: 600; font-size: 16px; color: #3A3A40; border-radius: 100px; padding: 10px 13px; transition: color .35s" style-hover="color:#111;">jobs</a>
+      <a href="#" class="nav-link" style="position:relative;font-weight:550;font-size:15.5px;color:#8a8a90;border-radius:100px;padding:10px 13px;transition:color .25s;" style-hover="color:#3a3a40;">tracker</a>
+      <a href="#" class="nav-link" style="position:relative;font-weight:550;font-size:15.5px;color:#8a8a90;border-radius:100px;padding:10px 13px;transition:color .25s;" style-hover="color:#3a3a40;">events</a>
+      <a href="#" class="nav-link" style="position:relative;font-weight:550;font-size:15.5px;color:#8a8a90;border-radius:100px;padding:10px 13px;transition:color .25s;" style-hover="color:#3a3a40;">labs</a>
     </div>
-    <a href="#" class="nav-cta" style="position:relative;display: flex; align-items: center; gap: 7px; white-space: nowrap; font-weight: 600; font-size: 15px; color: #fff; border-radius: 100px; padding: 9px 16px; transition: background .25s ease; background-color: #121214DB" style-hover="background:#41474C;color:#fff;"><span style="white-space:nowrap;">for startups</span> <span>→</span></a>
+    <a href="#" class="nav-cta" style="position:relative;display: flex; align-items: center; gap: 7px; white-space: nowrap; font-weight: 600; font-size: 16px; color: #fff; border-radius: 100px; padding: 10px 17px; transition: background .25s ease; background-color: #121214DB" style-hover="background:#41474C;color:#fff;"><span style="white-space:nowrap;">for startups</span> <span>→</span></a>
 
     <!-- mobile-only: collapses jobs/tracker/events/labs into a hamburger disclosure;
          "for startups" stays visible in the bar next to it (see nav-cta above) -->
