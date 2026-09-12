@@ -26,6 +26,12 @@
   @keyframes hgBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .hg{animation:hgBob 5.2s ease-in-out infinite;}
   @media (max-width:760px){.hs{display:none;}}
+  /* desktop: fill the whole hero stage instead of the smaller bottom-anchored
+     size used on tablet -- object-fit:cover keeps the aspect ratio, cropping
+     the overflow rather than stretching it. */
+  @media (min-width:901px){
+    .hs{position:absolute !important;inset:0 !important;transform:none !important;width:100% !important;height:100% !important;max-width:none !important;object-fit:cover;}
+  }
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
   .lgr{--set:calc(5 * var(--cl) + 5 * var(--cg));}
@@ -350,14 +356,10 @@
   <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 24px 40px;position:relative;">
 
     <!-- above-the-fold stage -->
-    <div style="width:calc(100% + 48px);margin-inline:-24px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:96px 24px clamp(120px,17vh,190px);box-sizing:border-box;overflow:hidden;">
+    <div style="width:calc(100% + 48px);margin-inline:-24px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:0;padding:96px 24px clamp(120px,17vh,190px);box-sizing:border-box;overflow:hidden;">
 
     <!-- hero background -->
-    <div class="hs" style="position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:calc(100% + 4px);max-width:none;z-index:0;pointer-events:none;">
-      <img src="m-hero-bg.png" alt="" style="width:100%;height:auto;display:block;">
-      <img class="hg" src="m-ghost-l.png" alt="" style="position:absolute;left:5.5%;bottom:2.5%;width:19%;height:auto;display:block;">
-      <img class="hg" src="m-ghost-r.png" alt="" style="position:absolute;right:6.5%;bottom:2.5%;width:19%;height:auto;display:block;">
-    </div>
+    <img class="hs" src="uploads/hero pic 5.png" alt="" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:min(70svh,760px);width:auto;max-width:none;z-index:-1;pointer-events:none;display:block;">
 
     <!-- headline -->
     <h1 style="margin:0;position:relative;z-index:2;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(40px,5.6vw,64px);">
