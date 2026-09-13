@@ -21,16 +21,82 @@
   a:hover{color:#ff5236;}
   @keyframes heroUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   .hu{opacity:0;}
-  .hs{opacity:0;animation:hsIn 1.4s ease .8s forwards;}
+  /* unscoped (every breakpoint, not just one zone) -- flex align-items kept
+     failing to center the CTA/fineprint/tracker line (they stayed flush-left
+     against h1/p, which only looked fine because they're wide enough to
+     fill the box regardless of alignment). dropping flex for .hero-copy
+     entirely and using plain block stacking + text-align:center instead --
+     h1/p/fineprint are block-level so they fill the width and center their
+     own text; the CTA/tracker links are inline-level (inline-flex) so
+     text-align centers THEM directly, same mechanism that already
+     demonstrably works for p's wrapped second line. */
+  .hero-copy{display:block !important;text-align:center !important;}
+  .hs{opacity:0;animation:hsIn 1.4s ease .8s forwards;image-rendering:-webkit-optimize-contrast;}
   @keyframes hsIn{from{opacity:0}to{opacity:1}}
   @keyframes hgBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .hg{animation:hgBob 5.2s ease-in-out infinite;}
-  @media (max-width:760px){.hs{display:none;}}
-  /* desktop: fill the whole hero stage instead of the smaller bottom-anchored
-     size used on tablet -- object-fit:cover keeps the aspect ratio, cropping
-     the overflow rather than stretching it. */
-  @media (min-width:901px){
+  @media (max-width:639px){.hs{display:none;}}
+  /* tablet + desktop (everything from 640px up): background fills the whole
+     hero stage, and the copy's position (padding, alignment) is fixed here
+     too -- both stay frozen across this entire range so nothing moves at the
+     tablet boundary. only font-size (below) responds to width. */
+  @media (min-width:640px){
     .hs{position:absolute !important;inset:0 !important;transform:none !important;width:100% !important;height:100% !important;max-width:none !important;object-fit:cover;}
+    /* align-items stays center (so every child still shares one center line)
+       -- the leftward shift comes purely from padding-right being bigger than
+       padding-left, which skews that shared center line left without
+       touching how the children align relative to each other. fixed px (not
+       vw/vh) so the block doesn't drift as the window resizes. */
+    .hero-stage{align-items:center !important;justify-content:flex-start !important;text-align:center !important;padding-top:190px !important;padding-left:24px !important;padding-right:280px !important;}
+  }
+  /* wide desktop: lock the headline/subcopy at full size -- fixed px, not
+     vw, so they stay put (position included, via the padding-top/right nudge
+     below) all the way down to 1100px, rather than drifting continuously as
+     the window narrows. 1100px is picked as roughly where that drift would
+     otherwise bring the text column within ~20px of the left edge -- below
+     it, the next rule takes over and pins that 20px explicitly. */
+  @media (min-width:1100px){
+    .hero-stage h1{font-size:64px !important;}
+    .hero-stage .gtd{font-size:78px !important;}
+    .hero-stage p{font-size:16px !important;}
+    /* desktop-only nudge on top of the shared 640px+ lock -- comes after it
+       in source order so it wins at this width without needing a different
+       selector. */
+    .hero-stage{padding-top:135px !important;padding-right:500px !important;}
+  }
+  /* 901-1099px: the handoff zone between the wide-desktop lock above and the
+     tablet clamp below. position now pins to a literal 50px from the left
+     edge via .hero-copy going position:absolute with an explicit width (see
+     below) rather than flex alignment. font-size scales down continuously,
+     calibrated to equal the wide-desktop lock (64px/16px) right at 1100px so
+     there's no jump entering this zone. */
+  @media (min-width:901px) and (max-width:1099px){
+    /* absolute + an explicit left/width, instead of flex align-items, so
+       .hero-copy's box position and size are both unambiguous -- no
+       shrink-to-fit or flex-item sizing involved that h1's text could
+       overflow past. .hero-stage is already position:relative (its base
+       style), so this positions against the stage's own padding box. */
+    .hero-copy{position:absolute !important;left:50px !important;top:135px !important;width:440px !important;max-width:none !important;text-align:center !important;}
+    .hero-stage h1{font-size:clamp(52px,5.82vw,64px) !important;}
+    .hero-stage p{font-size:clamp(13.5px,1.45vw,16px) !important;}
+  }
+  /* tablet: position is already frozen by the 640px rule above -- only the
+     type scales down here, proportionally, so it keeps fitting the same
+     fixed-width column as it narrows. same slope as the 901-1099px zone
+     above (5.82vw/1.45vw) so it hands off continuously at that boundary
+     instead of jumping, just with lower floors since it now runs all the
+     way down to the mobile handoff at 640px. */
+  @media (min-width:640px) and (max-width:900px){
+    .hero-stage h1{font-size:clamp(34px,5.82vw,64px) !important;}
+    .hero-stage .gtd{font-size:clamp(42px,8.67vw,78px) !important;}
+    .hero-stage p{font-size:clamp(12px,1.45vw,16px) !important;}
+  }
+  /* mobile: drop the desktop/tablet left shift -- back to centered both ways
+     -- and anchor near the top with a small gap under the fixed navbar
+     instead of sitting in the vertical middle of the viewport. background
+     stays hidden here (see above) until it's replaced with a mobile asset. */
+  @media (max-width:639px){
+    .hero-stage{align-items:center !important;justify-content:flex-start !important;text-align:center !important;padding-top:150px !important;}
   }
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
@@ -356,19 +422,27 @@
   <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 24px 40px;position:relative;">
 
     <!-- above-the-fold stage -->
-    <div style="width:calc(100% + 48px);margin-inline:-24px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:0;padding:96px 24px clamp(120px,17vh,190px);box-sizing:border-box;overflow:hidden;">
+    <div class="hero-stage" style="width:calc(100% + 48px);margin-inline:-24px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:0;padding:96px 24px clamp(120px,17vh,190px);box-sizing:border-box;overflow:hidden;">
 
     <!-- hero background -->
     <img class="hs" src="uploads/hero pic 5.png" alt="" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:min(70svh,760px);width:auto;max-width:none;z-index:-1;pointer-events:none;display:block;">
 
+    <!-- wraps the headline through the tracker line so desktop's "pinned 20px
+         from the edge" phase (see CSS) can give this ONE box a fixed width
+         and dock IT at the edge, while everything inside still centers
+         relative to that shared width instead of each element's own --
+         otherwise flex-start alignment would leave every line/element
+         flush-left at its own different natural width, looking ragged. */
+    <div class="hero-copy" style="display:flex;flex-direction:column;align-items:center;width:fit-content;max-width:100%;">
+
     <!-- headline -->
-    <h1 style="margin:0;position:relative;z-index:2;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(40px,5.6vw,64px);">
-      <span class="hu" style="display:block;animation-delay:.1s;">never get</span>
-      <span class="gtd" style="display:inline-block;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-0.01em;font-size:clamp(48px,6.9vw,78px);color:#111;line-height:1;opacity:0;">ghosted<span style="font-style:normal;">.</span></span>
+    <h1 style="margin:0;position:relative;z-index:2;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(36px,5.0vw,64px);">
+      <span class="hu" style="display:block;animation-delay:.1s;">never get ghosted</span>
+      <!-- <span class="gtd" style="display:inline-block;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-0.01em;font-size:clamp(48px,6.9vw,78px);color:#111;line-height:1;opacity:0;">ghosted<span style="font-style:normal;">.</span></span> -->
     </h1>
 
     <!-- subcopy -->
-    <p class="hu" style="animation-delay:1.25s;margin:22px 0 0;font-weight:500;font-size:clamp(14px,1.15vw,16px);line-height:1.55;color:#5f5f66;max-width:42ch;text-wrap:pretty;">no CVs. no cover letters. no repeating yourself 140 times. apply from your phone. a guaranteed answer in 7 days.</p>
+    <p class="hu" style="animation-delay:1.25s;margin:22px 0 0;font-weight:500;font-size:clamp(12px,1.0vw,16px);line-height:1.55;color:#5f5f66;max-width:42ch;text-wrap:pretty;">no CVs. no cover letters. no repeating yourself 140 times. apply from your phone. a guaranteed answer in 7 days.</p>
 
     <!-- CTA -->
     <a href="#" class="hu" style="animation-delay:1.4s;margin-top:26px;display:inline-flex;align-items:center;justify-content:center;background:#E62B15;color:#fff;font-weight:700;font-size:15px;padding:13px 30px;border-radius:100px;transition:background .2s,transform .2s;box-shadow:0 10px 24px -8px rgba(230,43,21,.5);" style-hover="background:#c31f0c;transform:translateY(-2px);color:#fff;">get seen</a>
@@ -377,7 +451,9 @@
     <div class="hu" style="animation-delay:1.55s;margin-top:14px;font-weight:500;font-size:13px;color:#9a9aa0;">free for candidates · early members get matched first</div>
 
     <!-- tracker line -->
-    <a href="#" class="hu" style="animation-delay:1.7s;margin-top:16px;font-weight:600;font-size:13.5px;color:#5f5f66;display:inline-flex;align-items:center;gap:6px;transition:color .2s;" style-hover="color:#E62B15;">or start with the tracker: 6,000+ live startup jobs. save the ones you like <span>→</span></a>
+    <a href="#" class="hu" style="animation-delay:1.7s;margin-top:16px;font-weight:600;font-size:12px;color:#5f5f66;display:inline-flex;align-items:center;gap:6px;transition:color .2s;" style-hover="color:#E62B15;">or start with the tracker: 6,000+ live startup jobs. save the ones you like <span>→</span></a>
+
+    </div>
 
     </div>
 
