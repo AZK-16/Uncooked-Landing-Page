@@ -33,17 +33,29 @@
      NOTE: the exact top/left/width % below are a best estimate of where
      the illustration's open space sits -- nudge them to taste once you can
      see it live, same as any other value in this file. */
-  .hero-visual{position:relative;width:100%;height:100%;margin:0 auto;opacity:0;animation:hsIn 1.4s ease .8s forwards;}
+  /* height:100% (filling the 100svh stage) is fine on most screens, but on
+     wide/short ones it makes the box proportionally wider than the image
+     (7712x4344 = 1.776:1), so object-fit:cover has to crop more off the top
+     than the image's own headroom (blank sky above the sun) can absorb --
+     the bottom has ~zero spare room since the sleeve already runs to the
+     image's edge, hence object-position:below anchoring all cropping to the
+     top. the max() floor keeps the box from getting narrower than a 1.95:1
+     ratio, capping how much top gets cropped regardless of screen shape. */
+  .hero-visual{position:relative;width:100%;height:max(100%,calc(100vw / 1.95));margin:0 auto;opacity:0;animation:hsIn 1.4s ease .8s forwards;}
   /* desktop/tablet: fill the screen below the navbar instead of sizing off
      the image's own aspect ratio (which, at typical desktop widths, made
      the image noticeably shorter than the viewport, with dead space below
      it). object-fit:cover on the image absorbs the difference between
      100svh's ratio and the image's own -- minor, since the image's native
-     ratio (7712x4344 = 1.776:1) is nearly identical to 16:9. */
+     ratio (7712x4344 = 1.776:1) is nearly identical to 16:9.
+     on wide/short screens .hero-visual grows past 100% (see its own
+     height:max(...) above) to protect the image from over-cropping -- the
+     max() here grows the stage to match so that overflow doesn't spill down
+     into the proof strip below it, instead of clipping/overlapping. */
   @media (min-width:640px){
-    .hero-stage{height:100svh;}
+    .hero-stage{height:max(100svh,calc(100vw / 1.95 + clamp(64px,7vh,100px) + 24px));}
   }
-  .hero-visual > .hs{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;image-rendering:-webkit-optimize-contrast;}
+  .hero-visual > .hs{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;pointer-events:none;image-rendering:-webkit-optimize-contrast;}
   /* fades the image's hard bottom edge into the page background instead of
      cutting off sharply where the hero box ends. */
   .hero-visual::after{content:'';position:absolute;left:0;right:0;bottom:0;height:5%;background:linear-gradient(to bottom,rgba(252,252,250,0) 0%,rgba(252,252,250,.55) 55%,rgba(252,252,250,1) 100%);pointer-events:none;z-index:1;}
@@ -386,7 +398,7 @@
   <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 24px 40px;position:relative;">
 
     <!-- above-the-fold stage -->
-    <div class="hero-stage" style="width:calc(100% + 48px);margin-inline:-24px;position:relative;z-index:0;padding:clamp(90px,10vh,140px) 0 24px;box-sizing:border-box;background:#fafafa;">
+    <div class="hero-stage" style="width:calc(100% + 48px);margin-inline:-24px;position:relative;z-index:0;padding:clamp(64px,7vh,100px) 0 24px;box-sizing:border-box;background:#fafafa;">
 
     <!-- image + copy scale together as one unit -- see .hero-visual/.hero-copy
          in the CSS for how. -->
