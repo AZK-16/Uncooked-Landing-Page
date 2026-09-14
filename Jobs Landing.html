@@ -28,10 +28,28 @@
      by side, wrapping to a vertical stack once they no longer both fit at
      a reasonable width. no absolute positioning, no vw-locked freezing --
      just flex-wrap doing what it's built for. */
-  .hero-row{display:flex;align-items:center;justify-content:center;gap:clamp(32px,5vw,80px);flex-wrap:wrap;max-width:1280px;margin:0 auto;}
-  .hero-copy{flex:1 1 420px;max-width:560px;text-align:center;opacity:0;animation:hsIn 1s ease .3s forwards;}
-  .hero-pic{flex:1 1 420px;max-width:640px;}
-  .hero-pic img{width:100%;height:auto;display:block;border-radius:20px;box-shadow:0 20px 50px -20px rgba(20,20,30,0.25);}
+  .hero-row{display:flex;align-items:center;justify-content:center;gap:clamp(40px,6vw,100px);flex-wrap:wrap;max-width:1280px;margin:0 auto;}
+  .hero-copy{flex:1 1 360px;max-width:400px;text-align:center;opacity:0;animation:hsIn 1s ease .3s forwards;}
+  /* same opacity/animation/delay as .hero-copy so the image fades in at the
+     same time as the text, instead of appearing instantly. position:relative
+     so the notification badges below can be placed against it. */
+  .hero-pic{position:relative;flex:1 1 420px;max-width:640px;opacity:0;animation:hsIn 1s ease .3s forwards;}
+  /* :first-child scopes this to just the main photo -- otherwise, since the
+     notification badges below are also direct <img> children of .hero-pic,
+     this selector's higher specificity (class+tag beats .hero-notif's
+     class-only) would win and force them to width:100% too. */
+  .hero-pic > img:first-child{width:100%;height:auto;display:block;border-radius:20px;box-shadow:0 20px 50px -20px rgba(20,20,30,0.25);}
+  /* notification badges: positioned as % of .hero-pic so they scale and
+     stay put together with it as the screen resizes, rather than being
+     pinned at fixed px. desktop-only -- the tablet/mobile stacked layout
+     is too narrow for them to make sense at the same scale. opacity and
+     transform are two separate animations (not one) so the entrance fade
+     and the continuous bob don't fight over the same property. */
+  .hero-notif{position:absolute;width:34%;pointer-events:none;opacity:0;animation:notifIn .7s ease forwards,notifBob 4.5s ease-in-out infinite;}
+  .hero-notif img{width:100%;height:auto;display:block;}
+  @keyframes notifIn{from{opacity:0}to{opacity:1}}
+  @keyframes notifBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @media (max-width:900px){.hero-notif{display:none;}}
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
   .lgr{--set:calc(5 * var(--cl) + 5 * var(--cg));}
@@ -353,7 +371,7 @@
   </nav>
 
   <!-- ===================== HERO ===================== -->
-  <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;padding:clamp(120px,15vh,160px) 24px 40px;position:relative;">
+  <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100svh;padding:100px 24px 40px;box-sizing:border-box;position:relative;">
 
     <!-- simple two-column row: text | picture, wraps to a stack when tight
          (see .hero-row in the CSS) -->
@@ -362,8 +380,9 @@
       <div class="hero-copy">
 
         <!-- headline -->
-        <h1 style="margin:0;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(34px,4.2vw,58px);">
-          <span class="hu" style="display:block;animation-delay:.1s;">never get ghosted</span>
+        <h1 style="margin:0;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(38px,6.5vw,62px);">
+          <span class="hu" style="display:block;animation-delay:.1s;">never get</span>
+          <span class="hu" style="display:block;animation-delay:.25s;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;">ghosted</span>
         </h1>
 
         <!-- subcopy -->
@@ -376,12 +395,18 @@
         <div class="hu" style="animation-delay:1.55s;margin-top:14px;font-weight:500;font-size:13px;color:#9a9aa0;">free for candidates · early members get matched first</div>
 
         <!-- tracker line -->
-        <a href="#" class="hu" style="animation-delay:1.7s;margin-top:16px;font-weight:600;font-size:13px;color:#5f5f66;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:color .2s;" style-hover="color:#E62B15;">or start with the tracker: 6,000+ live startup jobs. save the ones you like <span>→</span></a>
+        <a href="#" class="hu" style="animation-delay:1.7s;margin-top:16px;font-weight:600;font-size:13px;color:#5f5f66;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:color .2s;" style-hover="color:#E62B15;">or start with the tracker: 6,000+ live startup jobs. save the ones you like →</a>
 
       </div>
 
       <div class="hero-pic">
         <img src="uploads/hero pic.png" alt="">
+        <!-- top % account for each card's own height (congratulations is
+             wider/taller than the other two) so the visual GAP between
+             cards ends up equal, not just the top offsets themselves. -->
+        <img class="hero-notif" src="uploads/youve been matched 1.png" alt="you've been matched!" style="top:20%;left:4%;animation-delay:.9s,0s;">
+        <img class="hero-notif" src="uploads/congratulations.png" alt="congratulations!" style="top:35%;left:-8%;width:42%;animation-delay:1.15s,0s;">
+        <img class="hero-notif" src="uploads/youve been matched 2.png" alt="you've been matched!" style="top:52%;left:4%;animation-delay:1.4s,0s;">
       </div>
 
     </div>
