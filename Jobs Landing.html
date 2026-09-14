@@ -28,7 +28,7 @@
      by side, wrapping to a vertical stack once they no longer both fit at
      a reasonable width. no absolute positioning, no vw-locked freezing --
      just flex-wrap doing what it's built for. */
-  .hero-row{display:flex;align-items:center;justify-content:center;gap:clamp(56px,8vw,140px);flex-wrap:wrap;max-width:1280px;margin:0 auto;}
+  .hero-row{display:flex;align-items:center;justify-content:center;gap:clamp(55px,9vw,145px);flex-wrap:wrap;max-width:1280px;margin:0 8 0 auto;}
   .hero-copy{flex:1 1 360px;max-width:400px;text-align:center;opacity:0;animation:hsIn 1s ease .3s forwards;}
   /* same opacity/animation/delay as .hero-copy so the image fades in at the
      same time as the text, instead of appearing instantly. position:relative
@@ -64,7 +64,7 @@
   @keyframes notifBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
   /* matches the .bp1/.bp2 speech-bubble pulse in the difference section
      (difference 3), just much subtler -- 1.04 instead of 1.14. */
-  @keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.01)}}
+  @keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
   .lgr{--set:calc(5 * var(--cl) + 5 * var(--cg));}
@@ -386,7 +386,7 @@
   </nav>
 
   <!-- ===================== HERO ===================== -->
-  <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100svh;padding:100px 24px 40px;box-sizing:border-box;position:relative;">
+  <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100svh;padding:140px 24px 40px;box-sizing:border-box;position:relative;">
 
     <!-- simple two-column row: text | picture, wraps to a stack when tight
          (see .hero-row in the CSS) -->
@@ -395,7 +395,7 @@
       <div class="hero-copy">
 
         <!-- headline -->
-        <h1 style="margin:0;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(38px,6.5vw,62px);">
+        <h1 style="margin:0;font-weight:600;letter-spacing:-0.035em;line-height:0.96;color:#111;font-size:clamp(46px,6.5vw,62px);">
           <span class="hu" style="display:block;animation-delay:.1s;">never get</span>
           <span class="hu" style="display:block;animation-delay:.25s;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;">ghosted</span>
         </h1>
@@ -419,10 +419,10 @@
         <img class="hero-ghost" src="uploads/hero orange tie ghost.svg" alt="" style="width:20%;top:-5%;left:70%;">
         <img class="hero-ghost" src="uploads/hero red tie ghost.svg" alt="" style="width:21%;bottom:5%;left:8%;">
         <img class="hero-ghost" src="uploads/hero green tie ghost.svg" alt="" style="width:24%;bottom:3%;left:57%;">
-        <img class="hero-phone" src="uploads/hero phone screen.png" alt="">
         <img class="hero-notif" src="uploads/youve been matched 1.png" alt="you've been matched!" style="top:4%;left:0%;animation-delay:.9s,0s;">
         <img class="hero-notif" src="uploads/congratulations.png" alt="congratulations!" style="top:20%;left:-10%;width:42%;animation-delay:1.15s,0s;">
         <img class="hero-notif" src="uploads/youve been matched 2.png" alt="you've been matched!" style="top:39%;left:-4%;animation-delay:1.4s,0s;">
+        <img class="hero-phone" src="uploads/hero phone screen.png" alt="">
       </div>
 
     </div>
