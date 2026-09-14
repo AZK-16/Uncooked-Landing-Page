@@ -28,24 +28,26 @@
      by side, wrapping to a vertical stack once they no longer both fit at
      a reasonable width. no absolute positioning, no vw-locked freezing --
      just flex-wrap doing what it's built for. */
-  .hero-row{display:flex;align-items:center;justify-content:center;gap:clamp(40px,6vw,100px);flex-wrap:wrap;max-width:1280px;margin:0 auto;}
+  .hero-row{display:flex;align-items:center;justify-content:center;gap:clamp(56px,8vw,140px);flex-wrap:wrap;max-width:1280px;margin:0 auto;}
   .hero-copy{flex:1 1 360px;max-width:400px;text-align:center;opacity:0;animation:hsIn 1s ease .3s forwards;}
   /* same opacity/animation/delay as .hero-copy so the image fades in at the
      same time as the text, instead of appearing instantly. position:relative
      so the notification badges below can be placed against it. */
   .hero-pic{position:relative;flex:1 1 420px;max-width:640px;opacity:0;animation:hsIn 1s ease .3s forwards;}
-  /* :first-child scopes this to just the main photo -- otherwise, since the
-     notification badges below are also direct <img> children of .hero-pic,
-     this selector's higher specificity (class+tag beats .hero-notif's
-     class-only) would win and force them to width:100% too. */
-  .hero-pic > img:first-child{width:100%;height:auto;display:block;border-radius:20px;box-shadow:0 20px 50px -20px rgba(20,20,30,0.25);}
+  /* phone is the one in-flow child -- its rendered height is what
+     .hero-pic's own height ends up being, which is what every other
+     (position:absolute) layer's % positioning resolves against. ghosts and
+     notifications are unique classes now (not generic tag selectors), so
+     there's no specificity fight between them like there used to be. */
+  .hero-pic .hero-phone{width:76%;height:auto;display:block;margin:0 auto;}
+  .hero-ghost{position:absolute;height:auto;display:block;pointer-events:none;animation:notifBob 4.5s ease-in-out infinite;}
   /* notification badges: positioned as % of .hero-pic so they scale and
      stay put together with it at every breakpoint, not just desktop --
      same animation, same placement, just smaller on tablet/mobile since
      it's all relative units. opacity and transform are two separate
      animations (not one) so the entrance fade and the continuous bob
      don't fight over the same property. */
-  .hero-notif{position:absolute;width:34%;pointer-events:none;opacity:0;animation:notifIn .7s ease forwards,notifBob 4.5s ease-in-out infinite;}
+  .hero-notif{position:absolute;width:34%;pointer-events:none;opacity:0;animation:notifIn .7s ease forwards,notifPulse 2.6s ease-in-out infinite;}
   /* smaller on tablet/mobile -- keeps the congratulations card's ratio to
      the other two the same as desktop (34:42 => 26:32). !important needed
      since congratulations sets its width:42% inline, which otherwise beats
@@ -59,7 +61,10 @@
   }
   .hero-notif img{width:100%;height:auto;display:block;}
   @keyframes notifIn{from{opacity:0}to{opacity:1}}
-  @keyframes notifBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes notifBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  /* matches the .bp1/.bp2 speech-bubble pulse in the difference section
+     (difference 3), just much subtler -- 1.04 instead of 1.14. */
+  @keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.01)}}
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
   .lgr{--set:calc(5 * var(--cl) + 5 * var(--cg));}
@@ -410,13 +415,14 @@
       </div>
 
       <div class="hero-pic">
-        <img src="uploads/hero pic.png" alt="">
-        <!-- top % account for each card's own height (congratulations is
-             wider/taller than the other two) so the visual GAP between
-             cards ends up equal, not just the top offsets themselves. -->
-        <img class="hero-notif" src="uploads/youve been matched 1.png" alt="you've been matched!" style="top:20%;left:4%;animation-delay:.9s,0s;">
-        <img class="hero-notif" src="uploads/congratulations.png" alt="congratulations!" style="top:33%;left:-8%;width:42%;animation-delay:1.15s,0s;">
-        <img class="hero-notif" src="uploads/youve been matched 2.png" alt="you've been matched!" style="top:48%;left:4%;animation-delay:1.4s,0s;">
+        <!-- behind the phone, so their overlap with it is hidden -->
+        <img class="hero-ghost" src="uploads/hero orange tie ghost.svg" alt="" style="width:20%;top:-5%;left:70%;">
+        <img class="hero-ghost" src="uploads/hero red tie ghost.svg" alt="" style="width:21%;bottom:5%;left:8%;">
+        <img class="hero-ghost" src="uploads/hero green tie ghost.svg" alt="" style="width:24%;bottom:3%;left:57%;">
+        <img class="hero-phone" src="uploads/hero phone screen.png" alt="">
+        <img class="hero-notif" src="uploads/youve been matched 1.png" alt="you've been matched!" style="top:4%;left:0%;animation-delay:.9s,0s;">
+        <img class="hero-notif" src="uploads/congratulations.png" alt="congratulations!" style="top:20%;left:-10%;width:42%;animation-delay:1.15s,0s;">
+        <img class="hero-notif" src="uploads/youve been matched 2.png" alt="you've been matched!" style="top:39%;left:-4%;animation-delay:1.4s,0s;">
       </div>
 
     </div>
