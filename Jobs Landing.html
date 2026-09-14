@@ -40,16 +40,26 @@
      class-only) would win and force them to width:100% too. */
   .hero-pic > img:first-child{width:100%;height:auto;display:block;border-radius:20px;box-shadow:0 20px 50px -20px rgba(20,20,30,0.25);}
   /* notification badges: positioned as % of .hero-pic so they scale and
-     stay put together with it as the screen resizes, rather than being
-     pinned at fixed px. desktop-only -- the tablet/mobile stacked layout
-     is too narrow for them to make sense at the same scale. opacity and
-     transform are two separate animations (not one) so the entrance fade
-     and the continuous bob don't fight over the same property. */
+     stay put together with it at every breakpoint, not just desktop --
+     same animation, same placement, just smaller on tablet/mobile since
+     it's all relative units. opacity and transform are two separate
+     animations (not one) so the entrance fade and the continuous bob
+     don't fight over the same property. */
   .hero-notif{position:absolute;width:34%;pointer-events:none;opacity:0;animation:notifIn .7s ease forwards,notifBob 4.5s ease-in-out infinite;}
+  /* smaller on tablet/mobile -- keeps the congratulations card's ratio to
+     the other two the same as desktop (34:42 => 26:32). !important needed
+     since congratulations sets its width:42% inline, which otherwise beats
+     any class-based rule regardless of specificity. */
+  @media (max-width:900px){
+    .hero-notif{width:26% !important;}
+    .hero-notif[src*="congratulations"]{width:36% !important;}
+    .hero-notif[src*="matched 1"]{left:13% !important;}
+    .hero-notif[src*="congratulations"]{left:1% !important;}
+    .hero-notif[src*="matched 2"]{left:4% !important;}
+  }
   .hero-notif img{width:100%;height:auto;display:block;}
   @keyframes notifIn{from{opacity:0}to{opacity:1}}
   @keyframes notifBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  @media (max-width:900px){.hero-notif{display:none;}}
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
   .lgr{--set:calc(5 * var(--cl) + 5 * var(--cg));}
@@ -405,8 +415,8 @@
              wider/taller than the other two) so the visual GAP between
              cards ends up equal, not just the top offsets themselves. -->
         <img class="hero-notif" src="uploads/youve been matched 1.png" alt="you've been matched!" style="top:20%;left:4%;animation-delay:.9s,0s;">
-        <img class="hero-notif" src="uploads/congratulations.png" alt="congratulations!" style="top:35%;left:-8%;width:42%;animation-delay:1.15s,0s;">
-        <img class="hero-notif" src="uploads/youve been matched 2.png" alt="you've been matched!" style="top:52%;left:4%;animation-delay:1.4s,0s;">
+        <img class="hero-notif" src="uploads/congratulations.png" alt="congratulations!" style="top:33%;left:-8%;width:42%;animation-delay:1.15s,0s;">
+        <img class="hero-notif" src="uploads/youve been matched 2.png" alt="you've been matched!" style="top:48%;left:4%;animation-delay:1.4s,0s;">
       </div>
 
     </div>
