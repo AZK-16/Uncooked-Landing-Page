@@ -357,8 +357,8 @@
   <nav ref="{{ setNav }}" class="site-nav" aria-label="Main" style="position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:200;width:max-content;max-width:94%;display:flex;align-items:center;gap:28px;padding:6px 7px 6px 15px;backdrop-filter:blur(22px) saturate(2.2);-webkit-backdrop-filter:blur(22px) saturate(2.2);border:1px solid transparent;border-radius:100px;background-image:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.80)),linear-gradient(180deg,#e7e7e9 0%,#DCDCDF 55%,#D0D0D4 100%);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 8px 24px -7px rgba(20,20,30,0.16),0 3px 7px -1px rgba(20,20,30,0.09);transition:box-shadow .3s ease,transform .3s ease,background-image .45s ease;">
     <span class="nav-veil" style="position:absolute;inset:-1px;border-radius:100px;background:linear-gradient(180deg,rgba(30,30,34,0.90),rgba(30,30,34,0.86));opacity:0;transition:opacity .55s ease;pointer-events:none;"></span>
     <div class="nav-logo-wrap" style="position:relative;display:flex;align-items:center;">
-      <img class="nav-logo" src="m-nav-mark.png" alt="uncooked (BETA)" style="height:32px;width:auto;display:block;margin-right:-15px;transition:opacity .55s ease;">
-      <img class="nav-logo-dark" src="m-nav-mark-dark.png" alt="" style="position:absolute;left:0;top:0;height:32px;width:auto;display:block;opacity:0;transition:opacity .55s ease;pointer-events:none;">
+      <img class="nav-logo" src="uploads/m-nav-mark.png" alt="uncooked (BETA)" style="height:32px;width:auto;display:block;margin-right:-15px;transition:opacity .55s ease;">
+      <img class="nav-logo-dark" src="uploads/m-nav-mark-dark.png" alt="" style="position:absolute;left:0;top:0;height:32px;width:auto;display:block;opacity:0;transition:opacity .55s ease;pointer-events:none;">
       <!-- the baked-in BETA badge in m-nav-mark-dark.png is a white pill; this masks it and
            redraws a dark pill with a white stroke + label for the dark nav state -->
       <span class="nav-beta-dark" aria-hidden="true" style="position:absolute;left:115px;top:-2px;width:43px;height:21px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#37373B;border:.5px solid #fff;opacity:0;transition:opacity .55s ease;pointer-events:none;">
@@ -665,10 +665,10 @@
 
         <!-- PHONE -->
         <div style="position:relative;width:318px;height:659px;z-index:20;">
-          <img class="screen" data-screen="0" src="m-step1b.webp" alt="build your passport" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:1;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
-          <img class="screen" data-screen="1" src="m-step2b.webp" alt="get matched to roles" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:0;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
-          <img class="screen" data-screen="2" src="m-step3.webp" alt="apply" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:0;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
-          <img class="screen" data-screen="3" src="m-step4b.webp" alt="hear back" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:0;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
+          <img class="screen" data-screen="0" src="uploads/m-step1b.webp" alt="build your passport" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:1;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
+          <img class="screen" data-screen="1" src="uploads/m-step2b.webp" alt="get matched to roles" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:0;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
+          <img class="screen" data-screen="2" src="uploads/m-step3.webp" alt="apply" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:0;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
+          <img class="screen" data-screen="3" src="uploads/m-step4b.webp" alt="hear back" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;max-width:none;display:block;opacity:0;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.16)) drop-shadow(0 18px 40px rgba(0,0,0,0.08));">
         </div><!-- /phone -->
 
         <!-- floating booked card (screen 4) -->
@@ -730,10 +730,10 @@
       <div class="dfin passport-visual-col" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);display:flex;flex-direction:column;gap:10px;">
         <div ref="{{ setTrackStage }}" class="passport-visual passport-track" style="position:relative;width:100%;height:clamp(204px,22.1vw,272px);display:flex;align-items:center;justify-content:flex-start;overflow:hidden;">
           <div class="tp-row" style="position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(9px,1.2vw,17px);">
-            <img class="tp-i" data-t="0" src="tp-52.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-i" data-t="1" src="tp-55.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-i" data-t="2" src="tp-54.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
-            <img class="tp-i" data-t="3" src="tp-53.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="0" src="uploads/tp-52.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="1" src="uploads/tp-55.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="2" src="uploads/tp-54.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
+            <img class="tp-i" data-t="3" src="uploads/tp-53.svg" alt="" style="width:clamp(60px,6.5vw,82px);height:auto;display:block;will-change:transform,opacity;">
             <img class="tp-vid" src="uploads/vid.svg" alt="" style="position:absolute;left:50%;top:50%;height:clamp(82px,8.85vw,112px);width:auto;opacity:0;transform:translate(-50%,-50%);will-change:transform,opacity;pointer-events:none;">
             <img class="tp-ver" src="uploads/verified.svg" alt="" style="position:absolute;left:50%;top:50%;height:clamp(66px,7.2vw,91px);width:auto;opacity:0;transform:translate(-50%,-50%) scale(.6);will-change:transform,opacity;pointer-events:none;">
             <span class="tp-cursor" style="position:absolute;top:50%;left:0;width:9px;height:9px;border-radius:50%;background:#9a9aa0;opacity:0;pointer-events:none;will-change:transform,opacity;"></span>
@@ -822,14 +822,14 @@
         <text x="52" y="478" font-family="Satoshi" font-weight="700" font-size="21" letter-spacing="3" fill="#a4a4ac">PROJECTS</text>
 
         <rect x="52" y="502" width="796" height="234" rx="26" fill="#FFFFFF" stroke="rgba(0,0,0,0.08)" stroke-width="2"></rect>
-        <image data-src="proj-probe.webp" x="88" y="530" width="178" height="178" clip-path="url(#p1Clip)" preserveAspectRatio="xMidYMid slice" href="proj-probe.webp" xlink:href="proj-probe.webp"></image>
+        <image data-src="uploads/proj-probe.webp" x="88" y="530" width="178" height="178" clip-path="url(#p1Clip)" preserveAspectRatio="xMidYMid slice" href="uploads/proj-probe.webp" xlink:href="uploads/proj-probe.webp"></image>
         <text x="296" y="570" font-family="Satoshi" font-weight="700" font-size="31" letter-spacing="-0.6" fill="#1c1c20">AeroSense Probe</text>
         <text x="296" y="616" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">A compact environmental sensor that tracks air</text>
         <text x="296" y="652" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">quality, temperature and humidity in real time.</text>
         <text x="296" y="688" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">Built to collect local environmental data…</text>
 
         <rect x="52" y="776" width="796" height="234" rx="26" fill="#FFFFFF" stroke="rgba(0,0,0,0.08)" stroke-width="2"></rect>
-        <image data-src="proj-viobot.webp" x="88" y="804" width="178" height="178" clip-path="url(#p2Clip)" preserveAspectRatio="xMidYMid slice" href="proj-viobot.webp" xlink:href="proj-viobot.webp"></image>
+        <image data-src="uploads/proj-viobot.webp" x="88" y="804" width="178" height="178" clip-path="url(#p2Clip)" preserveAspectRatio="xMidYMid slice" href="uploads/proj-viobot.webp" xlink:href="uploads/proj-viobot.webp"></image>
         <text x="296" y="844" font-family="Satoshi" font-weight="700" font-size="31" letter-spacing="-0.6" fill="#1c1c20">Viobot</text>
         <text x="296" y="890" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">A small autonomous robot that uses computer</text>
         <text x="296" y="926" font-family="Satoshi" font-weight="500" font-size="23" fill="#6b6b74">vision to navigate unfamiliar environments.</text>
@@ -1055,37 +1055,37 @@
     <div ref="{{ setPolLayer }}" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
       <div class="pol" data-tilt="-8" style="position:absolute;left:3.5%;top:16%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="pol-1.webp" alt="photo from a KCL event demo" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/pol-1.webp" alt="photo from a KCL event demo" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">kcl event demo</div>
       </div>
       <div class="pol" data-tilt="6" style="position:absolute;left:7%;top:44%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="pol-2.webp" alt="photo of a speaker at a KCL event" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/pol-2.webp" alt="photo of a speaker at a KCL event" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">kcl event speaker</div>
       </div>
       <div class="pol" data-tilt="-5" style="position:absolute;left:2.5%;top:70%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="pol-3.webp" alt="photo from Muslim Tech Fest" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/pol-3.webp" alt="photo from Muslim Tech Fest" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">muslim tech fest</div>
       </div>
       <div class="pol" data-tilt="7" style="position:absolute;right:3.5%;top:14%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="pol-4.webp" alt="photo from Ihsaan x UCL Careers" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/pol-4.webp" alt="photo from Ihsaan x UCL Careers" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">ihsaan x ucl careers</div>
       </div>
       <div class="pol" data-tilt="-6" style="position:absolute;right:6.5%;top:42%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="pol-5.webp" alt="photo of panellists at a KCL event" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/pol-5.webp" alt="photo of panellists at a KCL event" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">kcl event panellists</div>
       </div>
       <div class="pol" data-tilt="5" style="position:absolute;right:2.5%;top:69%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="pol-6.webp" alt="photo from the Cambridge Claude AI hack" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/pol-6.webp" alt="photo from the Cambridge Claude AI hack" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">cambridge claude ai hack</div>
       </div>
@@ -1109,7 +1109,7 @@
     <div class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);position:relative;display:flex;align-items:flex-end;justify-content:center;margin-top:clamp(34px,4.5vh,54px);">
       <div ref="{{ setPolSource }}" onClick="{{ firePolaroids }}" class="pol-src" role="button" tabindex="0" aria-label="Reveal photos from uncooked events" style="position:relative;z-index:2;cursor:pointer;width:min(460px,72vw);background:#fff;padding:14px;border-radius:3px;box-shadow:0 18px 40px -14px rgba(20,20,30,0.28),0 3px 10px -2px rgba(20,20,30,0.12);flex:none;">
         <div style="width:100%;height:clamp(240px,26vw,320px);overflow:hidden;background:#f1f1f2;">
-          <img src="mission-event.webp" alt="uncooked at Muslim Tech Fest" style="width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;transform:scale(1.14);transform-origin:50% 45%;">
+          <img src="uploads/mission-event.webp" alt="uncooked at Muslim Tech Fest" style="width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;transform:scale(1.14);transform-origin:50% 45%;">
         </div>
       </div>
       <img src="uploads/click here.svg" alt="click here" class="mission-arrow" style="position:absolute;left:calc(50% + min(230px,36vw) + clamp(10px,1.4vw,22px));bottom:0;height:clamp(62px,6.6vw,86px);width:auto;display:block;">
@@ -1154,7 +1154,7 @@
     <div class="footer-row" style="position:relative;z-index:2;width:min(1240px,92vw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
 
       <a href="#" style="display:flex;align-items:center;flex:none;">
-        <span style="display:flex;align-items:center;gap:5px;"><img src="uncooked-mark.png" alt="" style="height:30px;width:auto;display:block;"><img src="uncooked-wordmark.png" alt="uncooked" style="height:25px;width:auto;display:block;filter:invert(1);"></span>
+        <span style="display:flex;align-items:center;gap:5px;"><img src="uploads/uncooked-mark.png" alt="" style="height:30px;width:auto;display:block;"><img src="uploads/uncooked-wordmark.png" alt="uncooked" style="height:25px;width:auto;display:block;filter:invert(1);"></span>
       </a>
 
       <nav class="footer-nav" aria-label="Footer" style="display:flex;align-items:center;gap:34px;flex:none;">
@@ -1166,8 +1166,8 @@
       </nav>
 
       <div style="display:flex;align-items:center;gap:12px;flex:none;">
-        <a href="https://www.linkedin.com/company/uncookedjobs/posts/?viewAsMember=true" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-btn" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;transition:background .18s,border-color .18s;" style-hover="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);"><img src="linkedin-white.svg" alt="" style="width:21px;height:21px;display:block;"></a>
-        <a href="https://www.instagram.com/uncookedjobs/" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;transition:background .18s,border-color .18s;" style-hover="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);"><img src="insta-white.svg" alt="" style="width:21px;height:21px;display:block;"></a>
+        <a href="https://www.linkedin.com/company/uncookedjobs/posts/?viewAsMember=true" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-btn" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;transition:background .18s,border-color .18s;" style-hover="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);"><img src="uploads/linkedin-white.svg" alt="" style="width:21px;height:21px;display:block;"></a>
+        <a href="https://www.instagram.com/uncookedjobs/" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;transition:background .18s,border-color .18s;" style-hover="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);"><img src="uploads/insta-white.svg" alt="" style="width:21px;height:21px;display:block;"></a>
       </div>
 
     </div>
@@ -1176,7 +1176,7 @@
 
     <!-- bleeding wordmark -->
     <div style="position:relative;z-index:1;margin-top:0;width:100%;line-height:0;">
-      <img src="m-footer.webp" alt="" style="width:100%;display:block;">
+      <img src="uploads/m-footer.webp" alt="" style="width:100%;display:block;">
     </div>
 
   </footer>

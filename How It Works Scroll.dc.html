@@ -26,14 +26,14 @@
 
     <!-- phone -->
     <div style="position:absolute;left:calc(50vw - 27.95vh - 154px);bottom:11%;height:78vh;aspect-ratio:1489/2078;z-index:10;">
-      <img src="uploads/step2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+      <img src="other-assets/step2.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
       <!-- screen window (base = step2 screen rect) -->
       <div style="position:absolute;left:30.15%;top:2.65%;width:56.75%;height:85.51%;overflow:hidden;border-radius:8% / 4.6%;background:#000;">
         <div style="position:absolute;left:0;top:0;width:100%;height:400%;transition:transform .62s cubic-bezier(.72,0,.18,1);transform:translateY({{ stripShift }});">
-          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step1.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
-          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step2.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
-          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step3.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
-          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="uploads/step4.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="other-assets/step1.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="other-assets/step2.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="other-assets/step3.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
+          <div style="position:relative;width:100%;height:25%;overflow:hidden;"><img src="other-assets/step4.png" alt="" style="position:absolute;width:176.21%;height:116.94%;left:-53.14%;top:-3.10%;max-width:none;"></div>
         </div>
       </div>
     </div>
@@ -51,9 +51,9 @@
     <!-- bottom bar -->
     <div ref="{{ setBar }}" style="position:absolute;left:50%;bottom:4.5vh;transform:translateX(-50%);z-index:25;display:flex;align-items:stretch;gap:clamp(6px,2vw,34px);padding:10px;border:1.5px solid rgba(230,43,21,0.5);border-radius:22px;background:rgba(8,3,2,0.35);backdrop-filter:blur(2px);">
       <div ref="{{ setRect }}" style="position:absolute;z-index:0;top:0;left:0;width:0;height:0;display:flex;align-items:stretch;transition:left .55s cubic-bezier(.72,0,.18,1),width .55s cubic-bezier(.72,0,.18,1),top .55s,height .55s;pointer-events:none;">
-        <img src="uploads/red-cap-left.png" alt="" style="height:100%;width:auto;display:block;image-rendering:pixelated;">
+        <img src="other-assets/red-cap-left.png" alt="" style="height:100%;width:auto;display:block;image-rendering:pixelated;">
         <div style="flex:1;height:100%;background:#e62b15;"></div>
-        <img src="uploads/red-cap-right.png" alt="" style="height:100%;width:auto;display:block;image-rendering:pixelated;">
+        <img src="other-assets/red-cap-right.png" alt="" style="height:100%;width:auto;display:block;image-rendering:pixelated;">
       </div>
       <sc-for list="{{ items }}" as="it">
         <div data-item="1" style="position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:10px 20px;white-space:nowrap;">
