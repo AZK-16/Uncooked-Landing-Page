@@ -64,7 +64,7 @@
   @keyframes notifBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
   /* matches the .bp1/.bp2 speech-bubble pulse in the difference section
      (difference 3), just much subtler -- 1.04 instead of 1.14. */
-  @keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+  @keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
   @keyframes lgRight{from{transform:translateX(calc(-1 * var(--set)))}to{transform:translateX(0)}}
   @keyframes lgLeft{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--set)))}}
   .lgr{--set:calc(5 * var(--cl) + 5 * var(--cg));}
@@ -1206,6 +1206,12 @@ class Component extends DCLogic {
       if (this.navEl) this.navEl.classList.toggle('nav-open', navMore.open);
     });
     this.attachRailClicks();
+    // same story as the rail items -- .pol-src is a role="button" div, not a
+    // real <button>, so Enter/Space activation has to be added manually.
+    const polSrc = document.querySelector('.pol-src');
+    if (polSrc) polSrc.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.firePolaroids(); }
+    });
     this.resetTrackAnim();
     this.watchTrack();
     this.fixSpreadImages();
@@ -1857,11 +1863,17 @@ class Component extends DCLogic {
     if (!this.rootEl) return;
     const items = document.querySelectorAll('.rail-item');
     items.forEach((el, i) => {
-      el.addEventListener('click', () => {
+      const activate = () => {
         const rect = this.rootEl.getBoundingClientRect();
         const denom = this.rootEl.offsetHeight - window.innerHeight;
         const targetTop = window.scrollY + rect.top + (denom * (i / 3));
         window.scrollTo({ top: targetTop, behavior: 'smooth' });
+      };
+      el.addEventListener('click', activate);
+      // role="button" divs aren't natively activated by Enter/Space like a
+      // real <button> would be, so that has to be wired up by hand here.
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
       });
     });
   }
