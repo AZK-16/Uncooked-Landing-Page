@@ -299,7 +299,13 @@
   }
 
   /* mission: this doodle clips past the viewport edge below ~640px */
-  @media (max-width:640px){.mission-arrow{display:none !important;}}
+  /* matches the polaroids' own hide breakpoint (see .pol above) -- no point
+     pointing "click here" at polaroids that aren't there. */
+  @media (max-width:1140px){
+    .mission-arrow{display:none !important;}
+    .pol-src{cursor:default !important;}
+    .pol-src:hover{transform:none !important;box-shadow:0 18px 40px -14px rgba(20,20,30,0.28),0 3px 10px -2px rgba(20,20,30,0.12) !important;}
+  }
 
   /* belief card: desktop is head-beside-body with a vertical rule (row layout);
      tablet/mobile put the serif head full-width above a horizontal rule instead,
