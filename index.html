@@ -386,6 +386,23 @@
   @media (max-width:900px){
     .tmn-grid{grid-template-columns:1fr;gap:clamp(18px,3vh,26px);width:min(560px,92vw);}
   }
+
+  /* FAQ: native <details>/<summary>, so it opens without JS and is keyboard
+     operable out of the box. name="uc-faq" is what makes browsers enforce
+     one-open-at-a-time natively; componentDidMount repeats the rule in JS for
+     the browsers that don't support the attribute yet. all closed on load. */
+  .faq-list{width:min(760px,92vw);margin:clamp(30px,4.5vh,52px) auto 0;text-align:left;border-top:1px solid rgba(0,0,0,0.09);}
+  .faq-item{border-bottom:1px solid rgba(0,0,0,0.09);}
+  .faq-q{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:clamp(17px,1.7vw,21px) 2px;font-weight:500;font-size:clamp(15px,1.25vw,17px);line-height:1.4;letter-spacing:-0.015em;color:#111;transition:color .2s;}
+  .faq-q::-webkit-details-marker{display:none;}
+  .faq-q:hover{color:#E62B15;}
+  /* the chevron carries the only red in the section -- the headline stays plain,
+     since this is the functional section, not an emotional one */
+  .faq-chev{flex:none;display:flex;align-items:center;color:#E62B15;margin-top:2px;transition:transform .3s cubic-bezier(.22,.7,.3,1);}
+  .faq-item[open] .faq-chev{transform:rotate(180deg);}
+  .faq-a{margin:0;padding:0 clamp(30px,3.6vw,44px) clamp(18px,1.9vw,23px) 2px;font-weight:400;font-size:clamp(14px,1.1vw,15.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;}
+  .faq-item[open] .faq-a{animation:faqIn .34s cubic-bezier(.22,.7,.3,1) both;}
+  @keyframes faqIn{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:none;}}
 </style>
 <template id="__bundler_thumbnail" data-bg-color="#f7f7f5">
 <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="240" fill="#f7f7f5"></rect><circle cx="120" cy="120" r="52" fill="#E62B15"></circle><text x="120" y="137" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="52" fill="#ffffff">u</text></svg>
@@ -1172,9 +1189,14 @@
        the rejection quote is the strongest proof on the page, so it leads.
        data-di 1/2/3 staggers the cards in sequence off the same reveal
        observer the rest of the page uses (170ms apart). -->
-  <section data-screen-label="Early users" style="position:relative;padding:clamp(30px,5vh,70px) 24px clamp(90px,16vh,200px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <!-- the bottom padding tracks the mission section's so the gap above the FAQ
+       reads as the same whitespace as the gap above this section. the -18px is
+       real: the testimonial grid's last row leaves 18px of slack below its ink,
+       which the mission section's sources line does not, so equal padding would
+       look like an unequal gap. change this only alongside the mission padding. -->
+  <section data-screen-label="Early users" style="position:relative;padding:clamp(30px,5vh,70px) 24px calc(clamp(48px,15vh,190px) - 18px);display:flex;flex-direction:column;align-items:center;text-align:center;">
 
-    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;"><span style="font-style:italic;color:#E62B15;">early users</span>, in their words</h2>
+    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;"><span style="font-style:italic;color:#E62B15;">early users,</span> in their words</h2>
 
     <div class="tmn-grid">
 
@@ -1218,6 +1240,132 @@
     </div>
 
   </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <!-- the objection handler that sits between the proof and the ask. question 1
+       is load-bearing: it is the only place the page draws the line between
+       platform roles (7 day answer guaranteed) and the tracker's external roles
+       (applied for on the company's own site, so not covered). the university
+       list in question 2 is the same seven as the proof strip above, on purpose --
+       if one list changes, change both. capped at 8: a new question means an old
+       one comes out. -->
+  <section data-screen-label="FAQ" style="position:relative;padding:clamp(30px,5vh,70px) 24px clamp(90px,16vh,200px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+
+    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">FAQs</h2>
+
+    <!-- one reveal for the whole list rather than eight staggered ones: the
+         cascade would run past a second here and this section wants to be quick -->
+    <div class="faq-list dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">what does the 7 day answer actually mean?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">apply to any role on the platform and the startup replies within 7 days. a real human, a real decision, and a reason if it's a no. that's the rule every startup signs up to. the tracker's 6,000+ external jobs work differently: you apply to those direct on the company's own site, so the 7 days doesn't cover them.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">who else is using it?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">students and grads from across the UK. Oxford, Cambridge, Imperial, UCL, KCL, Manchester, Edinburgh, and dozens more. it's not an elite club. if you can build something and show it, you're in.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">is it free?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">yes. free for candidates, always. startups pay to hire. you never pay to apply.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">do I need a CV or experience?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">no CV. your passport replaces it: a 60 second video pitch and a walkthrough of the best thing you've made. a uni project, a side project, a hackathon build. if you made it and can explain it, it counts.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">what kind of roles and startups?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">early stage, VC backed startups hiring across software, marketing, design and hardware. the kind of role where you get real responsibility in year 1, not year 5.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">how long does verification take?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">set aside 2 hours and do it properly. after that you never repeat it. one passport, every application.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">what if I don't get matched straight away?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">roles come to you as they open, and we ping your phone when one fits. in the meantime the tracker is live with 6,000+ roles you can apply to today.</p>
+      </details>
+      <details class="faq-item" name="uc-faq">
+        <summary class="faq-q">what happens to my video and my work?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <p class="faq-a">founders see it when you apply to their role. nobody else. we never sell it, share it, or train anything on it. delete it whenever you want.</p>
+      </details>
+    </div>
+
+  </section>
+
+  <!-- FAQPage markup for search: the questions and answers here must stay
+       identical to the visible copy above, or the rich result gets dropped. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "what does the 7 day answer actually mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "apply to any role on the platform and the startup replies within 7 days. a real human, a real decision, and a reason if it's a no. that's the rule every startup signs up to. the tracker's 6,000+ external jobs work differently: you apply to those direct on the company's own site, so the 7 days doesn't cover them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "who else is using it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "students and grads from across the UK. Oxford, Cambridge, Imperial, UCL, KCL, Manchester, Edinburgh, and dozens more. it's not an elite club. if you can build something and show it, you're in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "is it free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "yes. free for candidates, always. startups pay to hire. you never pay to apply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "do I need a CV or experience?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "no CV. your passport replaces it: a 60 second video pitch and a walkthrough of the best thing you've made. a uni project, a side project, a hackathon build. if you made it and can explain it, it counts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "what kind of roles and startups?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "early stage, VC backed startups hiring across software, marketing, design and hardware. the kind of role where you get real responsibility in year 1, not year 5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "how long does verification take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "set aside 2 hours and do it properly. after that you never repeat it. one passport, every application."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "what if I don't get matched straight away?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "roles come to you as they open, and we ping your phone when one fits. in the meantime the tracker is live with 6,000+ roles you can apply to today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "what happens to my video and my work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "founders see it when you apply to their role. nobody else. we never sell it, share it, or train anything on it. delete it whenever you want."
+      }
+    }
+  ]
+}
+  </script>
 
   <!-- ===================== FINAL CTA ===================== -->
   <section data-screen-label="Final CTA" data-reveal-center="" style="position:relative;overflow:hidden;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px clamp(60px,19vh,240px);overflow:hidden;">
@@ -1297,6 +1445,14 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onResize, { passive: true });
     // squares off the nav pill's bottom corners while the mobile dropdown is open,
     // so the two read as one continuous shape (see .site-nav.nav-open)
+    // name="uc-faq" already gives the accordion one-open-at-a-time in current
+    // browsers; this is the same rule for the ones that ignore the attribute, so
+    // two answers are never open together.
+    const faqItems = [...document.querySelectorAll('.faq-item')];
+    faqItems.forEach((item) => item.addEventListener('toggle', () => {
+      if (item.open) faqItems.forEach((other) => { if (other !== item) other.open = false; });
+    }));
+
     const navMore = document.querySelector('.nav-more');
     if (navMore) navMore.addEventListener('toggle', () => {
       if (this.navEl) this.navEl.classList.toggle('nav-open', navMore.open);
