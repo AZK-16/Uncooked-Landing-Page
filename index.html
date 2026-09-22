@@ -362,6 +362,30 @@
     .footer-nav{flex-wrap:wrap;justify-content:center;row-gap:14px !important;column-gap:20px !important;}
     .social-btn{width:44px !important;height:44px !important;}
   }
+
+  /* early users: each quote is the chat-message component from how it works,
+     rebuilt in markup rather than screenshotted -- same #e1e1e8 fill as the
+     incoming bubble there. the tail is the small bottom-left corner the
+     difference-section speech bubbles already use, rather than a masked
+     pseudo-element, which would punch a solid patch through the page's
+     grid background. */
+  .tmn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px);width:min(1160px,92vw);margin:clamp(34px,5vh,60px) auto 0;align-items:stretch;text-align:left;}
+  /* flex:1 on the bubble evens the bubble heights across the row, so the
+     avatar/attribution rows line up instead of stepping with quote length */
+  .tmn{display:flex;flex-direction:column;gap:14px;margin:0;height:100%;}
+  .tmn-bubble{position:relative;flex:1;margin:0;background:#e1e1e8;border-radius:20px 20px 20px 5px;padding:clamp(16px,1.5vw,20px) clamp(18px,1.7vw,23px);font-weight:500;font-size:clamp(14px,1.05vw,15.5px);line-height:1.55;letter-spacing:-0.005em;color:#111;text-wrap:pretty;}
+  .tmn-meta{display:flex;align-items:center;gap:11px;padding-left:4px;}
+  .tmn-avatar{flex:none;width:38px;height:38px;border-radius:50%;background:#f4f4f2;border:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;color:#9a9aa0;font-weight:700;font-size:13px;letter-spacing:-0.01em;overflow:hidden;}
+  .tmn-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .tmn-who{display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .tmn-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .tmn-name{font-weight:700;font-size:13.5px;letter-spacing:-0.015em;color:#111;}
+  .tmn-track{font-weight:600;font-size:11.5px;color:#5f5f66;background:#f4f4f2;border:1px solid rgba(0,0,0,0.08);border-radius:100px;padding:2.5px 9px;white-space:nowrap;}
+  .tmn-context{font-weight:500;font-size:12.5px;line-height:1.4;color:#9a9aa0;}
+  /* same 900px stack point the difference grid uses */
+  @media (max-width:900px){
+    .tmn-grid{grid-template-columns:1fr;gap:clamp(18px,3vh,26px);width:min(560px,92vw);}
+  }
 </style>
 <template id="__bundler_thumbnail" data-bg-color="#f7f7f5">
 <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="240" fill="#f7f7f5"></rect><circle cx="120" cy="120" r="52" fill="#E62B15"></circle><text x="120" y="137" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="52" fill="#ffffff">u</text></svg>
@@ -1139,6 +1163,58 @@
       <p style="margin:0;font-weight:500;font-size:clamp(15px,1.2vw,16.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;">every offer made through the platform works towards that goal. so does every room uncooked labs opens.</p>
       <a href="#" style="font-weight:600;font-size:15px;color:#5f5f66;display:inline-flex;align-items:center;gap:7px;transition:color .2s;" style-hover="color:#E62B15;">the full story, from our founder <span>→</span></a>
       <div style="font-weight:500;font-size:12px;line-height:1.5;color:#b3b3b9;">sources: ONS · Adzuna via The Guardian · ISE via Fortune · iHire via Fortune · NatWest &amp; Beauhurst.</div>
+    </div>
+
+  </section>
+
+  <!-- ===================== EARLY USERS ===================== -->
+  <!-- order is fixed and load-bearing: rejection, then outcome, then ease.
+       the rejection quote is the strongest proof on the page, so it leads.
+       data-di 1/2/3 staggers the cards in sequence off the same reveal
+       observer the rest of the page uses (170ms apart). -->
+  <section data-screen-label="Early users" style="position:relative;padding:clamp(30px,5vh,70px) 24px clamp(90px,16vh,200px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+
+    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;"><span style="font-style:italic;color:#E62B15;">early users</span>, in their words</h2>
+
+    <div class="tmn-grid">
+
+      <!-- 1 · rejection -->
+      <figure class="tmn dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+        <blockquote class="tmn-bubble">didn't get the role. but I heard back in 5 days with an actual reason. first time that's ever happened. I'll be using it again.</blockquote>
+        <figcaption class="tmn-meta">
+          <!-- swap the icon for <img src="uploads/....webp" alt=""> or initials -->
+          <span class="tmn-avatar"><i data-lucide="user" style="width:17px;height:17px;"></i></span>
+          <span class="tmn-who">
+            <span class="tmn-line"><span class="tmn-name">[first name]</span><span class="tmn-track">[track]</span></span>
+            <span class="tmn-context">applied for a [role type], [month]</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <!-- 2 · outcome (candidate's own words only -- founder quotes live on the hiring page) -->
+      <figure class="tmn dfin" data-di="2" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+        <blockquote class="tmn-bubble">got the role. verified once, applied from my phone, had a call booked within the week.</blockquote>
+        <figcaption class="tmn-meta">
+          <span class="tmn-avatar"><i data-lucide="user" style="width:17px;height:17px;"></i></span>
+          <span class="tmn-who">
+            <span class="tmn-line"><span class="tmn-name">[first name]</span><span class="tmn-track">[track]</span></span>
+            <span class="tmn-context">now at [startup]</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <!-- 3 · ease -->
+      <figure class="tmn dfin" data-di="3" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+        <blockquote class="tmn-bubble">took me under an hour to get verified. no CV, no cover letter, no rewriting my story 10 times.</blockquote>
+        <figcaption class="tmn-meta">
+          <span class="tmn-avatar"><i data-lucide="user" style="width:17px;height:17px;"></i></span>
+          <span class="tmn-who">
+            <span class="tmn-line"><span class="tmn-name">[first name]</span><span class="tmn-track">[track]</span></span>
+            <span class="tmn-context">[university or city]</span>
+          </span>
+        </figcaption>
+      </figure>
+
     </div>
 
   </section>
