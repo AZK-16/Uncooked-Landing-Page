@@ -4,17 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-/* arriving from the founder's letter at #mission. two jobs:
+/* arriving back from the founder's letter. two jobs:
    1. place the viewport. this page suppresses the browser's own fragment jump
-      (verified: scrollY stays 0 on a cold load of #mission, with or without
-      this script), so the scroll has to be done explicitly.
+      (verified: scrollY stays 0 on a cold load of #mission), so the scroll is
+      done explicitly.
    2. fade in, so the reader lands mid-page instead of being dropped there.
    the scroll happens while the page is still at opacity 0, so the jump itself
    is never visible. every route back to opacity 1 is guarded -- load, a hard
    timeout, and a bail-out for reduced motion -- so the page can never be
    stranded invisible if something stalls. */
 (function () {
-  if (window.location.hash !== '#mission') return;
+  // only run for a genuine return trip from the founder's letter, which leaves a
+  // one-shot flag. reading it consumes it, so a refresh afterwards just restores
+  // wherever the reader was, the way any other page would.
+  var go = null;
+  try { go = sessionStorage.getItem('uc-to-mission'); sessionStorage.removeItem('uc-to-mission'); } catch (e) {}
+  if (!go) return;
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement, landed = false, placedAt = -1;
   if (!reduce) root.style.opacity = '0';
@@ -36,13 +42,11 @@
 
   window.addEventListener('load', function () {
     requestAnimationFrame(function () { requestAnimationFrame(function () {
-      // if a timeout landed us early, re-place once images have settled --
-      // but only while the reader hasn't scrolled away themselves
       if (landed && placedAt >= 0 && Math.abs(window.pageYOffset - placedAt) < 4) place();
       land();
     }); });
   });
-  setTimeout(land, 1800);   // last resort if load never fires
+  setTimeout(land, 1800);
 })();
 </script>
 <script src="./support.js"></script>
@@ -426,8 +430,23 @@
   /* early users: editorial quote cards. card reads top to bottom as avatar +
      track, then the quote, then attribution sitting on the card's floor behind
      a hairline. */
-  .tmn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.9vw,28px);width:min(1160px,92vw);margin:clamp(38px,5.5vh,66px) auto 0;align-items:stretch;text-align:left;}
-  .tmn{display:flex;flex-direction:column;margin:0;height:100%;background:#fff;border:1px solid rgba(0,0,0,0.07);border-radius:16px;padding:clamp(20px,1.9vw,26px);box-shadow:0 12px 28px -20px rgba(20,20,30,.3),0 2px 5px -3px rgba(20,20,30,.07);}
+  /* stroke + lift live here, not on the card: a mask clips its own element's
+     filter output, so a filter on .tmn was being erased at the card edge. the
+     grid isn't masked, and its only children are the three opaque cards, so the
+     four 1px offset shadows trace each card's notched silhouette and the fifth
+     casts the drop shadow from that outlined shape. */
+  .tmn-grid{filter:drop-shadow(1px 0 0 #E2E2E1) drop-shadow(-1px 0 0 #E2E2E1) drop-shadow(0 1px 0 #E2E2E1) drop-shadow(0 -1px 0 #E2E2E1) drop-shadow(0 4px 10px rgba(20,20,30,0.05));display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.9vw,28px);width:min(1160px,92vw);margin:clamp(38px,5.5vh,66px) auto 0;align-items:stretch;text-align:left;}
+  /* the paper grain lives on the cards only -- the page behind them is flat.
+     the tile is opaque and averages #fafafa, so it sets the card surface;
+     the colour below it is just the pre-load fallback. */
+  /* ticket shape: four radial gradients punch a 17px concave notch out of each
+     corner. the stroke and shadow can't live here -- a mask clips its own
+     element's filter output -- so they sit on .tmn-grid instead. */
+  .tmn{--pad:clamp(20px,1.9vw,26px);
+    display:flex;flex-direction:column;margin:0;height:100%;background:#fafafa url('uploads/paper-grain-tile.webp') 0 0 / 384px 384px repeat;border:0;padding:var(--pad);
+    -webkit-mask:radial-gradient(circle 17px at 0 0,transparent 98%,#000 100%) 0 0/51% 51% no-repeat,radial-gradient(circle 17px at 100% 0,transparent 98%,#000 100%) 100% 0/51% 51% no-repeat,radial-gradient(circle 17px at 0 100%,transparent 98%,#000 100%) 0 100%/51% 51% no-repeat,radial-gradient(circle 17px at 100% 100%,transparent 98%,#000 100%) 100% 100%/51% 51% no-repeat;
+    mask:radial-gradient(circle 17px at 0 0,transparent 98%,#000 100%) 0 0/51% 51% no-repeat,radial-gradient(circle 17px at 100% 0,transparent 98%,#000 100%) 100% 0/51% 51% no-repeat,radial-gradient(circle 17px at 0 100%,transparent 98%,#000 100%) 0 100%/51% 51% no-repeat,radial-gradient(circle 17px at 100% 100%,transparent 98%,#000 100%) 100% 100%/51% 51% no-repeat;
+}
   /* avatar left, track chip right */
   .tmn-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
   .tmn-avatar{flex:none;width:40px;height:40px;border-radius:50%;background:#f4f4f2;border:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;color:#b0b0b6;font-weight:700;font-size:13px;letter-spacing:-0.01em;overflow:hidden;}
@@ -437,10 +456,45 @@
   .tmn-mark{font-family:'Instrument Serif',serif;font-size:clamp(42px,4.1vw,57px);line-height:.6;letter-spacing:-0.02em;color:#E62B15;margin-top:clamp(22px,2.26vw,33px);}
   /* flex:1 drops the rule + attribution to the card floor, so they line up
      across the row however long each quote runs */
-  .tmn-bubble{flex:1;margin:clamp(-15px,-1.02vw,-13px) 0 0;font-weight:500;font-size:clamp(16px,1.35vw,19px);line-height:1.45;letter-spacing:-0.015em;color:#111;text-wrap:pretty;}
-  .tmn-meta{display:flex;flex-direction:column;gap:3px;margin-top:clamp(16px,1.7vw,24px);padding-top:clamp(12px,1.2vw,16px);border-top:1px solid rgba(0,0,0,0.08);}
+  .tmn-bubble{flex:1;margin:clamp(-15px,-1.02vw,-13px) 0 0;font-weight:500;font-size:clamp(16px,1.35vw,19px);line-height:1.45;letter-spacing:-0.015em;color:#504E4E;text-wrap:pretty;}
+  .tmn-meta{display:flex;flex-direction:column;gap:3px;margin:clamp(16px,1.7vw,24px) calc(-1 * var(--pad)) 0;padding:clamp(19px,1.9vw,26px) var(--pad) 0;border-top:0;background:repeating-linear-gradient(to right,rgba(0,0,0,0.26) 0 9px,transparent 9px 20px) 0 0/100% 1px no-repeat;}
   .tmn-name{font-weight:700;font-size:12.5px;letter-spacing:-0.015em;color:#111;}
   .tmn-context{font-weight:500;font-size:11.5px;line-height:1.45;color:#9a9aa0;}
+  /* decorative glyph layer. absolutely placed, so each piece gets its own size
+     and angle; the heading and cards are lifted above it with z-index. shown
+     only while the cards sit three across -- once they stack at 900px the
+     whitespace beside them is gone, so the layer is hidden entirely. */
+  /* deliberately not clipped: glyphs are meant to run off the edge rather than
+     be sliced at the section box. the page wrapper's overflow-x:clip keeps
+     the ones that overhang from creating a horizontal scrollbar. */
+  .tmn-deco{position:absolute;inset:0;z-index:0;pointer-events:none;display:none;}
+  .tmn-deco img{position:absolute;display:block;}
+  .tmn-head,.tmn-grid{position:relative;z-index:1;}
+  @media (min-width:901px){
+    .tmn-deco{display:block;}
+    /* clustered in the whitespace beside the title, then drifting down behind
+       the cards -- the cards are opaque, so they only show in the gaps */
+    .dc-ga{left:51%;top:-2%;width:clamp(120px,10.5vw,186px);transform:rotate(-15deg);}
+    .dc-gb{left:74%;top:-8%;width:clamp(150px,13.5vw,238px);transform:rotate(10deg);}
+    .dc-gc{left:62%;top:33%;width:clamp(170px,15.5vw,272px);transform:rotate(-7deg);}
+    .dc-gd{left:96%;top:14%;width:clamp(130px,11.5vw,204px);transform:rotate(19deg);}
+    .dc-sa{left:68%;top:10%;width:clamp(24px,2.2vw,38px);transform:rotate(0deg);}
+    .dc-sb{left:84%;top:46%;width:clamp(28px,2.6vw,45px);transform:rotate(14deg);}
+    .dc-sc{left:101%;top:2%;width:clamp(20px,1.9vw,32px);transform:rotate(-12deg);}
+    .dc-sd{left:57%;top:62%;width:clamp(22px,2vw,34px);transform:rotate(8deg);}
+    /* these two bracket the glyph bleeding off the right edge, which sits
+       between 11% and 41% of the section height */
+    .dc-se{left:95.5%;top:2%;width:clamp(21px,1.9vw,33px);transform:rotate(-9deg);}
+    .dc-sf{left:94.5%;top:46%;width:clamp(24px,2.2vw,38px);transform:rotate(11deg);}
+  }
+  /* cards fade in one after another. the stagger lives here rather than in the
+     data-di the reveal observer reads: sweepReveals() also flips .dfin elements
+     to opacity:1 on every scroll frame without setting a delay, and it usually
+     wins that race, so the observer's stagger never lands. !important is needed
+     to beat the inline `transition` shorthand, which pins delay to 0s. */
+  .tmn-grid .tmn:nth-of-type(1){transition-delay:0ms !important;}
+  .tmn-grid .tmn:nth-of-type(2){transition-delay:210ms !important;}
+  .tmn-grid .tmn:nth-of-type(3){transition-delay:420ms !important;}
   /* the heading is width-matched to the grid so both share one left edge */
   .tmn-head{width:min(1160px,92vw);margin:0 auto;text-align:left;}
   /* same 900px stack point the difference grid uses */
@@ -508,7 +562,7 @@
 </template>
 </helmet>
 
-<div style="font-family:'Satoshi',system-ui,sans-serif;color:#111;background:#fafafa;background-image:url('uploads/paper-grain-tile.webp');background-size:576px 576px;background-repeat:repeat;background-position:center top;overflow-x:clip;">
+<div style="font-family:'Satoshi',system-ui,sans-serif;color:#111;background:#F5F5F2;overflow-x:clip;">
 
   <!-- ===================== FIXED NAV ===================== -->
   <nav ref="{{ setNav }}" class="site-nav" aria-label="Main" style="position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:200;width:max-content;max-width:94%;display:flex;align-items:center;gap:28px;padding:6px 7px 6px 15px;backdrop-filter:blur(22px) saturate(2.2);-webkit-backdrop-filter:blur(22px) saturate(2.2);border:1px solid transparent;border-radius:100px;background-image:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.80)),linear-gradient(180deg,#e7e7e9 0%,#DCDCDF 55%,#D0D0D4 100%);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 8px 24px -7px rgba(20,20,30,0.16),0 3px 7px -1px rgba(20,20,30,0.09);transition:box-shadow .3s ease,transform .3s ease,background-image .45s ease;">
@@ -1217,7 +1271,7 @@
       </div>
       <div class="pol" data-tilt="6" style="position:absolute;left:7%;top:44%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
-          <img src="uploads/imperial haqqathon.png" alt="photo from the Imperial Haqqathon" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="uploads/imperial-haqqathon-optimized.webp" alt="photo from the Imperial Haqqathon" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:13px;font-weight:500;color:#9a9aa0;">imperial haqqathon</div>
       </div>
@@ -1291,14 +1345,30 @@
        look like an unequal gap. change this only alongside the mission padding. -->
   <section data-screen-label="Early users" style="position:relative;padding:clamp(30px,5vh,70px) 24px calc(clamp(48px,15vh,190px) - 18px);display:flex;flex-direction:column;align-items:center;text-align:center;">
 
+    <!-- barely-there brand glyphs behind the heading and cards. #EDEBE6 is
+         baked into both SVGs, which is why no colour is set here. desktop and
+         tablet only -- on a phone there is no spare whitespace to fill. -->
+    <div class="tmn-deco" aria-hidden="true">
+      <img class="dc-ga" src="uploads/uncooked glyph.svg" alt="">
+      <img class="dc-gb" src="uploads/uncooked glyph.svg" alt="">
+      <img class="dc-gc" src="uploads/uncooked glyph.svg" alt="">
+      <img class="dc-gd" src="uploads/uncooked glyph.svg" alt="">
+      <img class="dc-sa" src="uploads/star.svg" alt="">
+      <img class="dc-sb" src="uploads/star.svg" alt="">
+      <img class="dc-sc" src="uploads/star.svg" alt="">
+      <img class="dc-sd" src="uploads/star.svg" alt="">
+      <img class="dc-se" src="uploads/star.svg" alt="">
+      <img class="dc-sf" src="uploads/star.svg" alt="">
+    </div>
+
     <div class="tmn-head">
-      <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6.5vw,82px);letter-spacing:-0.03em;line-height:0.95;color:#111;max-width:15ch;text-wrap:balance;">what our early users are saying.</h2>
+      <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6.5vw,82px);letter-spacing:-0.03em;line-height:0.95;color:#313131;max-width:15ch;text-wrap:balance;">what our early users are saying.</h2>
     </div>
 
     <div class="tmn-grid">
 
       <!-- 1 · rejection -->
-      <figure class="tmn dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+      <figure class="tmn dfin" data-di="1" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.33,.9,.4,1),transform 1s cubic-bezier(.22,.8,.3,1);">
         <div class="tmn-top">
           <!-- drop a photo in with <img src="uploads/....webp" alt=""> or set initials as text -->
           <span class="tmn-avatar"></span>
@@ -1313,7 +1383,7 @@
       </figure>
 
       <!-- 2 · outcome (candidate's own words only -- founder quotes live on the hiring page) -->
-      <figure class="tmn dfin" data-di="2" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+      <figure class="tmn dfin" data-di="2" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.33,.9,.4,1),transform 1s cubic-bezier(.22,.8,.3,1);">
         <div class="tmn-top">
           <!-- drop a photo in with <img src="uploads/....webp" alt=""> or set initials as text -->
           <span class="tmn-avatar"></span>
@@ -1328,7 +1398,7 @@
       </figure>
 
       <!-- 3 · ease -->
-      <figure class="tmn dfin" data-di="3" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+      <figure class="tmn dfin" data-di="3" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.33,.9,.4,1),transform 1s cubic-bezier(.22,.8,.3,1);">
         <div class="tmn-top">
           <!-- drop a photo in with <img src="uploads/....webp" alt=""> or set initials as text -->
           <span class="tmn-avatar"></span>

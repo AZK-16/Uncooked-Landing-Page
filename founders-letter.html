@@ -18,16 +18,12 @@
   body{margin:0;}
 
   /* surface is lifted verbatim from the jobs page wrapper so the two pages sit
-     on the same paper: #fafafa under a seamless paper-grain tile */
+     on the same paper: a flat #F5F5F2 surface */
   .page{
     min-height:100vh;
     font-family:'Satoshi',system-ui,sans-serif;
     color:#3f3f46;
-    background:#fafafa;
-    background-image:url('uploads/paper-grain-tile.webp');
-    background-size:576px 576px;
-    background-repeat:repeat;
-    background-position:center top;
+    background:#F5F5F2;
     overflow-x:clip;
   }
 
@@ -93,7 +89,7 @@
   <div class="wrap">
 
     <header class="fl-head">
-      <a class="fl-back" href="index.html#mission"><span aria-hidden="true">←</span> back</a>
+      <a class="fl-back" href="index.html"><span aria-hidden="true">←</span> back</a>
       <span class="fl-date">september 2026</span>
     </header>
 
@@ -198,9 +194,14 @@
   // leaving: fade the letter out, then hand over to the jobs page, which fades
   // back in on arrival. modified clicks (new tab, etc) are left alone.
   var back = document.querySelector('.fl-back');
-  if (back && !reduce) {
+  if (back) {
     back.addEventListener('click', function (ev) {
       if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+      // one-shot: the jobs page scrolls to the mission section only when it sees
+      // this. the link carries no #fragment, so nothing is left in the address
+      // bar afterwards -- this flag is the whole mechanism.
+      try { sessionStorage.setItem('uc-to-mission', '1'); } catch (e) {}
+      if (reduce) return;                       // let the link navigate normally
       ev.preventDefault();
       var href = back.getAttribute('href');
       var root = document.documentElement;
