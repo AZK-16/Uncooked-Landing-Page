@@ -18,15 +18,15 @@
   body{margin:0;}
 
   /* surface is lifted verbatim from the jobs page wrapper so the two pages sit
-     on the same paper: #fafafa under 48px warm ruling */
+     on the same paper: #fafafa under a seamless paper-grain tile */
   .page{
     min-height:100vh;
     font-family:'Satoshi',system-ui,sans-serif;
     color:#3f3f46;
     background:#fafafa;
-    background-image:linear-gradient(to right,rgba(242,232,226,0.5) 1px,transparent 1px),
-                     linear-gradient(to bottom,rgba(242,232,226,0.5) 1px,transparent 1px);
-    background-size:48px 48px;
+    background-image:url('uploads/paper-grain-tile.webp');
+    background-size:576px 576px;
+    background-repeat:repeat;
     background-position:center top;
     overflow-x:clip;
   }

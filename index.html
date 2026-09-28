@@ -58,7 +58,7 @@
 <script src="./image-slot.js"></script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{background:#fbf8f4;max-width:100%;overflow-x:clip;}
+  html,body{background:#F5F5F2;max-width:100%;overflow-x:clip;}
   a{text-decoration:none;color:#E62B15;}
   a:hover{color:#ff5236;}
   @keyframes heroUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -434,10 +434,10 @@
   .tmn-avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;}
   .tmn-track{display:inline-flex;align-items:center;gap:6px;flex:none;background:#fff;border:1px solid rgba(0,0,0,0.09);border-radius:100px;padding:7px 14px;font-weight:600;font-size:12px;letter-spacing:-0.01em;color:#3f3f46;white-space:nowrap;box-shadow:0 2px 5px -3px rgba(20,20,30,.16);}
   /* line-height .6 crops the glyph's serif leading so it sits tight to the quote */
-  .tmn-mark{font-family:'Instrument Serif',serif;font-size:clamp(42px,4.1vw,57px);line-height:.6;letter-spacing:-0.02em;color:#E62B15;margin-top:clamp(22px,2.1vw,30px);}
+  .tmn-mark{font-family:'Instrument Serif',serif;font-size:clamp(42px,4.1vw,57px);line-height:.6;letter-spacing:-0.02em;color:#E62B15;margin-top:clamp(22px,2.26vw,33px);}
   /* flex:1 drops the rule + attribution to the card floor, so they line up
      across the row however long each quote runs */
-  .tmn-bubble{flex:1;margin:-13px 0 0;font-weight:500;font-size:clamp(16px,1.35vw,19px);line-height:1.45;letter-spacing:-0.015em;color:#111;text-wrap:pretty;}
+  .tmn-bubble{flex:1;margin:clamp(-15px,-1.02vw,-13px) 0 0;font-weight:500;font-size:clamp(16px,1.35vw,19px);line-height:1.45;letter-spacing:-0.015em;color:#111;text-wrap:pretty;}
   .tmn-meta{display:flex;flex-direction:column;gap:3px;margin-top:clamp(16px,1.7vw,24px);padding-top:clamp(12px,1.2vw,16px);border-top:1px solid rgba(0,0,0,0.08);}
   .tmn-name{font-weight:700;font-size:12.5px;letter-spacing:-0.015em;color:#111;}
   .tmn-context{font-weight:500;font-size:11.5px;line-height:1.45;color:#9a9aa0;}
@@ -508,7 +508,7 @@
 </template>
 </helmet>
 
-<div style="font-family:'Satoshi',system-ui,sans-serif;color:#111;background:#fafafa;background-image:linear-gradient(to right,rgba(242,232,226,0.5) 1px,transparent 1px),linear-gradient(to bottom,rgba(242,232,226,0.5) 1px,transparent 1px);background-size:48px 48px;background-position:center top;overflow-x:clip;">
+<div style="font-family:'Satoshi',system-ui,sans-serif;color:#111;background:#fafafa;background-image:url('uploads/paper-grain-tile.webp');background-size:576px 576px;background-repeat:repeat;background-position:center top;overflow-x:clip;">
 
   <!-- ===================== FIXED NAV ===================== -->
   <nav ref="{{ setNav }}" class="site-nav" aria-label="Main" style="position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:200;width:max-content;max-width:94%;display:flex;align-items:center;gap:28px;padding:6px 7px 6px 15px;backdrop-filter:blur(22px) saturate(2.2);-webkit-backdrop-filter:blur(22px) saturate(2.2);border:1px solid transparent;border-radius:100px;background-image:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.80)),linear-gradient(180deg,#e7e7e9 0%,#DCDCDF 55%,#D0D0D4 100%);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 8px 24px -7px rgba(20,20,30,0.16),0 3px 7px -1px rgba(20,20,30,0.09);transition:box-shadow .3s ease,transform .3s ease,background-image .45s ease;">
