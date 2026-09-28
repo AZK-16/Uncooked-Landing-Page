@@ -460,6 +460,17 @@
   .tmn-meta{display:flex;flex-direction:column;gap:3px;margin:clamp(16px,1.7vw,24px) calc(-1 * var(--pad)) 0;padding:clamp(19px,1.9vw,26px) var(--pad) 0;border-top:0;background:repeating-linear-gradient(to right,rgba(0,0,0,0.26) 0 9px,transparent 9px 20px) 0 0/100% 1px no-repeat;}
   .tmn-name{font-weight:700;font-size:12.5px;letter-spacing:-0.015em;color:#111;}
   .tmn-context{font-weight:500;font-size:11.5px;line-height:1.45;color:#9a9aa0;}
+  /* barely-there ruling behind a section, faded out at both sides so it
+     dissolves into the page rather than stopping at a hard edge. z-index:-1
+     keeps it under the content; each host section carries isolation:isolate so
+     that -1 can't escape behind the page background. */
+  .sec-grid{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(242,232,226,0.32) 1px,transparent 1px),
+                     linear-gradient(to bottom,rgba(242,232,226,0.32) 1px,transparent 1px);
+    background-size:48px 48px;background-position:center top;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%);
+            mask-image:linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%);}
+
   /* mission: barely-there ruling behind the section, faded out at both sides so
      it dissolves into the flat page rather than stopping at a hard edge.
      z-index:-1 keeps it under the content; the section carries isolation:isolate
@@ -623,7 +634,9 @@
   </nav>
 
   <!-- ===================== HERO ===================== -->
-  <section data-screen-label="Hero" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100svh;padding:140px 24px 40px;box-sizing:border-box;position:relative;">
+  <section data-screen-label="Hero" style="isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100svh;padding:140px 24px 40px;box-sizing:border-box;position:relative;">
+    <div class="sec-grid" aria-hidden="true"></div>
+
 
     <!-- simple two-column row: text | picture, wraps to a stack when tight
          (see .hero-row in the CSS) -->
@@ -690,39 +703,39 @@
 
       <!-- watermark glyphs behind step 01 -->
       <div class="wm-01" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="contact-2" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-text" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-text" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="contact-2" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="contact-2" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-text" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-text" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-text" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-text" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <div class="wm-02" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="puzzle" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="zap" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="zap" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="puzzle" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="puzzle" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="zap" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="puzzle" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="zap" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="zap" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="puzzle" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="puzzle" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="zap" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <div class="wm-03" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="file-audio" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="mic" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="mic" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-audio" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-audio" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="mic" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-audio" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="mic" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="mic" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-audio" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-audio" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="mic" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <div class="wm-04" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="message-square" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="trending-up" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="trending-up" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="message-square" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="message-square" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="trending-up" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="message-square" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="trending-up" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="trending-up" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="message-square" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="message-square" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="trending-up" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <!-- centerpiece: rings + orbit + phone -->
@@ -933,7 +946,9 @@
   </div><!-- /how it works -->
 
   <!-- ===================== PASSPORT ===================== -->
-  <section data-screen-label="Passport" style="position:relative;padding:clamp(60px,19vh,240px) 24px clamp(24px,3vh,40px);">
+  <section data-screen-label="Passport" style="isolation:isolate;position:relative;padding:clamp(60px,19vh,240px) 24px clamp(24px,3vh,40px);">
+    <div class="sec-grid" aria-hidden="true"></div>
+
 
     <h2 data-reveal="" class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(48px,6vh,80px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">verify once. apply anywhere.</h2>
 
@@ -1153,7 +1168,9 @@
   </section>
 
   <!-- ===================== DIFFERENCE ===================== -->
-  <section data-screen-label="Difference" style="position:relative;padding:clamp(50px,15vh,190px) 0 clamp(48px,15vh,190px);overflow:hidden;">
+  <section data-screen-label="Difference" style="isolation:isolate;position:relative;padding:clamp(50px,15vh,190px) 0 clamp(48px,15vh,190px);overflow:hidden;">
+    <div class="sec-grid" aria-hidden="true"></div>
+
 
     <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0 0 clamp(4px,0.8vh,20px);text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">what makes uncooked different.</h2>
 
@@ -1576,7 +1593,9 @@
   </script>
 
   <!-- ===================== FINAL CTA ===================== -->
-  <section data-screen-label="Final CTA" data-reveal-center="" style="position:relative;overflow:hidden;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px clamp(60px,19vh,240px);overflow:hidden;">
+  <section data-screen-label="Final CTA" data-reveal-center="" style="isolation:isolate;position:relative;overflow:hidden;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px clamp(60px,19vh,240px);overflow:hidden;">
+    <div class="sec-grid" aria-hidden="true"></div>
+
 
 
     <!-- paper-plane trails: crop with the viewport, hidden on mobile -->
