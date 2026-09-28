@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>a letter from our founder · uncooked</title>
+<meta name="description" content="why we started uncooked, and what we're building towards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;}
+
+  /* background + grid are lifted verbatim from the jobs page wrapper, so the two
+     pages sit on the same surface: #fafafa with 48px warm ruling */
+  .page{
+    min-height:100vh;
+    font-family:'Satoshi',system-ui,sans-serif;
+    color:#111;
+    background:#fafafa;
+    background-image:linear-gradient(to right,rgba(242,232,226,0.5) 1px,transparent 1px),
+                     linear-gradient(to bottom,rgba(242,232,226,0.5) 1px,transparent 1px);
+    background-size:48px 48px;
+    background-position:center top;
+    overflow-x:clip;
+  }
+
+  /* header: the nav pill is a whole component on the jobs page, with scroll
+     states and a mobile disclosure. a letter needs none of that, so this is the
+     same lockup reduced to what it has to do -- go back. */
+  .fl-head{display:flex;align-items:center;justify-content:space-between;gap:20px;
+    width:min(760px,90vw);margin:0 auto;padding:30px 0 0;}
+  .fl-logo{display:flex;align-items:center;text-decoration:none;}
+  .fl-logo img{height:30px;width:auto;display:block;}
+  .fl-back{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;
+    color:#5f5f66;text-decoration:none;white-space:nowrap;transition:color .2s;}
+  .fl-back:hover{color:#E62B15;}
+
+  .fl-wrap{width:min(760px,90vw);margin:0 auto;padding:clamp(48px,8vh,96px) 0 clamp(72px,12vh,140px);}
+
+  .fl-eyebrow{font-weight:700;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:#b0b0b6;margin:0 0 clamp(18px,2.5vh,26px);}
+
+  .fl-title{margin:0;font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(34px,5.2vw,52px);letter-spacing:-0.03em;line-height:1.04;color:#111;text-wrap:balance;}
+  .fl-title em{font-style:italic;color:#E62B15;}
+
+  .fl-meta{margin:clamp(18px,2.5vh,26px) 0 0;font-weight:500;font-size:13.5px;color:#9a9aa0;}
+
+  .fl-rule{height:1px;background:rgba(0,0,0,0.09);margin:clamp(28px,4vh,44px) 0;border:0;}
+
+  /* letter measure: a touch wider than the landing page's 44ch body, because this
+     is read start to finish rather than scanned */
+  .fl-body{font-weight:500;font-size:clamp(15.5px,1.15vw,17px);line-height:1.72;color:#3f3f46;}
+  .fl-body p{margin:0 0 1.15em;text-wrap:pretty;}
+  .fl-body p:last-child{margin-bottom:0;}
+  .fl-body strong{font-weight:700;color:#111;}
+  .fl-body h2{margin:clamp(34px,5vh,52px) 0 clamp(12px,1.6vh,18px);
+    font-weight:700;font-size:clamp(17px,1.5vw,20px);letter-spacing:-0.02em;line-height:1.3;color:#111;}
+
+  /* pull quote, same red hairline the belief card uses for its 1:30am line */
+  .fl-quote{margin:clamp(30px,4.5vh,46px) 0;padding-left:16px;border-left:3px solid #E62B15;}
+  .fl-quote p{margin:0;font-weight:700;font-synthesis:none;font-size:clamp(17px,1.8vw,21px);
+    line-height:1.35;letter-spacing:-0.02em;color:#111;}
+
+  /* placeholder blocks -- delete these wrappers once the real copy is in */
+  .fl-todo{border:1px dashed rgba(230,43,21,0.35);border-radius:10px;
+    padding:14px 16px;margin:0 0 1.15em;background:rgba(230,43,21,0.02);}
+  .fl-todo p{margin:0 0 .8em;}
+  .fl-todo p:last-child{margin-bottom:0;}
+  .fl-todo::before{content:'placeholder — replace with your own words';
+    display:block;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:#E62B15;margin-bottom:10px;}
+
+  .fl-sign{margin-top:clamp(36px,5vh,56px);}
+  .fl-sign-name{font-family:'Instrument Serif',serif;font-size:clamp(24px,2.6vw,30px);
+    line-height:1.1;letter-spacing:-0.02em;color:#111;}
+  .fl-sign-role{margin-top:7px;font-weight:500;font-size:13.5px;color:#9a9aa0;}
+
+  .fl-cta-wrap{margin-top:clamp(52px,8vh,88px);padding-top:clamp(34px,5vh,52px);
+    border-top:1px solid rgba(0,0,0,0.09);display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .fl-cta-line{margin:0 0 20px;font-weight:600;font-size:clamp(16px,1.35vw,18.5px);
+    letter-spacing:-0.015em;color:#111;}
+  .fl-cta{display:inline-flex;align-items:center;justify-content:center;background:#E62B15;color:#fff;
+    font-weight:700;font-size:15px;padding:13px 30px;border-radius:100px;text-decoration:none;
+    box-shadow:0 10px 24px -8px rgba(230,43,21,.5);transition:background .2s,transform .2s;}
+  .fl-cta:hover{background:#c31f0c;transform:translateY(-2px);}
+  .fl-fine{margin-top:14px;font-weight:500;font-size:13px;color:#9a9aa0;}
+
+  @media (max-width:520px){
+    .fl-head{padding-top:22px;}
+    .fl-logo img{height:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="fl-head">
+    <a class="fl-logo" href="index.html"><img src="uploads/m-nav-mark.png" alt="uncooked (BETA)"></a>
+    <a class="fl-back" href="index.html"><span aria-hidden="true">←</span> back to jobs</a>
+  </header>
+
+  <main class="fl-wrap">
+
+    <article>
+      <p class="fl-eyebrow">from our founder</p>
+
+      <h1 class="fl-title">why we built <em>uncooked</em>.</h1>
+
+      <p class="fl-meta">a letter to anyone who's ever hit submit and heard nothing back</p>
+
+      <hr class="fl-rule">
+
+      <div class="fl-body">
+
+        <!-- the opening below is the mission section's copy, already published on
+             the jobs page, so the two never contradict each other. everything
+             inside .fl-todo still needs the founder's own words. -->
+        <p>it's never been harder to be young and looking for work in the UK. <strong>over 1 million</strong> young people are out of work or education. entry level roles have dropped by <strong>nearly a third</strong> since ChatGPT launched. <strong>70 people</strong> now fight for every graduate job. and <strong>more than half</strong> of candidates get ghosted.</p>
+
+        <p>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</p>
+
+        <div class="fl-todo">
+          <p>the personal part: what you saw first-hand that made this feel worth building. the moment, the person, the application that went nowhere.</p>
+        </div>
+
+        <div class="fl-quote">
+          <p>we think what you can do should matter more than where you went or who you know.</p>
+        </div>
+
+        <h2>what we're actually building</h2>
+
+        <div class="fl-todo">
+          <p>the passport, the 7 day answer, and why those two together are the fix. in your voice rather than as feature copy.</p>
+          <p>what you'd say to a student reading this who isn't sure they're good enough yet.</p>
+        </div>
+
+        <h2>where this goes</h2>
+
+        <p>that's why we're here: <strong>to help 1 million young people into meaningful opportunities by 2030.</strong> every offer made through the platform works towards that goal. so does every room uncooked labs opens.</p>
+
+        <div class="fl-todo">
+          <p>the close: what you're asking the reader to do, and what you promise them in return.</p>
+        </div>
+
+        <div class="fl-sign">
+          <div class="fl-sign-name">[founder name]</div>
+          <div class="fl-sign-role">founder, uncooked</div>
+        </div>
+
+      </div>
+    </article>
+
+    <div class="fl-cta-wrap">
+      <p class="fl-cta-line">tired of the cooked job market?</p>
+      <a class="fl-cta" href="https://tally.so/r/7RRlp9" target="_blank" rel="noopener">get seen</a>
+      <div class="fl-fine">free for candidates · early members get matched first</div>
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>
