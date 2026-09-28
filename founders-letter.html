@@ -4,22 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>a letter from our founder · uncooked</title>
-<meta name="description" content="why we started uncooked, and what we're building towards.">
+<meta name="description" content="why we built uncooked: a trust layer for young people with something to show.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<!-- set before paint: the scroll-reveal start state lives behind .js, so with
+     scripting off every paragraph renders plainly visible instead of blank -->
+<script>document.documentElement.className += ' js';</script>
 <style>
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
   body{margin:0;}
 
-  /* background + grid are lifted verbatim from the jobs page wrapper, so the two
-     pages sit on the same surface: #fafafa with 48px warm ruling */
+  /* surface is lifted verbatim from the jobs page wrapper so the two pages sit
+     on the same paper: #fafafa under 48px warm ruling */
   .page{
     min-height:100vh;
     font-family:'Satoshi',system-ui,sans-serif;
-    color:#111;
+    color:#3f3f46;
     background:#fafafa;
     background-image:linear-gradient(to right,rgba(242,232,226,0.5) 1px,transparent 1px),
                      linear-gradient(to bottom,rgba(242,232,226,0.5) 1px,transparent 1px);
@@ -28,141 +31,185 @@
     overflow-x:clip;
   }
 
-  /* header: the nav pill is a whole component on the jobs page, with scroll
-     states and a mobile disclosure. a letter needs none of that, so this is the
-     same lockup reduced to what it has to do -- go back. */
+  .wrap{width:min(620px,88vw);margin:0 auto;}
+
+  /* arrow left, date right */
   .fl-head{display:flex;align-items:center;justify-content:space-between;gap:20px;
-    width:min(760px,90vw);margin:0 auto;padding:30px 0 0;}
-  .fl-logo{display:flex;align-items:center;text-decoration:none;}
-  .fl-logo img{height:30px;width:auto;display:block;}
-  .fl-back{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;
-    color:#5f5f66;text-decoration:none;white-space:nowrap;transition:color .2s;}
-  .fl-back:hover{color:#E62B15;}
+    padding:clamp(26px,4vh,40px) 0 0;}
+  .fl-back{display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;
+    color:#9a9aa0;text-decoration:none;transition:color .25s ease;}
+  .fl-back:hover{color:#3f3f46;}
+  .fl-date{font-weight:500;font-size:14px;color:#9a9aa0;white-space:nowrap;}
 
-  .fl-wrap{width:min(760px,90vw);margin:0 auto;padding:clamp(48px,8vh,96px) 0 clamp(72px,12vh,140px);}
+  .letter{padding:clamp(56px,11vh,120px) 0 clamp(30px,5vh,56px);}
 
-  .fl-eyebrow{font-weight:700;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-    color:#b0b0b6;margin:0 0 clamp(18px,2.5vh,26px);}
+  /* prose only: no headings, no rules, no cards. the space between paragraphs
+     is doing all the structural work, so it is deliberately generous. */
+  .letter p{margin:0 0 1.75em;font-weight:500;font-size:clamp(16px,1.15vw,17.5px);
+    line-height:1.75;letter-spacing:-0.005em;text-wrap:pretty;}
+  .letter p:last-of-type{margin-bottom:0;}
 
-  .fl-title{margin:0;font-family:'Instrument Serif',serif;font-weight:400;
-    font-size:clamp(34px,5.2vw,52px);letter-spacing:-0.03em;line-height:1.04;color:#111;text-wrap:balance;}
-  .fl-title em{font-style:italic;color:#E62B15;}
+  /* the one italic line in the whole letter */
+  .fl-turn{font-style:italic;}
 
-  .fl-meta{margin:clamp(18px,2.5vh,26px) 0 0;font-weight:500;font-size:13.5px;color:#9a9aa0;}
+  /* understated inline links: body colour, underline only on hover */
+  .letter a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(63,63,70,0.28);
+    transition:border-color .2s ease,color .2s ease;}
+  .letter a:hover{color:#111;border-bottom-color:#111;}
 
-  .fl-rule{height:1px;background:rgba(0,0,0,0.09);margin:clamp(28px,4vh,44px) 0;border:0;}
+  .fl-sign{margin-top:clamp(44px,7vh,76px);}
+  /* placeholder for the scanned signature. swap the <span> for:
+     <img src="uploads/signature.png" alt="abdullah" class="fl-sign-img"> */
+  .fl-sign-mark{display:inline-block;font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:clamp(30px,3.4vw,40px);line-height:1;color:#E62B15;
+    padding:10px 16px;border:1px dashed rgba(230,43,21,0.4);border-radius:8px;}
+  .fl-sign-img{display:block;height:clamp(52px,6vw,72px);width:auto;}
+  .fl-sign-role{margin-top:16px;font-weight:500;font-size:14.5px;color:#9a9aa0;}
 
-  /* letter measure: a touch wider than the landing page's 44ch body, because this
-     is read start to finish rather than scanned */
-  .fl-body{font-weight:500;font-size:clamp(15.5px,1.15vw,17px);line-height:1.72;color:#3f3f46;}
-  .fl-body p{margin:0 0 1.15em;text-wrap:pretty;}
-  .fl-body p:last-child{margin-bottom:0;}
-  .fl-body strong{font-weight:700;color:#111;}
-  .fl-body h2{margin:clamp(34px,5vh,52px) 0 clamp(12px,1.6vh,18px);
-    font-weight:700;font-size:clamp(17px,1.5vw,20px);letter-spacing:-0.02em;line-height:1.3;color:#111;}
+  /* .letter p is (class+type) and would otherwise win on specificity, so this
+     is scoped through .letter to outrank it */
+  .letter .fl-sources{margin-top:clamp(30px,5vh,52px);font-weight:500;font-size:12.5px;
+    line-height:1.7;color:#b0b0b6;padding-bottom:clamp(60px,12vh,140px);}
+  .letter .fl-sources a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(176,176,182,0.45);
+    transition:color .2s ease,border-color .2s ease;}
+  .letter .fl-sources a:hover{color:#5f5f66;border-bottom-color:#5f5f66;}
 
-  /* pull quote, same red hairline the belief card uses for its 1:30am line */
-  .fl-quote{margin:clamp(30px,4.5vh,46px) 0;padding-left:16px;border-left:3px solid #E62B15;}
-  .fl-quote p{margin:0;font-weight:700;font-synthesis:none;font-size:clamp(17px,1.8vw,21px);
-    line-height:1.35;letter-spacing:-0.02em;color:#111;}
+  /* scroll reveal: start state is scoped to .js so it can never strand the text */
+  html.js .rv{opacity:0;transform:translateY(12px);}
+  html.js .rv.in{opacity:1;transform:none;
+    transition:opacity .75s ease,transform .75s cubic-bezier(.22,.7,.3,1);}
 
-  /* placeholder blocks -- delete these wrappers once the real copy is in */
-  .fl-todo{border:1px dashed rgba(230,43,21,0.35);border-radius:10px;
-    padding:14px 16px;margin:0 0 1.15em;background:rgba(230,43,21,0.02);}
-  .fl-todo p{margin:0 0 .8em;}
-  .fl-todo p:last-child{margin-bottom:0;}
-  .fl-todo::before{content:'placeholder — replace with your own words';
-    display:block;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:#E62B15;margin-bottom:10px;}
-
-  .fl-sign{margin-top:clamp(36px,5vh,56px);}
-  .fl-sign-name{font-family:'Instrument Serif',serif;font-size:clamp(24px,2.6vw,30px);
-    line-height:1.1;letter-spacing:-0.02em;color:#111;}
-  .fl-sign-role{margin-top:7px;font-weight:500;font-size:13.5px;color:#9a9aa0;}
-
-  .fl-cta-wrap{margin-top:clamp(52px,8vh,88px);padding-top:clamp(34px,5vh,52px);
-    border-top:1px solid rgba(0,0,0,0.09);display:flex;flex-direction:column;align-items:center;text-align:center;}
-  .fl-cta-line{margin:0 0 20px;font-weight:600;font-size:clamp(16px,1.35vw,18.5px);
-    letter-spacing:-0.015em;color:#111;}
-  .fl-cta{display:inline-flex;align-items:center;justify-content:center;background:#E62B15;color:#fff;
-    font-weight:700;font-size:15px;padding:13px 30px;border-radius:100px;text-decoration:none;
-    box-shadow:0 10px 24px -8px rgba(230,43,21,.5);transition:background .2s,transform .2s;}
-  .fl-cta:hover{background:#c31f0c;transform:translateY(-2px);}
-  .fl-fine{margin-top:14px;font-weight:500;font-size:13px;color:#9a9aa0;}
-
-  @media (max-width:520px){
-    .fl-head{padding-top:22px;}
-    .fl-logo img{height:26px;}
+  @media (prefers-reduced-motion:reduce){
+    html.js .rv{opacity:1;transform:none;}
+    html.js .rv.in{transition:none;}
   }
+
+  .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 </style>
 </head>
 <body>
 <div class="page">
+  <div class="wrap">
 
-  <header class="fl-head">
-    <a class="fl-logo" href="index.html"><img src="uploads/m-nav-mark.png" alt="uncooked (BETA)"></a>
-    <a class="fl-back" href="index.html"><span aria-hidden="true">←</span> back to jobs</a>
-  </header>
+    <header class="fl-head">
+      <a class="fl-back" href="index.html#mission"><span aria-hidden="true">←</span> back</a>
+      <span class="fl-date">september 2026</span>
+    </header>
 
-  <main class="fl-wrap">
+    <main class="letter">
+      <h1 class="visually-hidden">a letter from our founder</h1>
 
-    <article>
-      <p class="fl-eyebrow">from our founder</p>
+      <p class="rv">you know the feeling.</p>
 
-      <h1 class="fl-title">why we built <em>uncooked</em>.</h1>
+      <p class="rv">application 784. 3 rounds in, then silence. told you need experience to get experience.</p>
 
-      <p class="fl-meta">a letter to anyone who's ever hit submit and heard nothing back</p>
+      <p class="rv">a rejection email at 1:30 in the morning. nobody was awake. nobody read it.</p>
 
-      <hr class="fl-rule">
+      <p class="rv">and when nobody tells you what was missing, you start wondering if you were missing something. that part stays with you.</p>
 
-      <div class="fl-body">
+      <p class="rv">i've spent the last 3 years on the other side of that wall.</p>
 
-        <!-- the opening below is the mission section's copy, already published on
-             the jobs page, so the two never contradict each other. everything
-             inside .fl-todo still needs the founder's own words. -->
-        <p>it's never been harder to be young and looking for work in the UK. <strong>over 1 million</strong> young people are out of work or education. entry level roles have dropped by <strong>nearly a third</strong> since ChatGPT launched. <strong>70 people</strong> now fight for every graduate job. and <strong>more than half</strong> of candidates get ghosted.</p>
+      <p class="rv">i led product at outer circle, one of the biggest degree apprenticeship communities in the UK, with over 8,500 members. i've mentored more than 100 people into roles.</p>
 
-        <p>but while the old path narrows, a new one is growing. the UK is starting record numbers of startups, and that's where the roles are being created. real responsibility early, real skills, real rooms.</p>
+      <p class="rv">and i co-founded OCF, a founder residency across oxford, cambridge and london, where i've watched startups get built up close. along the way i've worked with and advised founders at every stage, from a first MVP to companies that have raised millions.</p>
 
-        <div class="fl-todo">
-          <p>the personal part: what you saw first-hand that made this feel worth building. the moment, the person, the application that went nowhere.</p>
-        </div>
+      <p class="rv">from that seat you see both sides. students sending 200 applications into silence. founders drowning in 1,000 applications a role, unable to tell who can deliver.</p>
 
-        <div class="fl-quote">
-          <p>we think what you can do should matter more than where you went or who you know.</p>
-        </div>
+      <p class="rv fl-turn">the talent was there. the opportunities were there. what was missing was a way to prove it.</p>
 
-        <h2>what we're actually building</h2>
+      <p class="rv">here's why.</p>
 
-        <div class="fl-todo">
-          <p>the passport, the 7 day answer, and why those two together are the fix. in your voice rather than as feature copy.</p>
-          <p>what you'd say to a student reading this who isn't sure they're good enough yet.</p>
-        </div>
+      <p class="rv">you can't gauge a person from what they say about themselves anymore. AI has made faking competence essentially free. a CV, a cover letter, even a take home can be generated in minutes.</p>
 
-        <h2>where this goes</h2>
+      <p class="rv">what it hasn't done is make it any easier to know who did the work, what they owned, or how they made the calls.</p>
 
-        <p>that's why we're here: <strong>to help 1 million young people into meaningful opportunities by 2030.</strong> every offer made through the platform works towards that goal. so does every room uncooked labs opens.</p>
+      <p class="rv">so the system fights slop with filters. keyword ranking. <a href="https://hrdailyadvisor.hci.org/2018/11/15/eye-tracking-recruiters-average-7-4-seconds-reviewing-a-resume/" target="_blank" rel="noopener">7 second skims</a>. rejection emails sent while everyone's asleep.</p>
 
-        <div class="fl-todo">
-          <p>the close: what you're asking the reader to do, and what you promise them in return.</p>
-        </div>
+      <p class="rv">it's already in the courts. the biggest AI hiring case in america has <a href="https://www.forbes.com/sites/sheilacallaham/2026/05/29/a-federal-judge-a-1967-law-and-a-billion-rejected-job-applications/" target="_blank" rel="noopener">over a billion rejected applications</a> on the record before a human ever looked.</p>
 
-        <div class="fl-sign">
-          <div class="fl-sign-name">[founder name]</div>
-          <div class="fl-sign-role">founder, uncooked</div>
-        </div>
+      <p class="rv">so what's left?</p>
 
+      <p class="rv">the only signals worth trusting are the ones that survive real scrutiny. visible work, judged by a trained eye. a padded portfolio doesn't survive 20 seconds of it. a genuinely strong one outranks any university on your CV.</p>
+
+      <p class="rv">that's what uncooked is. a trust layer, not a matching tool.</p>
+
+      <p class="rv">you prove what you can do once. a video pitch. the best thing you've made or done. 2 honest hours, then a human checks it. no bot rejects you for missing a keyword.</p>
+
+      <p class="rv">that becomes your passport, and it travels with every application you make. every application through us gets an answer. it's the rule.</p>
+
+      <p class="rv">and we're pointing people somewhere specific.</p>
+
+      <p class="rv">we think more young people should be building at startups. it's where you get year 1 responsibility, not year 5. it's where new roles are being created while the old graduate path shrinks.</p>
+
+      <p class="rv">and there have never been more of them. the UK started <a href="https://www.rsmuk.com/news/record-number-of-new-tech-incorporations-in-2025" target="_blank" rel="noopener">56,615 new tech companies last year</a> alone.</p>
+
+      <!-- labs link is a placeholder: repoint to the Labs letter once it exists -->
+      <p class="rv">there's also uncooked labs, our community for the people building the physical future. robots, rockets, deep tech. <a href="#">more on that here →</a></p>
+
+      <p class="rv">so why do all this?</p>
+
+      <p class="rv">because opportunity, capital and connection still mostly run on where you went and who you know. the way out has always been to put yourself out there and build something worth seeing. we're making that the way in.</p>
+
+      <p class="rv">1 million young people into meaningful opportunities by 2030. that's the aim.</p>
+
+      <p class="rv">the people who get somewhere are the ones who build instead of wait. if that's you, this is for you.</p>
+
+      <p class="rv">come build your proof.</p>
+
+      <div class="fl-sign rv">
+        <span class="fl-sign-mark">[signature]</span>
+        <div class="fl-sign-role">founder, uncooked</div>
       </div>
-    </article>
 
-    <div class="fl-cta-wrap">
-      <p class="fl-cta-line">tired of the cooked job market?</p>
-      <a class="fl-cta" href="https://tally.so/r/7RRlp9" target="_blank" rel="noopener">get seen</a>
-      <div class="fl-fine">free for candidates · early members get matched first</div>
-    </div>
+      <p class="fl-sources rv">sources: <a href="https://hrdailyadvisor.hci.org/2018/11/15/eye-tracking-recruiters-average-7-4-seconds-reviewing-a-resume/" target="_blank" rel="noopener">recruiter screening, ladders 2018</a> · <a href="https://www.forbes.com/sites/sheilacallaham/2026/05/29/a-federal-judge-a-1967-law-and-a-billion-rejected-job-applications/" target="_blank" rel="noopener">the workday case, forbes</a> · <a href="https://www.rsmuk.com/news/record-number-of-new-tech-incorporations-in-2025" target="_blank" rel="noopener">UK tech incorporations 2025, RSM UK</a></p>
 
-  </main>
+    </main>
 
+  </div>
 </div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = [].slice.call(document.querySelectorAll('.rv'));
+
+  // reveal on scroll. no stagger: paragraphs arrive one at a time as you read,
+  // so each one fades on its own as it crosses the line.
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
+    items.forEach(function (el) { io.observe(el); });
+    // anything already on screen at load shows immediately
+    requestAnimationFrame(function () {
+      items.forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) el.classList.add('in');
+      });
+    });
+  }
+
+  // leaving: fade the letter out, then hand over to the jobs page, which fades
+  // back in on arrival. modified clicks (new tab, etc) are left alone.
+  var back = document.querySelector('.fl-back');
+  if (back && !reduce) {
+    back.addEventListener('click', function (ev) {
+      if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+      ev.preventDefault();
+      var href = back.getAttribute('href');
+      var root = document.documentElement;
+      root.style.transition = 'opacity .3s ease';
+      root.style.opacity = '0';
+      setTimeout(function () { window.location.href = href; }, 290);
+    });
+  }
+})();
+</script>
 </body>
 </html>
