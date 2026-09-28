@@ -18,12 +18,12 @@
   body{margin:0;}
 
   /* surface is lifted verbatim from the jobs page wrapper so the two pages sit
-     on the same paper: a flat #F5F5F2 surface */
+     on the same paper: a flat #fefefa surface */
   .page{
     min-height:100vh;
     font-family:'Satoshi',system-ui,sans-serif;
     color:#3f3f46;
-    background:#F5F5F2;
+    background:#fefefa;
     overflow-x:clip;
   }
 
@@ -37,7 +37,7 @@
   .fl-back:hover{color:#3f3f46;}
   .fl-date{font-weight:500;font-size:14px;color:#9a9aa0;white-space:nowrap;}
 
-  .letter{padding:clamp(56px,11vh,120px) 0 clamp(30px,5vh,56px);}
+  .letter{padding:clamp(30px,5vh,58px) 0 clamp(60px,12vh,140px);}
 
   /* prose only: no headings, no rules, no cards. the space between paragraphs
      is doing all the structural work, so it is deliberately generous. */
@@ -47,6 +47,10 @@
 
   /* the one italic line in the whole letter */
   .fl-turn{font-style:italic;}
+  /* the four lines that carry the argument sit a step up from the body. scoped
+     through .letter so they outrank the `.letter p` size rule. */
+  .letter p.fl-big{font-size:clamp(19px,1.45vw,22px);line-height:1.5;letter-spacing:-0.015em;color:#111;}
+  .letter p.fl-strong{font-weight:700;}
 
   /* understated inline links: body colour, underline only on hover */
   .letter a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(63,63,70,0.28);
@@ -65,10 +69,21 @@
   /* .letter p is (class+type) and would otherwise win on specificity, so this
      is scoped through .letter to outrank it */
   .letter .fl-sources{margin-top:clamp(30px,5vh,52px);font-weight:500;font-size:12.5px;
-    line-height:1.7;color:#b0b0b6;padding-bottom:clamp(60px,12vh,140px);}
+    line-height:1.7;color:#b0b0b6;}
   .letter .fl-sources a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(176,176,182,0.45);
     transition:color .2s ease,border-color .2s ease;}
   .letter .fl-sources a:hover{color:#5f5f66;border-bottom-color:#5f5f66;}
+
+  /* back to top: same quiet treatment as the header's back link. scoped through
+     .letter and with the inline-link underline explicitly cleared, since
+     `.letter a` is more specific than a bare class and would win otherwise. */
+  /* width:fit-content + auto side margins centres it while keeping the
+     clickable area to the text, which a full-width flex row would not */
+  .letter a.fl-top{display:flex;align-items:center;justify-content:center;gap:8px;
+    width:fit-content;margin:clamp(30px,4.5vh,50px) auto 0;
+    font-weight:500;font-size:14px;color:#9a9aa0;text-decoration:none;border-bottom:0;
+    transition:color .25s ease;}
+  .letter a.fl-top:hover{color:#3f3f46;border-bottom:0;}
 
   /* scroll reveal: start state is scoped to .js so it can never strand the text */
   html.js .rv{opacity:0;transform:translateY(12px);}
@@ -89,14 +104,14 @@
   <div class="wrap">
 
     <header class="fl-head">
-      <a class="fl-back" href="index.html"><span aria-hidden="true">←</span> back</a>
+      <a class="fl-back" href="index.html"><span aria-hidden="true">←</span> back to jobs</a>
       <span class="fl-date">september 2026</span>
     </header>
 
     <main class="letter">
       <h1 class="visually-hidden">a letter from our founder</h1>
 
-      <p class="rv">you know the feeling.</p>
+      <p class="rv fl-big fl-strong">you know the feeling.</p>
 
       <p class="rv">application 784. 3 rounds in, then silence. told you need experience to get experience.</p>
 
@@ -112,7 +127,7 @@
 
       <p class="rv">from that seat you see both sides. students sending 200 applications into silence. founders drowning in 1,000 applications a role, unable to tell who can deliver.</p>
 
-      <p class="rv fl-turn">the talent was there. the opportunities were there. what was missing was a way to prove it.</p>
+      <p class="rv fl-turn fl-big">the talent was there. the opportunities were there. what was missing was a way to prove it.</p>
 
       <p class="rv">here's why.</p>
 
@@ -128,7 +143,7 @@
 
       <p class="rv">the only signals worth trusting are the ones that survive real scrutiny. visible work, judged by a trained eye. a padded portfolio doesn't survive 20 seconds of it. a genuinely strong one outranks any university on your CV.</p>
 
-      <p class="rv">that's what uncooked is. a trust layer, not a matching tool.</p>
+      <p class="rv fl-big fl-strong">that's what uncooked is. a trust layer, not a matching tool.</p>
 
       <p class="rv">you prove what you can do once. a video pitch. the best thing you've made or done. 2 honest hours, then a human checks it. no bot rejects you for missing a keyword.</p>
 
@@ -147,11 +162,11 @@
 
       <p class="rv">because opportunity, capital and connection still mostly run on where you went and who you know. the way out has always been to put yourself out there and build something worth seeing. we're making that the way in.</p>
 
-      <p class="rv">1 million young people into meaningful opportunities by 2030. that's the aim.</p>
+      <p class="rv fl-big fl-strong">1 million young people into meaningful opportunities by 2030. that's the aim.</p>
 
       <p class="rv">the people who get somewhere are the ones who build instead of wait. if that's you, this is for you.</p>
 
-      <p class="rv">come build your proof.</p>
+      <p class="rv"><a href="https://tally.so/r/7RRlp9" target="_blank" rel="noopener">come build your proof →</a></p>
 
       <div class="fl-sign rv">
         <span class="fl-sign-mark">[signature]</span>
@@ -159,6 +174,8 @@
       </div>
 
       <p class="fl-sources rv">sources: <a href="https://hrdailyadvisor.hci.org/2018/11/15/eye-tracking-recruiters-average-7-4-seconds-reviewing-a-resume/" target="_blank" rel="noopener">recruiter screening, ladders 2018</a> · <a href="https://www.forbes.com/sites/sheilacallaham/2026/05/29/a-federal-judge-a-1967-law-and-a-billion-rejected-job-applications/" target="_blank" rel="noopener">the workday case, forbes</a> · <a href="https://www.rsmuk.com/news/record-number-of-new-tech-incorporations-in-2025" target="_blank" rel="noopener">UK tech incorporations 2025, RSM UK</a></p>
+
+      <a class="fl-top rv" href="#"><span aria-hidden="true">↑</span> back to top</a>
 
     </main>
 
@@ -190,6 +207,14 @@
       });
     });
   }
+
+  // back to top. preventDefault keeps a bare "#" out of the address bar.
+  var toTop = document.querySelector('.fl-top');
+  if (toTop) toTop.addEventListener('click', function (ev) {
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+    ev.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
 
   // leaving: fade the letter out, then hand over to the jobs page, which fades
   // back in on arrival. modified clicks (new tab, etc) are left alone.
