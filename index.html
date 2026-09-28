@@ -62,7 +62,7 @@
 <script src="./image-slot.js"></script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{background:#F5F5F2;max-width:100%;overflow-x:clip;}
+  html,body{background:#f9f9f6;max-width:100%;overflow-x:clip;}
   a{text-decoration:none;color:#E62B15;}
   a:hover{color:#ff5236;}
   @keyframes heroUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -460,6 +460,16 @@
   .tmn-meta{display:flex;flex-direction:column;gap:3px;margin:clamp(16px,1.7vw,24px) calc(-1 * var(--pad)) 0;padding:clamp(19px,1.9vw,26px) var(--pad) 0;border-top:0;background:repeating-linear-gradient(to right,rgba(0,0,0,0.26) 0 9px,transparent 9px 20px) 0 0/100% 1px no-repeat;}
   .tmn-name{font-weight:700;font-size:12.5px;letter-spacing:-0.015em;color:#111;}
   .tmn-context{font-weight:500;font-size:11.5px;line-height:1.45;color:#9a9aa0;}
+  /* mission: barely-there ruling behind the section, faded out at both sides so
+     it dissolves into the flat page rather than stopping at a hard edge.
+     z-index:-1 keeps it under the content; the section carries isolation:isolate
+     so that -1 can't escape behind the page background. */
+  .mission-grid{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(242,232,226,0.55) 1px,transparent 1px),
+                     linear-gradient(to bottom,rgba(242,232,226,0.55) 1px,transparent 1px);
+    background-size:48px 48px;background-position:center top;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%);
+            mask-image:linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%);}
   /* decorative glyph layer. absolutely placed, so each piece gets its own size
      and angle; the heading and cards are lifted above it with z-index. shown
      only while the cards sit three across -- once they stack at 900px the
@@ -670,39 +680,39 @@
 
       <!-- watermark glyphs behind step 01 -->
       <div class="wm-01" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="contact-2" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F7F1EC;opacity:0.40;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-text" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F7F1EC;opacity:0.36;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-text" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="contact-2" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="contact-2" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-text" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-text" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-text" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-text" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <div class="wm-02" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="puzzle" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F7F1EC;opacity:0.40;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="zap" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F7F1EC;opacity:0.36;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="zap" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="puzzle" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="puzzle" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="zap" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="puzzle" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="zap" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="zap" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="puzzle" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="puzzle" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="zap" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <div class="wm-03" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="file-audio" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F7F1EC;opacity:0.40;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="mic" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F7F1EC;opacity:0.36;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="mic" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-audio" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="file-audio" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="mic" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-audio" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="mic" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="mic" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-audio" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="file-audio" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="mic" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <div class="wm-04" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="message-square" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F7F1EC;opacity:0.40;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
-        <i data-lucide="trending-up" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F7F1EC;opacity:0.36;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
-        <i data-lucide="trending-up" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
-        <i data-lucide="message-square" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
-        <i data-lucide="message-square" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F7F1EC;opacity:0.33;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
-        <i data-lucide="trending-up" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F7F1EC;opacity:0.30;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
+        <i data-lucide="message-square" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="trending-up" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
+        <i data-lucide="trending-up" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
+        <i data-lucide="message-square" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
+        <i data-lucide="message-square" style="position:absolute;left:92%;top:22%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(13deg);stroke-width:1.1;"></i>
+        <i data-lucide="trending-up" style="position:absolute;left:86%;top:86%;width:clamp(171px,27.5vw,275px);height:clamp(171px,27.5vw,275px);color:#F2F1EE;opacity:1;transform:translate(-50%,-50%) rotate(-10deg);stroke-width:1.1;"></i>
       </div>
 
       <!-- centerpiece: rings + orbit + phone -->
@@ -1261,7 +1271,9 @@
   </section>
 
   <!-- ===================== MISSION ===================== -->
-  <section id="mission" data-screen-label="Mission" style="position:relative;padding:clamp(60px,19vh,240px) 0 clamp(48px,15vh,190px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <section id="mission" data-screen-label="Mission" style="position:relative;isolation:isolate;padding:clamp(60px,19vh,240px) 0 clamp(48px,15vh,190px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <div class="mission-grid" aria-hidden="true"></div>
+
     <div ref="{{ setPolLayer }}" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
       <div class="pol" data-tilt="-8" style="position:absolute;left:3.5%;top:16%;width:min(clamp(152px,13.6vw,202px), calc((100vw - 700px) / 2 - 26px));opacity:0;pointer-events:none;background:#fff;padding:9px 9px 50px;border-radius:3px;box-shadow:0 14px 26px -12px rgba(20,20,30,.32),0 2px 5px -1px rgba(20,20,30,.1);will-change:transform,opacity;">
         <div style="width:100%;aspect-ratio:1/1;overflow:hidden;background:#f1f1f2;">
