@@ -532,6 +532,12 @@
        between 11% and 41% of the section height */
     .dc-se{left:95.5%;top:2%;width:clamp(21px,1.9vw,33px);transform:rotate(-9deg);}
     .dc-sf{left:94.5%;top:46%;width:clamp(24px,2.2vw,38px);transform:rotate(11deg);}
+    /* added after the title shrank. they live in the gap between the title's
+       right edge and the existing cluster, which is ~9% wide at 1280px+ but
+       collapses to ~4% by 901px as the heading block widens -- so they only
+       appear where there is genuinely room for them. */
+    .dc-ge{left:40%;top:17%;width:clamp(68px,6.5vw,110px);transform:rotate(20deg);}
+    .dc-sg{left:44.5%;top:0%;width:clamp(20px,1.7vw,29px);transform:rotate(9deg);}
   }
   /* cards fade in one after another. the stagger lives here rather than in the
      data-di the reveal observer reads: sweepReveals() also flips .dfin elements
@@ -541,6 +547,9 @@
   .tmn-grid .tmn:nth-of-type(1){transition-delay:0ms !important;}
   .tmn-grid .tmn:nth-of-type(2){transition-delay:210ms !important;}
   .tmn-grid .tmn:nth-of-type(3){transition-delay:420ms !important;}
+  /* scoped through .tmn-deco img, which sets display:block and is more
+     specific than a bare class -- a plain .dc-ge rule loses to it. */
+  @media (max-width:1199px){ .tmn-deco img.dc-ge,.tmn-deco img.dc-sg{display:none;} }
   /* the heading is width-matched to the grid so both share one left edge */
   .tmn-head{width:min(1160px,92vw);margin:0 auto;text-align:left;}
   /* same 900px stack point the difference grid uses */
@@ -1413,10 +1422,12 @@
       <img class="dc-sd" src="uploads/star.svg" alt="">
       <img class="dc-se" src="uploads/star.svg" alt="">
       <img class="dc-sf" src="uploads/star.svg" alt="">
+      <img class="dc-ge" src="uploads/uncooked glyph.svg" alt="">
+      <img class="dc-sg" src="uploads/star.svg" alt="">
     </div>
 
     <div class="tmn-head">
-      <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6.5vw,82px);letter-spacing:-0.03em;line-height:0.95;color:#313131;max-width:15ch;text-wrap:balance;">what our early users are saying.</h2>
+      <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(54px,5.5vw,63px);letter-spacing:-0.03em;line-height:0.95;color:#313131;max-width:15ch;text-wrap:balance;">what our early users are saying.</h2>
     </div>
 
     <div class="tmn-grid">
