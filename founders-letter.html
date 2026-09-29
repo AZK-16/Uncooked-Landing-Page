@@ -20,11 +20,24 @@
   /* surface is lifted verbatim from the jobs page wrapper so the two pages sit
      on the same paper: a flat #fcfbf9 surface */
   .page{
+    position:relative;
+    isolation:isolate;          /* keeps the ruling layer inside this element */
     min-height:100vh;
     font-family:'Satoshi',system-ui,sans-serif;
     color:#3f3f46;
     background:#fcfbf9;
     overflow-x:clip;
+  }
+  /* barely-there ruling, same 48px grid and warm tone as the jobs page, faded
+     out at both sides so it dissolves into the paper rather than stopping on a
+     hard edge. a pseudo-element, so no extra markup. */
+  .page::before{
+    content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(242,232,226,0.32) 1px,transparent 1px),
+                     linear-gradient(to bottom,rgba(242,232,226,0.32) 1px,transparent 1px);
+    background-size:48px 48px;background-position:center top;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%,#000 82%,transparent 100%);
+            mask-image:linear-gradient(to right,transparent 0,#000 18%,#000 82%,transparent 100%);
   }
 
   .wrap{width:min(620px,88vw);margin:0 auto;}
