@@ -430,34 +430,24 @@
   /* early users: editorial quote cards. card reads top to bottom as avatar +
      track, then the quote, then attribution sitting on the card's floor behind
      a hairline. */
-  /* stroke + lift live here, not on the card: a mask clips its own element's
-     filter output, so a filter on .tmn was being erased at the card edge. the
-     grid isn't masked, and its only children are the three opaque cards, so the
-     four 1px offset shadows trace each card's notched silhouette and the fifth
-     casts the drop shadow from that outlined shape. */
-  .tmn-grid{filter:drop-shadow(1px 0 0 #E2E2E1) drop-shadow(-1px 0 0 #E2E2E1) drop-shadow(0 1px 0 #E2E2E1) drop-shadow(0 -1px 0 #E2E2E1) drop-shadow(0 4px 10px rgba(20,20,30,0.05));display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.9vw,28px);width:min(1160px,92vw);margin:clamp(38px,5.5vh,66px) auto 0;align-items:stretch;text-align:left;}
-  /* the paper grain lives on the cards only -- the page behind them is flat.
-     the tile is opaque and averages #fafafa, so it sets the card surface;
-     the colour below it is just the pre-load fallback. */
-  /* ticket shape: four radial gradients punch a 17px concave notch out of each
-     corner. the stroke and shadow can't live here -- a mask clips its own
-     element's filter output -- so they sit on .tmn-grid instead. */
+  .tmn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.9vw,28px);width:min(1160px,92vw);margin:clamp(38px,5.5vh,66px) auto 0;align-items:stretch;text-align:left;}
+  /* EXPERIMENT: paper grain and perforated divider removed; cards are flat #fff */
+  /* EXPERIMENT: plain rounded rectangles (were ticket-shaped with notched
+     corners); stroke and lift now sit on the card itself */
   .tmn{--pad:clamp(20px,1.9vw,26px);
-    display:flex;flex-direction:column;margin:0;height:100%;background:#fafafa url('uploads/paper-grain-tile.webp') 0 0 / 384px 384px repeat;border:0;padding:var(--pad);
-    -webkit-mask:radial-gradient(circle 17px at 0 0,transparent 98%,#000 100%) 0 0/51% 51% no-repeat,radial-gradient(circle 17px at 100% 0,transparent 98%,#000 100%) 100% 0/51% 51% no-repeat,radial-gradient(circle 17px at 0 100%,transparent 98%,#000 100%) 0 100%/51% 51% no-repeat,radial-gradient(circle 17px at 100% 100%,transparent 98%,#000 100%) 100% 100%/51% 51% no-repeat;
-    mask:radial-gradient(circle 17px at 0 0,transparent 98%,#000 100%) 0 0/51% 51% no-repeat,radial-gradient(circle 17px at 100% 0,transparent 98%,#000 100%) 100% 0/51% 51% no-repeat,radial-gradient(circle 17px at 0 100%,transparent 98%,#000 100%) 0 100%/51% 51% no-repeat,radial-gradient(circle 17px at 100% 100%,transparent 98%,#000 100%) 100% 100%/51% 51% no-repeat;
-}
+    display:flex;flex-direction:column;margin:0;height:100%;background:#fff;border:1px solid #E2E2E1;border-radius:20px;overflow:hidden;padding:var(--pad);
+    box-shadow:0 4px 10px rgba(20,20,30,0.05);}
   /* avatar left, track chip right */
   .tmn-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
   .tmn-avatar{flex:none;width:40px;height:40px;border-radius:50%;background:#f4f4f2;border:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;color:#b0b0b6;font-weight:700;font-size:13px;letter-spacing:-0.01em;overflow:hidden;}
   .tmn-avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;}
   .tmn-track{display:inline-flex;align-items:center;gap:6px;flex:none;background:#fff;border:1px solid rgba(0,0,0,0.09);border-radius:100px;padding:7px 14px;font-weight:600;font-size:12px;letter-spacing:-0.01em;color:#3f3f46;white-space:nowrap;box-shadow:0 2px 5px -3px rgba(20,20,30,.16);}
-  /* line-height .6 crops the glyph's serif leading so it sits tight to the quote */
-  .tmn-mark{font-family:'Instrument Serif',serif;font-size:clamp(42px,4.1vw,57px);line-height:.6;letter-spacing:-0.02em;color:#E62B15;margin-top:clamp(22px,2.26vw,33px);}
-  /* flex:1 drops the rule + attribution to the card floor, so they line up
+  /* EXPERIMENT: quote marks 1/2/3.svg (one per card) replace the red serif “ glyph */
+  .tmn-mark{display:block;width:clamp(40px,2.8vw,40px);height:auto;margin-top:clamp(22px,2.26vw,33px);}
+  /* flex:1 drops the attribution to the card floor, so it lines up
      across the row however long each quote runs */
-  .tmn-bubble{flex:1;margin:clamp(-15px,-1.02vw,-13px) 0 0;font-weight:500;font-size:clamp(16px,1.35vw,19px);line-height:1.45;letter-spacing:-0.015em;color:#504E4E;text-wrap:pretty;}
-  .tmn-meta{display:flex;flex-direction:column;gap:3px;margin:clamp(16px,1.7vw,24px) calc(-1 * var(--pad)) 0;padding:clamp(19px,1.9vw,26px) var(--pad) 0;border-top:0;background:repeating-linear-gradient(to right,rgba(0,0,0,0.26) 0 9px,transparent 9px 20px) 0 0/100% 1px no-repeat;}
+  .tmn-bubble{flex:1;margin:clamp(12px,1vw,16px) 0 0;font-weight:500;font-size:clamp(16px,1.35vw,19px);line-height:1.45;letter-spacing:-0.015em;color:#504E4E;text-wrap:pretty;}
+  .tmn-meta{display:flex;flex-direction:column;gap:3px;margin:clamp(16px,1.7vw,24px) calc(-1 * var(--pad)) 0;padding:clamp(19px,1.9vw,26px) var(--pad) 0;border-top:0;}
   .tmn-name{font-weight:700;font-size:12.5px;letter-spacing:-0.015em;color:#111;}
   .tmn-context{font-weight:500;font-size:11.5px;line-height:1.45;color:#9a9aa0;}
   /* FAQ: the inverse of .sec-grid. the question column is min(760px,92vw)
@@ -520,24 +510,33 @@
     .tmn-deco{display:block;}
     /* clustered in the whitespace beside the title, then drifting down behind
        the cards -- the cards are opaque, so they only show in the gaps */
-    .dc-ga{left:51%;top:-2%;width:clamp(120px,10.5vw,186px);transform:rotate(-15deg);}
-    .dc-gb{left:74%;top:-8%;width:clamp(150px,13.5vw,238px);transform:rotate(10deg);}
-    .dc-gc{left:62%;top:33%;width:clamp(170px,15.5vw,272px);transform:rotate(-7deg);}
-    .dc-gd{left:96%;top:14%;width:clamp(130px,11.5vw,204px);transform:rotate(19deg);}
-    .dc-sa{left:68%;top:10%;width:clamp(24px,2.2vw,38px);transform:rotate(0deg);}
-    .dc-sb{left:84%;top:46%;width:clamp(28px,2.6vw,45px);transform:rotate(14deg);}
-    .dc-sc{left:101%;top:2%;width:clamp(20px,1.9vw,32px);transform:rotate(-12deg);}
-    .dc-sd{left:57%;top:62%;width:clamp(22px,2vw,34px);transform:rotate(8deg);}
+    /* EXPERIMENT: all icons pulled closer together (left% scaled 0.8x toward
+       102%), then the whole group shifted 4% left */
+    /* EXPERIMENT: speech bubbles (original black-stroke svg) replace the uncooked glyphs, all one size (matching .dc-ga), varied in tilt */
+    .dc-ga{left:57.2%;top:-2%;width:clamp(64px,5.6vw,98px);transform:rotate(-14deg);}
+    .dc-gb{left:74.8%;top:-6%;width:clamp(64px,5.6vw,98px);transform:scaleX(-1) rotate(-9deg);}
+    .dc-gd{left:92.4%;top:16%;width:clamp(64px,5.6vw,98px);transform:scaleX(-1) rotate(17deg);}
+    .dc-sa{left:68%;top:3%;width:clamp(24px,2.2vw,38px);transform:rotate(0deg);}
     /* these two bracket the glyph bleeding off the right edge, which sits
        between 11% and 41% of the section height */
-    .dc-se{left:95.5%;top:2%;width:clamp(21px,1.9vw,33px);transform:rotate(-9deg);}
-    .dc-sf{left:94.5%;top:46%;width:clamp(24px,2.2vw,38px);transform:rotate(11deg);}
+    .dc-se{left:92.8%;top:2%;width:clamp(21px,1.9vw,33px);transform:rotate(-9deg);}
+    /* centred in the right margin beside the cards (grid is min(1160px,92vw) wide,
+       so the margin centre sits at 75% + grid/4), so it never slides under a card */
+    .dc-sf{left:calc(75% + min(290px,23vw) - clamp(12px,1.1vw,19px));top:36%;width:clamp(24px,2.2vw,38px);transform:rotate(11deg);}
     /* added after the title shrank. they live in the gap between the title's
        right edge and the existing cluster, which is ~9% wide at 1280px+ but
        collapses to ~4% by 901px as the heading block widens -- so they only
        appear where there is genuinely room for them. */
-    .dc-ge{left:40%;top:17%;width:clamp(68px,6.5vw,110px);transform:rotate(20deg);}
-    .dc-sg{left:44.5%;top:0%;width:clamp(20px,1.7vw,29px);transform:rotate(9deg);}
+    .dc-ge{left:48.4%;top:18%;width:clamp(64px,5.6vw,98px);transform:rotate(-22deg);}
+    /* EXPERIMENT: extra bubble just below the centre star, tilted down to the left */
+    .dc-gf{left:72%;top:16%;width:clamp(64px,5.6vw,98px);transform:rotate(-18deg);}
+    /* EXPERIMENT: phone icons dropped into the open gaps between the bubbles and
+       stars, both facing right; sized to sit with the bubbles */
+    .dc-pa{left:60%;top:16%;width:clamp(45px,5.3vw,70px);transform:rotate(-12deg);}
+    .dc-pb{left:82.4%;top:10%;width:clamp(45px,5.3vw,70px);transform:rotate(12deg);}
+    .dc-sg{left:52.0%;top:0%;width:clamp(20px,1.7vw,29px);transform:rotate(9deg);}
+    /* EXPERIMENT: small star tilted left, beside the bubble nearest the title */
+    .dc-sh{left:43%;top:10%;width:clamp(20px,1.7vw,29px);transform:rotate(-16deg);}
   }
   /* cards fade in one after another. the stagger lives here rather than in the
      data-di the reveal observer reads: sweepReveals() also flips .dfin elements
@@ -547,9 +546,6 @@
   .tmn-grid .tmn:nth-of-type(1){transition-delay:0ms !important;}
   .tmn-grid .tmn:nth-of-type(2){transition-delay:210ms !important;}
   .tmn-grid .tmn:nth-of-type(3){transition-delay:420ms !important;}
-  /* scoped through .tmn-deco img, which sets display:block and is more
-     specific than a bare class -- a plain .dc-ge rule loses to it. */
-  @media (max-width:1199px){ .tmn-deco img.dc-ge,.tmn-deco img.dc-sg{display:none;} }
   /* the heading is width-matched to the grid so both share one left edge */
   .tmn-head{width:min(1160px,92vw);margin:0 auto;text-align:left;}
   /* same 900px stack point the difference grid uses */
@@ -559,14 +555,31 @@
   }
 
   /* FAQ: native <details>/<summary>, so it opens without JS and is keyboard
-     operable out of the box. name="uc-faq" is what makes browsers enforce
-     one-open-at-a-time natively; componentDidMount repeats the rule in JS for
-     the browsers that don't support the attribute yet. all closed on load. */
+     operable out of the box. componentDidMount takes over the toggling to
+     animate each item's height and keep one open at a time. all closed on load. */
   .faq-list{width:min(760px,92vw);margin:clamp(30px,4.5vh,52px) auto 0;text-align:left;border-top:1px solid rgba(0,0,0,0.09);}
   .faq-item{border-bottom:1px solid rgba(0,0,0,0.09);}
-  .faq-q{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:clamp(17px,1.7vw,21px) 2px;font-weight:500;font-size:clamp(15px,1.25vw,17px);line-height:1.4;letter-spacing:-0.015em;color:#111;transition:color .2s;}
+  .faq-q{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:clamp(17px,1.7vw,21px) 2px;font-weight:500;font-size:clamp(15px,1.25vw,17px);line-height:1.4;letter-spacing:-0.015em;color:#111;}
   .faq-q::-webkit-details-marker{display:none;}
-  .faq-q:hover{color:#E62B15;}
+  /* EXPERIMENT: two-column FAQ */
+  .faq-layout{width:min(1180px,100%);display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,4vh,44px);text-align:left;}
+  .faq-eyebrow{font-weight:600;font-size:13px;letter-spacing:.12em;color:#8a8a90;}
+  .faq-title{margin:14px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(54px,5.5vw,63px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;}
+  .faq-illo{display:none;}
+  @keyframes teaBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @media (prefers-reduced-motion:reduce){.faq-illo img{animation:none !important;}}
+  .faq-layout .faq-list{width:100%;margin:0;}
+  .faq-qt{flex:1;min-width:0;}
+  @media (min-width:1000px){
+    .faq-layout{grid-template-columns:minmax(0,0.62fr) minmax(0,1.38fr);gap:clamp(32px,3.5vw,64px);align-items:start;}
+    .faq-title{max-width:12ch;}
+    .faq-illo{display:block;margin-top:clamp(30px,5vh,50px);}
+    .faq-illo img{display:block;width:clamp(190px,19vw,270px);height:auto;}
+    /* EXPERIMENT: gentle bob on the tea ghost */
+    .faq-illo img{animation:teaBob 5.2s ease-in-out infinite;}
+    /* the gutter ruling was masked around a centred column; it doesn't fit this layout */
+    .faq-grid{display:none !important;}
+  }
   /* the chevron carries the only red in the section -- the headline stays plain,
      since this is the functional section, not an emotional one */
   .faq-chev{flex:none;display:flex;align-items:center;color:#E62B15;margin-top:2px;transition:transform .3s cubic-bezier(.22,.7,.3,1);}
@@ -727,7 +740,7 @@
 
       <!-- watermark glyphs behind step 01 -->
       <div class="wm-01" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s ease;">
-        <i data-lucide="contact-2" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
+        <i data-lucide="contact-2" style="position:absolute;left:37%;top:34%;width:clamp(217px,35vw,350px);height:clamp(217px,35vw,350px);color:#f2efe8;opacity:0.35;transform:translate(-50%,-50%) rotate(-11deg);stroke-width:1.1;"></i>
         <i data-lucide="file-text" style="position:absolute;left:63%;top:70%;width:clamp(202px,32.5vw,325px);height:clamp(202px,32.5vw,325px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(12deg);stroke-width:1.1;"></i>
         <i data-lucide="file-text" style="position:absolute;left:8%;top:20%;width:clamp(186px,30vw,300px);height:clamp(186px,30vw,300px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(15deg);stroke-width:1.1;"></i>
         <i data-lucide="contact-2" style="position:absolute;left:15%;top:86%;width:clamp(177px,28.5vw,285px);height:clamp(177px,28.5vw,285px);color:#F2F1EE;opacity:0.35;transform:translate(-50%,-50%) rotate(-14deg);stroke-width:1.1;"></i>
@@ -1406,24 +1419,28 @@
        real: the testimonial grid's last row leaves 18px of slack below its ink,
        which the mission section's sources line does not, so equal padding would
        look like an unequal gap. change this only alongside the mission padding. -->
-  <section data-screen-label="Early users" style="position:relative;padding:clamp(30px,5vh,70px) 24px calc(clamp(48px,15vh,190px) - 18px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <!-- EXPERIMENT: top padding matches the belief-to-mission gap -->
+  <section data-screen-label="Early users" style="position:relative;padding:calc(clamp(16px,2vh,28px) + clamp(60px,19vh,240px) - clamp(48px,15vh,190px) - 2px) 24px calc(clamp(48px,15vh,190px) - 18px);display:flex;flex-direction:column;align-items:center;text-align:center;">
 
     <!-- barely-there brand glyphs behind the heading and cards. #EDEBE6 is
          baked into both SVGs, which is why no colour is set here. desktop and
          tablet only -- on a phone there is no spare whitespace to fill. -->
-    <div class="tmn-deco" aria-hidden="true">
-      <img class="dc-ga" src="uploads/uncooked glyph.svg" alt="">
-      <img class="dc-gb" src="uploads/uncooked glyph.svg" alt="">
-      <img class="dc-gc" src="uploads/uncooked glyph.svg" alt="">
-      <img class="dc-gd" src="uploads/uncooked glyph.svg" alt="">
+    <!-- EXPERIMENT: fades in with the section (dfin-o = opacity-only reveal, so the
+         illustrations keep their own rotations) -->
+    <div class="tmn-deco dfin dfin-o" data-di="0" aria-hidden="true" style="opacity:0;transition:opacity 1.2s ease;">
+      <img class="dc-ga" src="uploads/speech bubble.svg" alt="">
+      <img class="dc-gb" src="uploads/speech bubble.svg" alt="">
+      <img class="dc-gd" src="uploads/speech bubble.svg" alt="">
       <img class="dc-sa" src="uploads/star.svg" alt="">
-      <img class="dc-sb" src="uploads/star.svg" alt="">
-      <img class="dc-sc" src="uploads/star.svg" alt="">
-      <img class="dc-sd" src="uploads/star.svg" alt="">
       <img class="dc-se" src="uploads/star.svg" alt="">
       <img class="dc-sf" src="uploads/star.svg" alt="">
-      <img class="dc-ge" src="uploads/uncooked glyph.svg" alt="">
+      <img class="dc-ge" src="uploads/speech bubble.svg" alt="">
+      <img class="dc-gf" src="uploads/speech bubble.svg" alt="">
       <img class="dc-sg" src="uploads/star.svg" alt="">
+      <img class="dc-sh" src="uploads/star.svg" alt="">
+      <!-- EXPERIMENT: phones in the open gaps -->
+      <img class="dc-pa" src="uploads/phone.svg" alt="">
+      <img class="dc-pb" src="uploads/phone.svg" alt="">
     </div>
 
     <div class="tmn-head">
@@ -1439,7 +1456,7 @@
           <span class="tmn-avatar"></span>
           <span class="tmn-track">[track]</span>
         </div>
-        <span class="tmn-mark" aria-hidden="true">“</span>
+        <img class="tmn-mark" src="uploads/quote marks 1.svg" alt="" aria-hidden="true">
         <blockquote class="tmn-bubble">didn't get the role. but I heard back in 5 days with an actual reason. first time that's ever happened. I'll be using it again.</blockquote>
         <figcaption class="tmn-meta">
           <span class="tmn-name">[first name]</span>
@@ -1454,7 +1471,7 @@
           <span class="tmn-avatar"></span>
           <span class="tmn-track">[track]</span>
         </div>
-        <span class="tmn-mark" aria-hidden="true">“</span>
+        <img class="tmn-mark" src="uploads/quote marks 2.svg" alt="" aria-hidden="true">
         <blockquote class="tmn-bubble">got the role. verified once, applied from my phone, had a call booked within the week.</blockquote>
         <figcaption class="tmn-meta">
           <span class="tmn-name">[first name]</span>
@@ -1469,7 +1486,7 @@
           <span class="tmn-avatar"></span>
           <span class="tmn-track">[track]</span>
         </div>
-        <span class="tmn-mark" aria-hidden="true">“</span>
+        <img class="tmn-mark" src="uploads/quote marks 3.svg" alt="" aria-hidden="true">
         <blockquote class="tmn-bubble">took me one evening to get verified. no CV, no cover letter, no rewriting my story 10 times.</blockquote>
         <figcaption class="tmn-meta">
           <span class="tmn-name">[first name]</span>
@@ -1489,52 +1506,62 @@
        list in question 2 is the same seven as the proof strip above, on purpose --
        if one list changes, change both. capped at 8: a new question means an old
        one comes out. -->
-  <section data-screen-label="FAQ" style="position:relative;isolation:isolate;padding:clamp(30px,5vh,70px) 24px clamp(90px,16vh,200px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <!-- EXPERIMENT: top padding matches the belief-to-mission gap -->
+  <section data-screen-label="FAQ" style="position:relative;isolation:isolate;padding:calc(clamp(16px,2vh,28px) + clamp(60px,19vh,240px) - clamp(48px,15vh,190px) + 24px) 24px clamp(90px,16vh,200px);display:flex;flex-direction:column;align-items:center;text-align:center;">
     <div class="faq-grid" aria-hidden="true"></div>
 
 
-    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">FAQs</h2>
+    <!-- EXPERIMENT: two-column FAQ. left: eyebrow, title, space for an illustration;
+         right: the questions -->
+    <div class="faq-layout">
+    <div class="faq-side dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
+      <div class="faq-eyebrow">FAQs</div>
+      <h2 class="faq-title">questions you probably have</h2>
+      <!-- illustration: two-column (desktop) layout only -->
+      <div class="faq-illo" aria-hidden="true"><img src="uploads/ghost drinking tea.svg" alt=""></div>
+    </div>
 
     <!-- one reveal for the whole list rather than eight staggered ones: the
          cascade would run past a second here and this section wants to be quick -->
     <div class="faq-list dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);">
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">what does the 7 day answer actually mean?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">what does the 7 day answer actually mean?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">apply to any role through us and the startup replies within 7 days. a real human, a real decision, and a reason if it's a no. that's the rule every startup signs up to. the tracker's 6,000+ external jobs work differently: you apply to those direct on the company's own site, so the 7 days doesn't cover them.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">what happens after I apply?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">what happens after I apply?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">you'll see your application is under review. founders see everyone who applies, and we shortlist the strongest fits for them. shortlisted or not, you'll hear back within 7 days from an actual human at the startup. and once you're in the pool, you don't always have to apply: if you're a strong fit for a role, we'll flag you to the founder anyway.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">who else is using it?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">who else is using it?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">students and grads from across the UK, Europe and North America, from 55+ universities. some from Oxford and Imperial, plenty from everywhere else. we don't filter by university. if you can show what you can do, you're in.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">is it free?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">is it free?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">yes. free for candidates, always. startups pay to hire. you never pay to apply.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">do I need a CV or experience?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">do I need a CV or experience?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">no CV. your passport replaces it: a 60 second video pitch and a walkthrough of the best thing you've made or done. a uni project, a side project, a hackathon build, a campaign you ran, a society you grew. if you did it and can explain it, it counts. it takes 2 hours, once, and you can redo it whenever you want to improve.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">what if I don't meet the bar yet?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">what if I don't meet the bar yet?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">you'll see exactly where to improve. redo it whenever you're ready. in the meantime, the tracker's 6,000+ roles stay open to you, and we'll point you to smaller startups and student startups where you can build more proof. platform roles open up once you meet the bar.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">what kind of roles and startups?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">what kind of roles and startups?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">early stage, VC backed startups, mostly on project based roles across software, marketing, design, hardware and ops. early career to mid career, including experienced startup operators. year five responsibility in year one.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">what if I don't get matched straight away?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">what if I don't get matched straight away?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">roles come to you as they open, and we ping your phone when one fits. in the meantime the tracker is live with 6,000+ roles you can apply to today.</p>
       </details>
       <details class="faq-item" name="uc-faq">
-        <summary class="faq-q">what happens to my video and my work?<span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
+        <summary class="faq-q"><span class="faq-qt">what happens to my video and my work?</span><span class="faq-chev" aria-hidden="true"><i data-lucide="chevron-down" style="width:19px;height:19px;"></i></span></summary>
         <p class="faq-a">founders see it when you apply to their role. nobody else. we never sell it, share it, or train anything on it. private work can be redacted, or shared with access you control. delete it whenever you want.</p>
       </details>
     </div>
+    </div><!-- /faq-layout -->
   </section>
 
   <!-- FAQPage markup for search: the questions and answers here must stay
@@ -1636,7 +1663,7 @@
 
       <!-- subheading carries the ask, body carries the reason to act now. the
          weight/colour split is what separates them -- same family, same width. -->
-      <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:28px 0 0;font-weight:600;font-size:clamp(16px,1.35vw,18.5px);line-height:1.45;letter-spacing:-0.015em;color:#5f5f66;max-width:34ch;text-wrap:balance;">get seen. early members get matched first.</p>
+      <p class="dfin" data-di="1" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:28px 0 0;font-weight:500;font-size:clamp(16px,1.35vw,18.5px);line-height:1.45;letter-spacing:-0.015em;color:#5f5f66;max-width:34ch;text-wrap:balance;">get seen. early members get matched first.</p>
 
       <p class="dfin" data-di="2" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:12px 0 0;font-weight:500;font-size:clamp(14.5px,1.2vw,16px);line-height:1.55;color:#5f5f66;max-width:42ch;text-wrap:pretty;">the tracker's live today. save roles now, and get matched as new ones open.</p>
 
@@ -1702,13 +1729,42 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onResize, { passive: true });
     // squares off the nav pill's bottom corners while the mobile dropdown is open,
     // so the two read as one continuous shape (see .site-nav.nav-open)
-    // name="uc-faq" already gives the accordion one-open-at-a-time in current
-    // browsers; this is the same rule for the ones that ignore the attribute, so
-    // two answers are never open together.
+    // FAQ accordion: each item's height animates open/closed instead of snapping.
+    // name="uc-faq" stays in the markup as the no-JS fallback but is removed here,
+    // since the browser's native exclusive mode would snap the other item shut;
+    // one-open-at-a-time is enforced below, with the other item closing smoothly.
     const faqItems = [...document.querySelectorAll('.faq-item')];
-    faqItems.forEach((item) => item.addEventListener('toggle', () => {
-      if (item.open) faqItems.forEach((other) => { if (other !== item) other.open = false; });
-    }));
+    const faqReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const faqAnimate = (item, opening) => {
+      item._target = opening;
+      const from = item.getBoundingClientRect().height;   // includes any in-flight animation
+      if (item._anim) item._anim.cancel();
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      if (opening) item.open = true;
+      const border = item.offsetHeight - item.clientHeight;
+      const to = opening ? item.offsetHeight : q.offsetHeight + border;
+      item.style.overflow = 'hidden';
+      const anim = item.animate({ height: [from + 'px', to + 'px'] },
+        { duration: faqReduced ? 0 : 440, easing: 'cubic-bezier(.22,.7,.3,1)' });
+      if (!opening && a && !faqReduced) a.animate({ opacity: [1, 0] }, { duration: 220, easing: 'ease-out', fill: 'forwards' });
+      item._anim = anim;
+      anim.onfinish = () => {
+        item._anim = null; item.style.overflow = '';
+        if (!opening) { item.open = false; if (a) a.getAnimations().forEach((x) => x.cancel()); }
+      };
+    };
+    faqItems.forEach((item) => {
+      item.removeAttribute('name');
+      item.querySelector('.faq-q').addEventListener('click', (e) => {
+        e.preventDefault();
+        const opening = !(item._target != null ? item._target : item.open);
+        if (opening) faqItems.forEach((other) => {
+          if (other !== item && (other._target != null ? other._target : other.open)) faqAnimate(other, false);
+        });
+        faqAnimate(item, opening);
+      });
+    });
 
     const navMore = document.querySelector('.nav-more');
     if (navMore) navMore.addEventListener('toggle', () => {
